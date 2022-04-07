@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import { client } from '../../utils/micro_cms'
+import Link from 'next/link'
 
 type Props = {
   name: string
@@ -13,7 +14,10 @@ type Params = {
 const AnglingSpot: NextPage<Props> = ({ name }) => {
   return (
     <>
-      <h1>{name}</h1>
+      <h1 className="text-xl font-semibold">{name}</h1>
+      <Link href={`/angling_map`}>
+        <a>釣り場を探す</a>
+      </Link>
     </>
   )
 }
