@@ -5,17 +5,22 @@ import Link from 'next/link'
 
 type Props = {
   anglingSpots: {
+    id: string
     name: string
-    lat: number
-    lng: number
   }[]
 }
 
-const AnglingMap: NextPage<Props> = () => {
+const AnglingMap: NextPage<Props> = ({ anglingSpots }) => {
   return (
-    <Link href={`/angling_spot/nhtdkm1sg`}>
-      <a>若洲海浜公園海釣り施設</a>
-    </Link>
+    <>
+      {anglingSpots.map((anglingSpot, index) => (
+        <p key={index}>
+          <Link href={`/angling_spot/${anglingSpot.id}`}>
+            <a>{anglingSpot.name}</a>
+          </Link>
+        </p>
+      ))}
+    </>
   )
 }
 
