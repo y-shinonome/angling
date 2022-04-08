@@ -10,8 +10,8 @@ const SWR: React.FC = () => {
 
   return (
     <>
-      {data.map((angling_spot) => (
-        <p>{angling_spot.name}</p>
+      {data.map((angling_spot, index) => (
+        <p key={index}>{angling_spot.name}</p>
       ))}
     </>
   )
