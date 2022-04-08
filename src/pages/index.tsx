@@ -1,8 +1,6 @@
 import type { NextPage } from 'next'
-import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import SWR from '../components/swr'
-import { getDoc, getCllection } from '../utils/firestore'
 
 const Index: NextPage = () => {
   return (
@@ -13,14 +11,6 @@ const Index: NextPage = () => {
       <SWR />
     </>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  getDoc()
-  getCllection()
-  return {
-    props: {},
-  }
 }
 
 export default Index
