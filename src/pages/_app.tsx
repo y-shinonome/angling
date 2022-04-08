@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app'
-import Layout from '../components/layout'
+import GoogleMaps from '../components/google_maps'
 import '../styles/tailwind.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Layout />
+      <GoogleMaps />
       <Component {...pageProps} />
     </>
   )
