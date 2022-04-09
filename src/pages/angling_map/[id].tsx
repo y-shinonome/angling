@@ -14,10 +14,17 @@ type Params = {
 const AnglingSpot: NextPage<Props> = ({ name }) => {
   return (
     <>
-      <h1 className="text-xl font-semibold">{name}</h1>
-      <Link href={`/angling_map`}>
-        <a>釣り場を探す</a>
-      </Link>
+      <h1 className="text-2xl font-semibold">{name}</h1>
+      <p className="mt-10">
+        <Link href={`/angling_map`}>
+          <a>釣り場を探す</a>
+        </Link>
+      </p>
+      <p>
+        <Link href="/">
+          <a>TOP</a>
+        </Link>
+      </p>
     </>
   )
 }

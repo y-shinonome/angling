@@ -8,25 +8,28 @@ import {
 } from 'react'
 import { MapContext } from '../contexts/map_context'
 
-type Props = google.maps.MapOptions & {
+type Props = {
   style: { [key: string]: string }
 }
 
-const Map: React.FC<Props> = ({ children, style, ...options }) => {
+const Map: React.FC<Props> = ({ children, style }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<google.maps.Map>()
+
+  const options: google.maps.MapOptions = {
+    center: { lat: 35.4, lng: 139.74 },
+    zoom: 10,
+  }
 
   useEffect(() => {
     if (ref.current && !map) {
       setMap(new window.google.maps.Map(ref.current, {}))
     }
-  }, [ref, map])
-
-  useEffect(() => {
     if (map) {
       map.setOptions(options)
     }
-  }, [map, options])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ref, map])
 
   return (
     <>

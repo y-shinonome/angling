@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { Wrapper, Status } from '@googlemaps/react-wrapper'
 import useSWR from 'swr'
 import Map from './map'
@@ -18,18 +19,22 @@ const GoogleMaps: React.FC = () => {
   const render = (status: Status) => {
     return <h1>{status}</h1>
   }
+  const shouldShowMap = useRouter().asPath.indexOf('/angling_map') >= 0
+
   return (
     <>
-      <div className="h-[50vh] w-[100vw]">
+      <div
+        className={
+          shouldShowMap
+            ? 'h-[60vh] w-[100vw] resize-y overflow-hidden rounded border '
+            : 'h-0 w-0'
+        }
+      >
         <Wrapper
           apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
           render={render}
         >
-          <Map
-            center={{ lat: 35.4, lng: 139.75 }}
-            zoom={10}
-            style={{ height: '100%', width: '100%' }}
-          >
+          <Map style={{ height: '100%', width: '100%' }}>
             {data?.map((anglingSpot: AnglingSpot, index: number) => (
               <Marker
                 key={index}

@@ -15,11 +15,16 @@ const AnglingMap: NextPage<Props> = ({ anglingSpots }) => {
     <>
       {anglingSpots.map((anglingSpot, index) => (
         <p key={index}>
-          <Link href={`/angling_spot/${anglingSpot.id}`}>
+          <Link href={`/angling_map/${anglingSpot.id}`}>
             <a>{anglingSpot.name}</a>
           </Link>
         </p>
       ))}
+      <p className="mt-10 text-xl">
+        <Link href="/">
+          <a>TOP</a>
+        </Link>
+      </p>
     </>
   )
 }
