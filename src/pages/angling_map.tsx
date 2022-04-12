@@ -1,30 +1,28 @@
-import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
-import { client } from '../utils/micro_cms'
+import type { NextPage } from 'next'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import { client } from '../utils/micro_cms'
 
 type Props = {
   anglingSpots: {
-    id: string
-    name: string
+    lat: number
+    lng: number
   }[]
 }
 
-const AnglingMap: NextPage<Props> = ({ anglingSpots }) => {
+const LeafletTest: NextPage<Props> = ({ anglingSpots }) => {
+  const Leaflet = dynamic(() => import('../components/leaflet'), {
+    loading: () => <p>A map is loading</p>,
+    ssr: false,
+  })
+
   return (
     <>
-      {anglingSpots.map((anglingSpot, index) => (
-        <p key={index}>
-          <Link href={`/angling_map/${anglingSpot.id}`}>
-            <a>{anglingSpot.name}</a>
-          </Link>
-        </p>
-      ))}
-      <p className="mt-10 text-xl">
-        <Link href="/">
-          <a>TOP</a>
-        </Link>
-      </p>
+      <Leaflet position={[anglingSpots[0].lat, anglingSpots[0].lng]} />
+      <Link href={`/`}>
+        <a>top</a>
+      </Link>
     </>
   )
 }
@@ -32,7 +30,6 @@ const AnglingMap: NextPage<Props> = ({ anglingSpots }) => {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const anglingSpots = await client.get({
     endpoint: 'angling_spots',
-    queries: { limit: 1000 },
   })
 
   return {
@@ -42,4 +39,4 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   }
 }
 
-export default AnglingMap
+export default LeafletTest

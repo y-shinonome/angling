@@ -1,21 +1,23 @@
-import 'leaflet/dist/leaflet.css'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { icon } from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+
+type Props = {
+  position: L.LatLngExpression
+}
 
 const customIcon = icon({
   iconUrl: '/icon.svg',
   iconSize: [32, 32],
 })
 
-//マーカー付きポップアップ
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
-
-const Leaflet = () => {
+const Leaflet: React.FC<Props> = ({ position }) => {
   return (
     <>
       <MapContainer
-        center={[35.8, 139.8]}
-        zoom={18}
-        style={{ height: '100vh', width: '100%' }}
+        center={position}
+        zoom={17}
+        style={{ height: '50vh', width: '100%' }}
       >
         <TileLayer
           maxNativeZoom={19}
@@ -23,7 +25,7 @@ const Leaflet = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker icon={customIcon} position={[51.505, -0.09]}>
+        <Marker icon={customIcon} position={position}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
