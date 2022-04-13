@@ -28,7 +28,7 @@ const Leaflet: React.FC<Props> = ({
   anglingField,
 }) => {
   return (
-    <>
+    <div className="mb-3">
       <Map center={center} zoom={zoom}>
         {anglingSpots.map(
           (anglingSpot, index) =>
@@ -42,7 +42,7 @@ const Leaflet: React.FC<Props> = ({
             <FieldImage key={index} fieldImage={fieldImage} />
           ))}
       </Map>
-    </>
+    </div>
   )
 }
 

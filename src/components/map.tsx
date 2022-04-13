@@ -5,20 +5,34 @@ import {
   AttributionControl,
 } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import ResizableContainer from './resizable_container'
 
 type Props = {
   center: Position
   zoom: number
 }
 
-const AnglingSpot: React.FC<Props> = ({ center, zoom, children }) => {
+const Map: React.FC<Props> = ({ center, zoom, children }) => {
+  const setMap = (map: L.Map) => {
+    const resizeObserver = new ResizeObserver(() => {
+      //invalidateSizeの未定義エラーを無理やり回避
+      try {
+        map.invalidateSize()
+      } catch (e) {}
+    })
+    const container = document.getElementById('map-container')
+    resizeObserver.observe(container!)
+  }
+
   return (
-    <div className="h-[50vh]">
+    <ResizableContainer>
       <MapContainer
+        id="map-container"
         center={center}
         zoom={zoom}
         style={{ height: '100%', width: '100%' }}
         attributionControl={false}
+        whenCreated={setMap}
       >
         <TileLayer
           maxNativeZoom={19}
@@ -30,8 +44,8 @@ const AnglingSpot: React.FC<Props> = ({ center, zoom, children }) => {
         <ScaleControl />
         {children}
       </MapContainer>
-    </div>
+    </ResizableContainer>
   )
 }
 
-export default AnglingSpot
+export default Map
