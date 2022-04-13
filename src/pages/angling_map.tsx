@@ -5,10 +5,7 @@ import dynamic from 'next/dynamic'
 import { getAnglingSpots } from '../utils/firestore'
 
 type Props = {
-  anglingSpots: {
-    name: string
-    position: L.LatLngExpression
-  }[]
+  anglingSpots: AnglingSpot[]
 }
 
 const LeafletTest: NextPage<Props> = ({ anglingSpots }) => {
@@ -16,8 +13,9 @@ const LeafletTest: NextPage<Props> = ({ anglingSpots }) => {
     loading: () => <p>A map is loading</p>,
     ssr: false,
   })
+
   const center: L.LatLngExpression = [35.5, 139.8]
-  const zoom = 10
+  const zoom: number = 10
 
   return (
     <>
@@ -33,9 +31,10 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const anglingSpots = (await getAnglingSpots()).map((spot) => {
     return {
       name: spot.name,
+      contentId: spot.contentId,
       position: {
-        lat: spot.position._latitude,
-        lng: spot.position._longitude,
+        lat: spot.position.lat,
+        lng: spot.position.lng,
       },
     }
   })

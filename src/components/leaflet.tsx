@@ -1,28 +1,32 @@
-import { icon } from 'leaflet'
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  ScaleControl,
-} from 'react-leaflet'
+import { MapContainer, TileLayer, ScaleControl } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import AnglingSpot from './angling_spot'
+import FieldImage from './field_image'
 
 type Props = {
   center: L.LatLngExpression
   zoom: number
-  anglingSpots: {
-    name: string
-    position: L.LatLngExpression
-  }[]
+  anglingSpots: AnglingSpot[]
+  anglingField?: AnglingField
 }
 
-const customIcon = icon({
-  iconUrl: '/icon.svg',
-  iconSize: [32, 32],
-})
+const isDuplicatePosition = (
+  actual: Position,
+  expected: Position | undefined
+) => {
+  if (actual.lat === expected?.lat && actual.lng === expected?.lng) {
+    return true
+  } else {
+    return false
+  }
+}
 
-const Leaflet: React.FC<Props> = ({ center, zoom, anglingSpots }) => {
+const Leaflet: React.FC<Props> = ({
+  center,
+  zoom,
+  anglingSpots,
+  anglingField,
+}) => {
   return (
     <>
       <MapContainer
@@ -37,11 +41,17 @@ const Leaflet: React.FC<Props> = ({ center, zoom, anglingSpots }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <ScaleControl />
-        {anglingSpots.map((spot, index) => (
-          <Marker key={index} icon={customIcon} position={spot.position}>
-            <Popup>{spot.name}</Popup>
-          </Marker>
-        ))}
+        {anglingSpots.map(
+          (anglingSpot, index) =>
+            !isDuplicatePosition(
+              anglingSpot.position,
+              anglingField?.position
+            ) && <AnglingSpot key={index} anglingSpot={anglingSpot} />
+        )}
+        {anglingField?.fieldImages &&
+          anglingField.fieldImages.map((fieldImage, index) => (
+            <FieldImage key={index} fieldImage={fieldImage} />
+          ))}
       </MapContainer>
     </>
   )

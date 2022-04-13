@@ -7,3 +7,13 @@ export const getAnglingSpots = async () => {
   })
   return collectionSnap
 }
+
+export const getAnglingField = async (contentId: string) => {
+  const anglingSpotsRef = firestore.collection('angling_spots')
+  const anglingFieldSnap = (
+    await anglingSpotsRef.where('contentId', '==', contentId).get()
+  ).docs.map((doc) => {
+    return doc.data()
+  })
+  return anglingFieldSnap
+}
