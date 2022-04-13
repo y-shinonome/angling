@@ -21,7 +21,7 @@ const AnglingSpot: NextPage<Props> = ({ name, anglingSpots, anglingField }) => {
     ssr: false,
   })
 
-  const center: L.LatLngExpression = anglingField.position
+  const center: Position = anglingField.position
   const zoom: number = 16
 
   return (

@@ -1,10 +1,10 @@
-import { MapContainer, TileLayer, ScaleControl } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import Map from './map'
 import AnglingSpot from './angling_spot'
 import FieldImage from './field_image'
 
 type Props = {
-  center: L.LatLngExpression
+  center: Position
   zoom: number
   anglingSpots: AnglingSpot[]
   anglingField?: AnglingField
@@ -29,18 +29,7 @@ const Leaflet: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <MapContainer
-        center={center}
-        zoom={zoom}
-        style={{ height: '50vh', width: '100%' }}
-      >
-        <TileLayer
-          maxNativeZoom={19}
-          maxZoom={20}
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <ScaleControl />
+      <Map center={center} zoom={zoom}>
         {anglingSpots.map(
           (anglingSpot, index) =>
             !isDuplicatePosition(
@@ -52,7 +41,7 @@ const Leaflet: React.FC<Props> = ({
           anglingField.fieldImages.map((fieldImage, index) => (
             <FieldImage key={index} fieldImage={fieldImage} />
           ))}
-      </MapContainer>
+      </Map>
     </>
   )
 }

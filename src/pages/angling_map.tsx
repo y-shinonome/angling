@@ -14,7 +14,7 @@ const LeafletTest: NextPage<Props> = ({ anglingSpots }) => {
     ssr: false,
   })
 
-  const center: L.LatLngExpression = [35.5, 139.8]
+  const center: Position = { lat: 35.5, lng: 139.8 }
   const zoom: number = 10
 
   return (
