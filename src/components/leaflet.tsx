@@ -10,17 +10,6 @@ type Props = {
   detailedAnglingField?: AnglingField
 }
 
-const isDuplicatePosition = (
-  actual: Position,
-  expected: Position | undefined
-) => {
-  if (actual.lat === expected?.lat && actual.lng === expected?.lng) {
-    return true
-  } else {
-    return false
-  }
-}
-
 const Leaflet: React.FC<Props> = ({
   center,
   zoom,
@@ -30,13 +19,9 @@ const Leaflet: React.FC<Props> = ({
   return (
     <div className="mb-3">
       <Map center={center} zoom={zoom}>
-        {anglingFields.map(
-          (anglingField, index) =>
-            !isDuplicatePosition(
-              anglingField.position,
-              detailedAnglingField?.position
-            ) && <AnglingField key={index} anglingField={anglingField} />
-        )}
+        {anglingFields.map((anglingField, index) => (
+          <AnglingField key={index} anglingField={anglingField} />
+        ))}
         {detailedAnglingField?.fieldImages &&
           detailedAnglingField.fieldImages.map((fieldImage, index) => (
             <FieldImage key={index} fieldImage={fieldImage.fields} />

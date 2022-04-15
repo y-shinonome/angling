@@ -14,6 +14,14 @@ export const getAnglingFields = async () => {
   return response.items
 }
 
+export const getOtherAnglingFields = async (except: string | undefined) => {
+  const response = await client.getEntries({
+    content_type: 'anglingFields',
+    'sys.id[ne]': except,
+  })
+  return response.items
+}
+
 export const getAnglingFieldIds = async () => {
   const response = await client.getEntries({
     content_type: 'anglingFields',

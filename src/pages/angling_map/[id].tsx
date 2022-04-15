@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import {
-  getAnglingFields,
+  getOtherAnglingFields,
   getAnglingFieldIds,
   getAnglingField,
 } from '../../utils/contentful'
@@ -66,16 +66,18 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
-  const anglingFields = (await getAnglingFields()).map((item: any) => {
-    return {
-      id: item.sys.id,
-      name: item.fields.name,
-      position: {
-        lat: item.fields.position.lat,
-        lng: item.fields.position.lon,
-      },
+  const anglingFields = (await getOtherAnglingFields(params?.id)).map(
+    (item: any) => {
+      return {
+        id: item.sys.id,
+        name: item.fields.name,
+        position: {
+          lat: item.fields.position.lat,
+          lng: item.fields.position.lon,
+        },
+      }
     }
-  })
+  )
 
   const detailedAnglingField: any = await getAnglingField(params?.id)
   return {
