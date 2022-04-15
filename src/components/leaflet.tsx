@@ -1,13 +1,13 @@
 import 'leaflet/dist/leaflet.css'
 import Map from './map'
-import AnglingSpot from './angling_spot'
+import AnglingField from './angling_field'
 import FieldImage from './field_image'
 
 type Props = {
   center: Position
   zoom: number
-  anglingSpots: AnglingSpot[]
-  anglingField?: AnglingField
+  anglingFields: AnglingField[]
+  detailedAnglingField?: AnglingField
 }
 
 const isDuplicatePosition = (
@@ -24,22 +24,22 @@ const isDuplicatePosition = (
 const Leaflet: React.FC<Props> = ({
   center,
   zoom,
-  anglingSpots,
-  anglingField,
+  anglingFields,
+  detailedAnglingField,
 }) => {
   return (
     <div className="mb-3">
       <Map center={center} zoom={zoom}>
-        {anglingSpots.map(
-          (anglingSpot, index) =>
+        {anglingFields.map(
+          (anglingField, index) =>
             !isDuplicatePosition(
-              anglingSpot.position,
-              anglingField?.position
-            ) && <AnglingSpot key={index} anglingSpot={anglingSpot} />
+              anglingField.position,
+              detailedAnglingField?.position
+            ) && <AnglingField key={index} anglingField={anglingField} />
         )}
-        {anglingField?.fieldImages &&
-          anglingField.fieldImages.map((fieldImage, index) => (
-            <FieldImage key={index} fieldImage={fieldImage} />
+        {detailedAnglingField?.fieldImages &&
+          detailedAnglingField.fieldImages.map((fieldImage, index) => (
+            <FieldImage key={index} fieldImage={fieldImage.fields} />
           ))}
       </Map>
     </div>

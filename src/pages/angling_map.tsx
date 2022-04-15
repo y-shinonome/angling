@@ -2,13 +2,13 @@ import { GetStaticProps } from 'next'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { getAnglingSpots } from '../utils/firestore'
+import { getAnglingFields } from '../utils/contentful'
 
 type Props = {
-  anglingSpots: AnglingSpot[]
+  anglingFields: AnglingField[]
 }
 
-const LeafletTest: NextPage<Props> = ({ anglingSpots }) => {
+const LeafletTest: NextPage<Props> = ({ anglingFields }) => {
   const Leaflet = dynamic(() => import('../components/leaflet'), {
     loading: () => <p>A map is loading</p>,
     ssr: false,
@@ -19,7 +19,7 @@ const LeafletTest: NextPage<Props> = ({ anglingSpots }) => {
 
   return (
     <>
-      <Leaflet center={center} zoom={zoom} anglingSpots={anglingSpots} />
+      <Leaflet center={center} zoom={zoom} anglingFields={anglingFields} />
       <Link href={`/`}>
         <a>top</a>
       </Link>
@@ -28,20 +28,20 @@ const LeafletTest: NextPage<Props> = ({ anglingSpots }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const anglingSpots = (await getAnglingSpots()).map((spot) => {
+  const anglingFields = (await getAnglingFields()).map((item: any) => {
     return {
-      name: spot.name,
-      contentId: spot.contentId,
+      id: item.sys.id,
+      name: item.fields.name,
       position: {
-        lat: spot.position.lat,
-        lng: spot.position.lng,
+        lat: item.fields.position.lat,
+        lng: item.fields.position.lon,
       },
     }
   })
 
   return {
     props: {
-      anglingSpots: anglingSpots,
+      anglingFields: anglingFields,
     },
   }
 }

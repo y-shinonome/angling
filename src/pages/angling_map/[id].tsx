@@ -2,26 +2,30 @@ import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { getAnglingSpots, getAnglingField } from '../../utils/firestore'
-import { client } from '../../utils/micro_cms'
+import {
+  getAnglingFields,
+  getAnglingFieldIds,
+  getAnglingField,
+} from '../../utils/contentful'
 
 type Props = {
-  name: string
-  anglingSpots: AnglingSpot[]
-  anglingField: AnglingField
+  anglingFields: AnglingField[]
+  detailedAnglingField: AnglingField
 }
 
 type Params = {
   id: string
 }
 
-const AnglingSpot: NextPage<Props> = ({ name, anglingSpots, anglingField }) => {
+const AnglingField: NextPage<Props> = ({
+  anglingFields,
+  detailedAnglingField,
+}) => {
   const Leaflet = dynamic(() => import('../../components/leaflet'), {
     loading: () => <p>A map is loading</p>,
     ssr: false,
   })
-
-  const center: Position = anglingField.position
+  const center: Position = detailedAnglingField.position
   const zoom: number = 16
 
   return (
@@ -29,10 +33,10 @@ const AnglingSpot: NextPage<Props> = ({ name, anglingSpots, anglingField }) => {
       <Leaflet
         center={center}
         zoom={zoom}
-        anglingSpots={anglingSpots}
-        anglingField={anglingField}
+        anglingFields={anglingFields}
+        detailedAnglingField={detailedAnglingField}
       />
-      <h1 className="text-2xl font-semibold">{name}</h1>
+      <h1 className="text-2xl font-semibold">{detailedAnglingField.name}</h1>
       <p className="mt-10">
         <Link href={`/angling_map`}>
           <a>釣り場を探す</a>
@@ -48,13 +52,9 @@ const AnglingSpot: NextPage<Props> = ({ name, anglingSpots, anglingField }) => {
 }
 
 export const getStaticPaths = async () => {
-  const anglingSpots = await client.get({
-    endpoint: 'angling_spots',
-    queries: { fields: 'id' },
-  })
-
-  const paths = anglingSpots.contents.map((content: { id: string }) => ({
-    params: content,
+  const items = await getAnglingFieldIds()
+  const paths = items.map((item: any) => ({
+    params: { id: item.sys.id },
   }))
 
   return {
@@ -66,39 +66,34 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
-  const anglingSpot = await client.get({
-    endpoint: 'angling_spots',
-    contentId: params?.id,
-    queries: { fields: 'name' },
-  })
-
-  const anglingSpots = (await getAnglingSpots()).map((spot) => {
+  const anglingFields = (await getAnglingFields()).map((item: any) => {
     return {
-      name: spot.name,
-      contentId: spot.contentId,
+      id: item.sys.id,
+      name: item.fields.name,
       position: {
-        lat: spot.position.lat,
-        lng: spot.position.lng,
+        lat: item.fields.position.lat,
+        lng: item.fields.position.lon,
       },
     }
   })
 
-  const contentId = params?.id ?? ''
-  const anglingField = await getAnglingField(contentId)
-
+  const detailedAnglingField: any = await getAnglingField(params?.id)
   return {
     props: {
-      name: anglingSpot.name,
-      anglingSpots: anglingSpots,
-      anglingField: {
-        position: anglingField[0].position,
-        fieldImages: anglingField[0].fieldImages ?? null,
-        restrooms: anglingField[0].restrooms ?? null,
-        stores: anglingField[0].stores ?? null,
-        notices: anglingField[0].notices ?? null,
+      anglingFields: anglingFields,
+      detailedAnglingField: {
+        name: detailedAnglingField[0].fields.name,
+        position: {
+          lat: detailedAnglingField[0].fields.position.lat,
+          lng: detailedAnglingField[0].fields.position.lon,
+        },
+        fieldImages: detailedAnglingField[0].fields.fieldImages ?? null,
+        restrooms: detailedAnglingField[0].fields.restrooms ?? null,
+        stores: detailedAnglingField[0].fields.stores ?? null,
+        notices: detailedAnglingField[0].fields.notices ?? null,
       },
     },
   }
 }
 
-export default AnglingSpot
+export default AnglingField

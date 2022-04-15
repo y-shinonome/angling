@@ -3,13 +3,7 @@ import { Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 type Props = {
-  fieldImage: {
-    title: string
-    position: {
-      lat: number
-      lng: number
-    }
-  }
+  fieldImage: Spot
 }
 
 const customIcon = icon({

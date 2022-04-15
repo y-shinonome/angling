@@ -4,7 +4,7 @@ import { Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 type Props = {
-  anglingSpot: AnglingSpot
+  anglingField: AnglingField
 }
 
 const customIcon = icon({
@@ -12,16 +12,16 @@ const customIcon = icon({
   iconSize: [32, 32],
 })
 
-const AnglingSpot: React.FC<Props> = ({ anglingSpot }) => {
+const AnglingField: React.FC<Props> = ({ anglingField }) => {
   return (
-    <Marker icon={customIcon} position={anglingSpot.position}>
+    <Marker icon={customIcon} position={anglingField.position}>
       <Popup>
-        <Link href={`/angling_map/${anglingSpot.contentId}`}>
-          <a>{anglingSpot.name}</a>
+        <Link href={`/angling_map/${anglingField.id}`}>
+          <a>{anglingField.name}</a>
         </Link>
       </Popup>
     </Marker>
   )
 }
 
-export default AnglingSpot
+export default AnglingField
