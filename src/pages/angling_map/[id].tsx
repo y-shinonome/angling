@@ -35,6 +35,7 @@ const AnglingField: NextPage<Props> = ({
         zoom={zoom}
         anglingFields={anglingFields}
         detailedAnglingField={detailedAnglingField}
+        className="sticky top-0 mb-3"
       />
       <h1 className="text-2xl font-semibold">{detailedAnglingField.name}</h1>
       <p className="mt-10">

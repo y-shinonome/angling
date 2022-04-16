@@ -10,7 +10,7 @@ type Props = {
 
 const LeafletTest: NextPage<Props> = ({ anglingFields }) => {
   const Leaflet = dynamic(() => import('../components/leaflet'), {
-    loading: () => <p>A map is loading</p>,
+    loading: () => <p className="h-[50vh]">A map is loading</p>,
     ssr: false,
   })
 
@@ -19,7 +19,21 @@ const LeafletTest: NextPage<Props> = ({ anglingFields }) => {
 
   return (
     <>
-      <Leaflet center={center} zoom={zoom} anglingFields={anglingFields} />
+      <Leaflet
+        center={center}
+        zoom={zoom}
+        anglingFields={anglingFields}
+        className="sticky top-0 mb-3"
+      />
+      <ul>
+        {anglingFields.map((anglingField, index) => (
+          <li key={index}>
+            <Link href={`/angling_map/${anglingField.id}`}>
+              <a>{anglingField.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
       <Link href={`/`}>
         <a>top</a>
       </Link>

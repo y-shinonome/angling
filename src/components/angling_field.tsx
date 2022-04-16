@@ -1,7 +1,6 @@
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { icon } from 'leaflet'
-import { Marker, Popup } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
+import { Marker } from 'react-leaflet'
 
 type Props = {
   anglingField: AnglingField
@@ -13,14 +12,17 @@ const customIcon = icon({
 })
 
 const AnglingField: React.FC<Props> = ({ anglingField }) => {
+  const router = useRouter()
   return (
-    <Marker icon={customIcon} position={anglingField.position}>
-      <Popup>
-        <Link href={`/angling_map/${anglingField.id}`}>
-          <a>{anglingField.name}</a>
-        </Link>
-      </Popup>
-    </Marker>
+    <Marker
+      icon={customIcon}
+      position={anglingField.position}
+      eventHandlers={{
+        click: () => {
+          router.push(`/angling_map/${anglingField.id}`)
+        },
+      }}
+    ></Marker>
   )
 }
 

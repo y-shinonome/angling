@@ -8,6 +8,7 @@ type Props = {
   zoom: number
   anglingFields: AnglingField[]
   detailedAnglingField?: AnglingField
+  className?: string
 }
 
 const Leaflet: React.FC<Props> = ({
@@ -15,9 +16,10 @@ const Leaflet: React.FC<Props> = ({
   zoom,
   anglingFields,
   detailedAnglingField,
+  className,
 }) => {
   return (
-    <div className="mb-3">
+    <div className={className}>
       <Map center={center} zoom={zoom}>
         {anglingFields.map((anglingField, index) => (
           <AnglingField key={index} anglingField={anglingField} />
