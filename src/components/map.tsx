@@ -17,7 +17,12 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
   const mapRef = useRef<L.Map>()
 
   const resizeObserver = new ResizeObserver(() => {
-    mapRef.current?.invalidateSize()
+    try {
+      mapRef.current?.invalidateSize()
+    } catch (e) {
+      //釣り場の個別ページからブラウザの"戻る"ボタンでTOPページまで戻ると
+      //プロパティ未定義のエラーが発生するが、動作に影響がないため無視する。
+    }
   })
 
   useEffect(() => {
