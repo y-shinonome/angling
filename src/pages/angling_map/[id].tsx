@@ -22,9 +22,6 @@ type Params = {
   id: string
 }
 
-const center: Position = { lat: 35.5, lng: 139.8 }
-const zoom: number = 10
-
 const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
   return (
     <>
@@ -47,8 +44,8 @@ AnglingField.getLayout = (props, page) => {
   return (
     <>
       <Leaflet
-        center={center}
-        zoom={zoom}
+        center={props.detailedAnglingField.position}
+        zoom={16}
         anglingFields={props.anglingFields}
         detailedAnglingField={props.detailedAnglingField}
         className="sticky top-0 mb-3"

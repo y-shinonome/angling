@@ -2,8 +2,8 @@ import type { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import Leaflet from '../components/leaflet'
-import { getAnglingFields } from '../utils/contentful'
+import Leaflet from '../../components/leaflet'
+import { getAnglingFields } from '../../utils/contentful'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement

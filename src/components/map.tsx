@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import {
   MapContainer,
   TileLayer,
@@ -13,16 +14,24 @@ type Props = {
 }
 
 const Map: React.FC<Props> = ({ center, zoom, children }) => {
-  const setMap = (map: L.Map) => {
-    const resizeObserver = new ResizeObserver(() => {
-      //invalidateSizeの未定義エラーを無理やり回避
-      try {
-        map.invalidateSize()
-      } catch (e) {}
-    })
-    const container = document.getElementById('map-container')
-    resizeObserver.observe(container!)
-  }
+  const mapRef = useRef<L.Map>()
+
+  const resizeObserver = new ResizeObserver(() => {
+    mapRef.current?.invalidateSize()
+  })
+
+  useEffect(() => {
+    if (document.getElementById('map-container')) {
+      const container = document.getElementById('map-container')
+      resizeObserver.observe(container!)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    mapRef.current?.setView(center, zoom)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [children])
 
   return (
     <ResizableContainer>
@@ -30,9 +39,12 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
         id="map-container"
         center={center}
         zoom={zoom}
+        zoomAnimationThreshold={10}
         style={{ height: '100%', width: '100%' }}
         attributionControl={false}
-        whenCreated={setMap}
+        whenCreated={(mapInstance) => {
+          mapRef.current = mapInstance
+        }}
       >
         <TileLayer
           maxNativeZoom={19}
