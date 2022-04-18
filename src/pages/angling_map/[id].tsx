@@ -1,12 +1,17 @@
+import type { ReactElement } from 'react'
 import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
+import Leaflet from '../../components/leaflet'
 import {
   getOtherAnglingFields,
   getAnglingFieldIds,
   getAnglingField,
 } from '../../utils/contentful'
+
+type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
+}
 
 type Props = {
   anglingFields: AnglingField[]
@@ -17,26 +22,12 @@ type Params = {
   id: string
 }
 
-const AnglingField: NextPage<Props> = ({
-  anglingFields,
-  detailedAnglingField,
-}) => {
-  const Leaflet = dynamic(() => import('../../components/leaflet'), {
-    loading: () => <p>A map is loading</p>,
-    ssr: false,
-  })
-  const center: Position = detailedAnglingField.position
-  const zoom: number = 16
+const center: Position = { lat: 35.5, lng: 139.8 }
+const zoom: number = 10
 
+const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
   return (
     <>
-      <Leaflet
-        center={center}
-        zoom={zoom}
-        anglingFields={anglingFields}
-        detailedAnglingField={detailedAnglingField}
-        className="sticky top-0 mb-3"
-      />
       <h1 className="text-2xl font-semibold">{detailedAnglingField.name}</h1>
       <p className="mt-10">
         <Link href={`/angling_map`}>
@@ -48,6 +39,21 @@ const AnglingField: NextPage<Props> = ({
           <a>TOP</a>
         </Link>
       </p>
+    </>
+  )
+}
+
+AnglingField.getLayout = (props, page) => {
+  return (
+    <>
+      <Leaflet
+        center={center}
+        zoom={zoom}
+        anglingFields={props.anglingFields}
+        detailedAnglingField={props.detailedAnglingField}
+        className="sticky top-0 mb-3"
+      />
+      {page}
     </>
   )
 }

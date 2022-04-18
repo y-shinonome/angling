@@ -1,7 +1,6 @@
+import { useMemo } from 'react'
+import dynamic from 'next/dynamic'
 import 'leaflet/dist/leaflet.css'
-import Map from './map'
-import AnglingField from './angling_field'
-import FieldImage from './field_image'
 
 type Props = {
   center: Position
@@ -18,6 +17,25 @@ const Leaflet: React.FC<Props> = ({
   detailedAnglingField,
   className,
 }) => {
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('./map'), {
+        loading: () => <p>A map is loading</p>,
+        ssr: false,
+      }),
+    []
+  )
+
+  const AnglingField = dynamic(() => import('./angling_field'), {
+    loading: () => null,
+    ssr: false,
+  })
+
+  const FieldImage = dynamic(() => import('./field_image'), {
+    loading: () => null,
+    ssr: false,
+  })
+
   return (
     <div className={className}>
       <Map center={center} zoom={zoom}>
