@@ -3,6 +3,8 @@ import { GetStaticProps } from 'next'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import Leaflet from '../../components/leaflet'
+import type { Entry } from 'contentful'
+import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import { getAnglingFields } from '../../utils/contentful'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -10,9 +12,9 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 }
 
 type Props = {
-  anglingFields: AnglingField[]
+  anglingFields: Entry<IAnglingFieldsFields>[]
 }
-const center: Position = { lat: 35.5, lng: 139.8 }
+const center: L.LatLngExpression = { lat: 35.5, lng: 139.8 }
 const zoom: number = 10
 
 const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
@@ -21,8 +23,8 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
       <ul>
         {anglingFields.map((anglingField, index) => (
           <li key={index}>
-            <Link href={`/angling_map/${anglingField.id}`}>
-              <a>{anglingField.name}</a>
+            <Link href={`/angling_map/${anglingField.sys.id}`}>
+              <a>{anglingField.fields.name}</a>
             </Link>
           </li>
         ))}
@@ -49,16 +51,7 @@ AnglingMap.getLayout = (props, page) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const anglingFields = (await getAnglingFields()).map((item: any) => {
-    return {
-      id: item.sys.id,
-      name: item.fields.name,
-      position: {
-        lat: item.fields.position.lat,
-        lng: item.fields.position.lon,
-      },
-    }
-  })
+  const anglingFields = await getAnglingFields()
 
   return {
     props: {

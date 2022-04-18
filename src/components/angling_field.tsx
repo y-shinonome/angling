@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router'
 import { icon } from 'leaflet'
 import { Marker } from 'react-leaflet'
+import type { Entry } from 'contentful'
+import type { IAnglingFieldsFields } from '../../@types/contentful'
 
 type Props = {
-  anglingField: AnglingField
+  anglingField: Entry<IAnglingFieldsFields>
 }
 
 const customIcon = icon({
@@ -16,10 +18,13 @@ const AnglingField: React.FC<Props> = ({ anglingField }) => {
   return (
     <Marker
       icon={customIcon}
-      position={anglingField.position}
+      position={[
+        anglingField.fields.position.lat,
+        anglingField.fields.position.lon,
+      ]}
       eventHandlers={{
         click: () => {
-          router.push(`/angling_map/${anglingField.id}`)
+          router.push(`/angling_map/${anglingField.sys.id}`)
         },
       }}
     ></Marker>

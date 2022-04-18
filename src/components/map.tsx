@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css'
 import ResizableContainer from './resizable_container'
 
 type Props = {
-  center: Position
+  center: L.LatLngExpression
   zoom: number
 }
 

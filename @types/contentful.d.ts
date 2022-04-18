@@ -8,7 +8,7 @@ export interface IAnglingFieldsFields {
   name: string
 
   /** position */
-  position?: { lat: number; lon: number } | undefined
+  position: { lat: number; lon: number }
 
   /** fieldImages */
   fieldImages?: Entry<{ [fieldId: string]: unknown }>[] | undefined
@@ -45,10 +45,10 @@ export interface IAnglingFields extends Entry<IAnglingFieldsFields> {
 
 export interface IFieldImagesFields {
   /** title */
-  title?: string | undefined
+  title: string
 
   /** position */
-  position?: { lat: number; lon: number } | undefined
+  position: { lat: number; lon: number }
 
   /** image */
   image?: Asset | undefined

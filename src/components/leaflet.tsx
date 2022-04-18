@@ -1,12 +1,14 @@
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
+import type { Entry } from 'contentful'
+import type { IAnglingFieldsFields } from '../../@types/contentful'
 import 'leaflet/dist/leaflet.css'
 
 type Props = {
-  center: Position
+  center: L.LatLngExpression
   zoom: number
-  anglingFields: AnglingField[]
-  detailedAnglingField?: AnglingField
+  anglingFields: Entry<IAnglingFieldsFields>[]
+  detailedAnglingField?: Entry<IAnglingFieldsFields>
   className?: string
 }
 
@@ -35,17 +37,18 @@ const Leaflet: React.FC<Props> = ({
     loading: () => null,
     ssr: false,
   })
-
   return (
     <div className={className}>
       <Map center={center} zoom={zoom}>
         {anglingFields.map((anglingField, index) => (
           <AnglingField key={index} anglingField={anglingField} />
         ))}
-        {detailedAnglingField?.fieldImages &&
-          detailedAnglingField.fieldImages.map((fieldImage, index) => (
-            <FieldImage key={index} fieldImage={fieldImage.fields} />
-          ))}
+        {detailedAnglingField?.fields?.fieldImages &&
+          detailedAnglingField.fields.fieldImages.map(
+            (fieldImage: any, index) => (
+              <FieldImage key={index} fieldImage={fieldImage} />
+            )
+          )}
       </Map>
     </div>
   )

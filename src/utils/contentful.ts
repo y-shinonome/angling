@@ -1,4 +1,5 @@
 import { createClient } from 'contentful'
+import { IAnglingFieldsFields } from '../../@types/contentful'
 
 const config = {
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -8,14 +9,14 @@ const config = {
 const client = createClient(config)
 
 export const getAnglingFields = async () => {
-  const response = await client.getEntries({
+  const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
   })
   return response.items
 }
 
 export const getOtherAnglingFields = async (except: string | undefined) => {
-  const response = await client.getEntries({
+  const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
     'sys.id[ne]': except,
   })
@@ -23,7 +24,7 @@ export const getOtherAnglingFields = async (except: string | undefined) => {
 }
 
 export const getAnglingFieldIds = async () => {
-  const response = await client.getEntries({
+  const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
     select: 'sys.id',
   })
@@ -31,7 +32,7 @@ export const getAnglingFieldIds = async () => {
 }
 
 export const getAnglingField = async (id: string | undefined) => {
-  const response = await client.getEntries({
+  const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
     'sys.id': id,
   })
