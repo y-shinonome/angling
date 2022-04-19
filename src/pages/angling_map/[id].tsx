@@ -2,6 +2,7 @@ import type { ReactElement } from 'react'
 import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import Leaflet from '../../components/leaflet'
 import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
@@ -27,9 +28,25 @@ type Params = {
 const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
   return (
     <>
-      <h1 className="text-2xl font-semibold">
+      <h1 className="mt-10 text-3xl font-semibold">
         {detailedAnglingField.fields.name}
       </h1>
+      {detailedAnglingField.fields.fieldImages?.map((fieldImage, index) => (
+        <div key={index}>
+          <h2 className="mt-10 text-xl">{fieldImage.fields.title}</h2>
+          {fieldImage.fields.image && (
+            <div className="relative h-[300px] w-[480px]">
+              <Image
+                src={`https:${fieldImage.fields.image?.fields.file.url}`}
+                alt={fieldImage.fields.title}
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+          )}
+          {fieldImage.fields.comment && <div>{fieldImage.fields.comment}</div>}
+        </div>
+      ))}
       <p className="mt-10">
         <Link href={`/angling_map`}>
           <a>釣り場を探す</a>
@@ -55,7 +72,7 @@ AnglingField.getLayout = (props, page) => {
         zoom={16}
         anglingFields={props.anglingFields}
         detailedAnglingField={props.detailedAnglingField}
-        className="sticky top-0 mb-3"
+        className="sticky top-0 z-10 mb-3"
       />
       {page}
     </>

@@ -11,7 +11,7 @@ export interface IAnglingFieldsFields {
   position: { lat: number; lon: number }
 
   /** fieldImages */
-  fieldImages?: Entry<{ [fieldId: string]: unknown }>[] | undefined
+  fieldImages?: Entry<IFieldImagesFields>[] | undefined
 
   /** parkingAreas */
   parkingAreas?: Entry<{ [fieldId: string]: unknown }>[] | undefined
@@ -54,7 +54,7 @@ export interface IFieldImagesFields {
   image?: Asset | undefined
 
   /** comment */
-  comment?: Document | undefined
+  comment?: string | undefined
 }
 
 export interface IFieldImages extends Entry<IFieldImagesFields> {
