@@ -33,7 +33,9 @@ const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
       </h1>
       {detailedAnglingField.fields.fieldImages?.map((fieldImage, index) => (
         <div key={index}>
-          <h2 className="mt-10 text-xl">{fieldImage.fields.title}</h2>
+          <h2 className="mt-10 text-xl" id={fieldImage.sys.id}>
+            {fieldImage.fields.title}
+          </h2>
           {fieldImage.fields.image && (
             <div className="relative h-[300px] w-[480px]">
               <Image
