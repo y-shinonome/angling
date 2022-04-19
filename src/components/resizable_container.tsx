@@ -6,7 +6,7 @@ const ResizableContainer: React.FC = ({ children }) => {
     <Resizable
       defaultSize={{
         width: '100%',
-        height: document.documentElement.clientHeight / 2,
+        height: document.documentElement.clientHeight / 2.4,
       }}
       enable={{
         top: false,

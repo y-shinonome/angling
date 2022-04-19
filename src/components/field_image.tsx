@@ -17,7 +17,7 @@ const customIcon = icon({
 const scrollOffset = () => {
   const container = document.getElementById('map-container')
   const containerHeight = container?.clientHeight ?? 0
-  return containerHeight * -1 - 10
+  return containerHeight * -1 - 20
 }
 
 const FieldImage: React.FC<Props> = ({ fieldImage }) => {
