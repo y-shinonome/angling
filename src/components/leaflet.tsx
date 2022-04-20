@@ -9,7 +9,6 @@ type Props = {
   zoom: number
   anglingFields: Entry<IAnglingFieldsFields>[]
   detailedAnglingField?: Entry<IAnglingFieldsFields>
-  className?: string
 }
 
 const Leaflet: React.FC<Props> = ({
@@ -17,7 +16,6 @@ const Leaflet: React.FC<Props> = ({
   zoom,
   anglingFields,
   detailedAnglingField,
-  className,
 }) => {
   const Map = useMemo(
     () =>
@@ -38,7 +36,7 @@ const Leaflet: React.FC<Props> = ({
     ssr: false,
   })
   return (
-    <div className={className}>
+    <div className="sticky top-0 mb-3 shadow-[0_4px_4px_0_rgba(0,0,0,0.2)]">
       <Map center={center} zoom={zoom}>
         {anglingFields.map((anglingField, index) => (
           <AnglingField key={index} anglingField={anglingField} />

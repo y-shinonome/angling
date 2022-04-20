@@ -74,7 +74,6 @@ AnglingField.getLayout = (props, page) => {
         zoom={16}
         anglingFields={props.anglingFields}
         detailedAnglingField={props.detailedAnglingField}
-        className="sticky top-0 z-10 mb-3"
       />
       {page}
     </>

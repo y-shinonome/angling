@@ -43,7 +43,6 @@ AnglingMap.getLayout = (props, page) => {
         center={center}
         zoom={zoom}
         anglingFields={props.anglingFields}
-        className="sticky top-0 mb-3"
       />
       {page}
     </>
