@@ -34,7 +34,7 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
   }, [])
 
   useEffect(() => {
-    mapRef.current?.flyTo(center, zoom, { duration: 1.2 })
+    mapRef.current?.flyTo(center, zoom, { duration: 0.8 })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children])
 

@@ -37,7 +37,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
             {fieldImage.fields.title}
           </h2>
           {fieldImage.fields.image && (
-            <div className="relative h-[300px] w-[480px]">
+            <div className="relative -z-10 h-[300px] w-[480px]">
               <Image
                 src={`https:${fieldImage.fields.image?.fields.file.url}`}
                 alt={fieldImage.fields.title}
