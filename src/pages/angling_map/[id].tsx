@@ -11,6 +11,7 @@ import {
   getAnglingFieldIds,
   getAnglingField,
 } from '../../utils/contentful'
+import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/layout'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -47,7 +48,10 @@ const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
               />
             </div>
           )}
-          {fieldImage.fields.comment && <div>{fieldImage.fields.comment}</div>}
+          {fieldImage.fields.comment && (
+            // eslint-disable-next-line react/no-children-prop
+            <ReactMarkdown children={fieldImage.fields.comment} />
+          )}
         </div>
       ))}
       <p className="mt-10">
