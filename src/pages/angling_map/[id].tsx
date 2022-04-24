@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import Leaflet from '../../components/leaflet'
+import Leaflet from '../../components/template/leaflet'
 import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import {
@@ -37,7 +37,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
             {fieldImage.fields.title}
           </h2>
           {fieldImage.fields.image && (
-            <div className="relative -z-10 aspect-[16/9]">
+            <div className="relative aspect-[16/9]">
               <Image
                 src={`https:${fieldImage.fields.image?.fields.file.url}`}
                 alt={fieldImage.fields.title}

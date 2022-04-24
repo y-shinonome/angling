@@ -1,7 +1,7 @@
 import { icon } from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
 import type { Entry } from 'contentful'
-import type { IFieldImagesFields } from '../../@types/contentful'
+import type { IFieldImagesFields } from '../../../@types/contentful'
 import 'leaflet/dist/leaflet.css'
 import { scroller } from 'react-scroll'
 

@@ -1,5 +1,5 @@
 import { Resizable } from 're-resizable'
-import ResizeHandle from '../components/resize_handle'
+import ResizeHandle from './resize_handle'
 
 const ResizableContainer: React.FC = ({ children }) => {
   return (

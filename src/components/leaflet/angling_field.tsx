@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { icon } from 'leaflet'
 import { Marker } from 'react-leaflet'
 import type { Entry } from 'contentful'
-import type { IAnglingFieldsFields } from '../../@types/contentful'
+import type { IAnglingFieldsFields } from '../../../@types/contentful'
 
 type Props = {
   anglingField: Entry<IAnglingFieldsFields>
