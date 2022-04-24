@@ -14,7 +14,7 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
 }
-const center: L.LatLngExpression = { lat: 35.5, lng: 139.8 }
+
 const zoom: number = 10
 
 const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
@@ -39,11 +39,7 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
 AnglingMap.getLayout = (props, page) => {
   return (
     <>
-      <Leaflet
-        center={center}
-        zoom={zoom}
-        anglingFields={props.anglingFields}
-      />
+      <Leaflet zoom={zoom} anglingFields={props.anglingFields} />
       {page}
     </>
   )

@@ -5,7 +5,7 @@ import type { IAnglingFieldsFields } from '../../@types/contentful'
 import 'leaflet/dist/leaflet.css'
 
 type Props = {
-  center: L.LatLngExpression
+  center?: L.LatLngExpression
   zoom: number
   anglingFields: Entry<IAnglingFieldsFields>[]
   detailedAnglingField?: Entry<IAnglingFieldsFields>

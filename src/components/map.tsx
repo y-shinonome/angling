@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import ResizableContainer from './resizable_container'
 
 type Props = {
-  center: L.LatLngExpression
+  center?: L.LatLngExpression
   zoom: number
 }
 
@@ -12,6 +12,18 @@ const MAP_TILE_URL = `https://api.maptiler.com/maps/outdoor/256/{z}/{x}/{y}.png?
 
 const Map: React.FC<Props> = ({ center, zoom, children }) => {
   const mapRef = useRef<L.Map>()
+
+  const loadCenter = () => {
+    if (typeof center === 'undefined') {
+      if (typeof mapRef.current !== 'undefined') {
+        return mapRef.current.getCenter()
+      } else {
+        return { lat: 35.5, lng: 139.8 }
+      }
+    } else {
+      return center
+    }
+  }
 
   const resizeObserver = new ResizeObserver(() => {
     try {
@@ -31,7 +43,7 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
   }, [])
 
   useEffect(() => {
-    mapRef.current?.flyTo(center, zoom, { duration: 0.8 })
+    mapRef.current?.flyTo(loadCenter(), zoom, { duration: 0.8 })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children])
 
@@ -39,7 +51,7 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
     <ResizableContainer>
       <MapContainer
         id="map-container"
-        center={center}
+        center={loadCenter()}
         zoom={zoom}
         style={{ height: '100%', width: '100%' }}
         attributionControl={false}
