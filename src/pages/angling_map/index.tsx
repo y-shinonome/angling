@@ -6,6 +6,7 @@ import Leaflet from '../../components/template/leaflet'
 import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import { getAnglingFields } from '../../utils/contentful'
+import Layout from '../../components/layout'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -22,7 +23,7 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
     <>
       <ul>
         {anglingFields.map((anglingField, index) => (
-          <li key={index}>
+          <li key={index} className="mb-10 text-lg">
             <Link href={`/angling_map/${anglingField.sys.id}`}>
               <a>{anglingField.fields.name}</a>
             </Link>
@@ -40,7 +41,7 @@ AnglingMap.getLayout = (props, page) => {
   return (
     <>
       <Leaflet zoom={zoom} anglingFields={props.anglingFields} />
-      {page}
+      <Layout>{page}</Layout>
     </>
   )
 }

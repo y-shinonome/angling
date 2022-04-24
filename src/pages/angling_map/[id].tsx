@@ -11,6 +11,7 @@ import {
   getAnglingFieldIds,
   getAnglingField,
 } from '../../utils/contentful'
+import Layout from '../../components/layout'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -28,7 +29,7 @@ type Params = {
 const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
   return (
     <>
-      <h1 className="mt-10 text-3xl font-semibold">
+      <h1 className="text-3xl font-semibold">
         {detailedAnglingField.fields.name}
       </h1>
       {detailedAnglingField.fields.fieldImages?.map((fieldImage, index) => (
@@ -75,7 +76,7 @@ AnglingField.getLayout = (props, page) => {
         anglingFields={props.anglingFields}
         detailedAnglingField={props.detailedAnglingField}
       />
-      {page}
+      <Layout>{page}</Layout>
     </>
   )
 }

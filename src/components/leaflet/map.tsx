@@ -18,7 +18,7 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
       if (typeof mapRef.current !== 'undefined') {
         return mapRef.current.getCenter()
       } else {
-        return { lat: 35.5, lng: 139.8 }
+        return { lat: 35.45, lng: 139.85 }
       }
     } else {
       return center
