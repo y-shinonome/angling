@@ -19,20 +19,18 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
-  detailedAnglingField: Entry<IAnglingFieldsFields>
+  fieldInformation: Entry<IAnglingFieldsFields>
 }
 
 type Params = {
   id: string
 }
 
-const AnglingField: NextPageWithLayout<Props> = ({ detailedAnglingField }) => {
+const AnglingField: NextPageWithLayout<Props> = ({ fieldInformation }) => {
   return (
     <>
-      <h1 className="text-3xl font-semibold">
-        {detailedAnglingField.fields.name}
-      </h1>
-      {detailedAnglingField.fields.fieldImages?.map((fieldImage, index) => (
+      <h1 className="text-3xl font-semibold">{fieldInformation.fields.name}</h1>
+      {fieldInformation.fields.fieldImages?.map((fieldImage, index) => (
         <div key={index}>
           <SpotDetails fieldImage={fieldImage} />
         </div>
@@ -56,12 +54,12 @@ AnglingField.getLayout = (props, page) => {
     <>
       <Leaflet
         center={[
-          props.detailedAnglingField.fields.position.lat,
-          props.detailedAnglingField.fields.position.lon,
+          props.fieldInformation.fields.position.lat,
+          props.fieldInformation.fields.position.lon,
         ]}
         zoom={16}
         anglingFields={props.anglingFields}
-        detailedAnglingField={props.detailedAnglingField}
+        fieldInformation={props.fieldInformation}
       />
       <Layout>{page}</Layout>
     </>
@@ -84,11 +82,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const anglingFields = await getOtherAnglingFields(params?.id)
-  const detailedAnglingField = await getAnglingField(params?.id)
+  const fieldInformation = await getAnglingField(params?.id)
   return {
     props: {
       anglingFields: anglingFields,
-      detailedAnglingField: detailedAnglingField[0],
+      fieldInformation: fieldInformation[0],
     },
   }
 }

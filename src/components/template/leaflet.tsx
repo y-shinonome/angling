@@ -8,14 +8,14 @@ type Props = {
   center?: L.LatLngExpression
   zoom: number
   anglingFields: Entry<IAnglingFieldsFields>[]
-  detailedAnglingField?: Entry<IAnglingFieldsFields>
+  fieldInformation?: Entry<IAnglingFieldsFields>
 }
 
 const Leaflet: React.FC<Props> = ({
   center,
   zoom,
   anglingFields,
-  detailedAnglingField,
+  fieldInformation,
 }) => {
   const Map = useMemo(
     () =>
@@ -47,8 +47,8 @@ const Leaflet: React.FC<Props> = ({
         {anglingFields.map((anglingField, index) => (
           <AnglingField key={index} anglingField={anglingField} />
         ))}
-        {detailedAnglingField?.fields?.fieldImages &&
-          detailedAnglingField.fields.fieldImages.map((fieldImage, index) => (
+        {fieldInformation?.fields?.fieldImages &&
+          fieldInformation.fields.fieldImages.map((fieldImage, index) => (
             <FieldImage key={index} fieldImage={fieldImage} />
           ))}
         <TitlePopup />
