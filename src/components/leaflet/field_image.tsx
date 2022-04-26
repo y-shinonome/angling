@@ -10,8 +10,8 @@ type Props = {
 }
 
 const customIcon = icon({
-  iconUrl: '/icon.svg',
-  iconSize: [32, 32],
+  iconUrl: '/icons/field_image.svg',
+  iconSize: [38, 38],
 })
 
 const scrollOffset = () => {

@@ -9,8 +9,8 @@ type Props = {
 }
 
 const customIcon = icon({
-  iconUrl: '/icon.svg',
-  iconSize: [32, 32],
+  iconUrl: '/icons/angling_field.svg',
+  iconSize: [38, 38],
 })
 
 const AnglingField: React.FC<Props> = ({ anglingField }) => {
