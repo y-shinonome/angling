@@ -35,6 +35,12 @@ const Leaflet: React.FC<Props> = ({
     loading: () => null,
     ssr: false,
   })
+
+  const TitlePopup = dynamic(() => import('../leaflet/title_popup'), {
+    loading: () => null,
+    ssr: false,
+  })
+
   return (
     <div className="sticky top-0 z-10 mb-3 shadow-[0_4px_4px_0_rgba(0,0,0,0.2)]">
       <Map center={center} zoom={zoom}>
@@ -45,6 +51,7 @@ const Leaflet: React.FC<Props> = ({
           detailedAnglingField.fields.fieldImages.map((fieldImage, index) => (
             <FieldImage key={index} fieldImage={fieldImage} />
           ))}
+        <TitlePopup />
       </Map>
     </div>
   )
