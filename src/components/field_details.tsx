@@ -9,7 +9,7 @@ type Props = {
   fieldImage: Entry<IFieldImagesFields>
 }
 
-const SpotDetails: React.FC<Props> = ({ fieldImage }) => {
+const FieldDetails: React.FC<Props> = ({ fieldImage }) => {
   const { setPopup } = useContext(PopupContext)
 
   const clickHandler = () => {
@@ -22,13 +22,13 @@ const SpotDetails: React.FC<Props> = ({ fieldImage }) => {
 
   return (
     <>
-      <h1
+      <h3
         className="mt-10 text-xl"
         id={fieldImage.sys.id}
         onClick={clickHandler}
       >
         {fieldImage.fields.title}
-      </h1>
+      </h3>
       {fieldImage.fields.imageUrl && (
         <div className="relative aspect-[16/9]">
           <Image
@@ -47,4 +47,4 @@ const SpotDetails: React.FC<Props> = ({ fieldImage }) => {
   )
 }
 
-export default SpotDetails
+export default FieldDetails
