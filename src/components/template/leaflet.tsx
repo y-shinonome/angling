@@ -49,7 +49,11 @@ const Leaflet: React.FC<Props> = ({
         ))}
         {fieldInformation?.fields?.fieldImages &&
           fieldInformation.fields.fieldImages.map((fieldImage, index) => (
-            <FieldImage key={index} fieldImage={fieldImage} />
+            <FieldImage
+              key={index}
+              fieldImage={fieldImage}
+              iconUrl="/icons/angling_spot.svg"
+            />
           ))}
         <TitlePopup />
       </Map>

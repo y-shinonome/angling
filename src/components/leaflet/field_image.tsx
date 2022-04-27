@@ -7,12 +7,8 @@ import { scroller } from 'react-scroll'
 
 type Props = {
   fieldImage: Entry<IFieldImagesFields>
+  iconUrl: string
 }
-
-const customIcon = icon({
-  iconUrl: '/icons/field_image.svg',
-  iconSize: [38, 38],
-})
 
 const scrollOffset = () => {
   const container = document.getElementById('map-container')
@@ -20,7 +16,12 @@ const scrollOffset = () => {
   return containerHeight * -1 - 10
 }
 
-const FieldImage: React.FC<Props> = ({ fieldImage }) => {
+const FieldImage: React.FC<Props> = ({ fieldImage, iconUrl }) => {
+  const customIcon = icon({
+    iconUrl: iconUrl,
+    iconSize: [38, 38],
+  })
+
   return (
     <Marker
       icon={customIcon}
