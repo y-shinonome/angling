@@ -22,17 +22,17 @@ const SpotDetails: React.FC<Props> = ({ fieldImage }) => {
 
   return (
     <>
-      <h2
+      <h1
         className="mt-10 text-xl"
         id={fieldImage.sys.id}
         onClick={clickHandler}
       >
         {fieldImage.fields.title}
-      </h2>
-      {fieldImage.fields.image && (
+      </h1>
+      {fieldImage.fields.imageUrl && (
         <div className="relative aspect-[16/9]">
           <Image
-            src={`https:${fieldImage.fields.image?.fields.file.url}`}
+            src={fieldImage.fields.imageUrl}
             alt={fieldImage.fields.title}
             layout="fill"
             objectFit="contain"

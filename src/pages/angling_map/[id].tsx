@@ -30,7 +30,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldInformation }) => {
   return (
     <>
       <h1 className="text-3xl font-semibold">{fieldInformation.fields.name}</h1>
-      {fieldInformation.fields.fieldImages?.map((fieldImage, index) => (
+      {fieldInformation.fields.anglingSpot?.map((fieldImage, index) => (
         <div key={index}>
           <SpotDetails fieldImage={fieldImage} />
         </div>

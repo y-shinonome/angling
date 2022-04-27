@@ -10,20 +10,26 @@ export interface IAnglingFieldsFields {
   /** position */
   position: { lat: number; lon: number }
 
-  /** fieldImages */
-  fieldImages?: Entry<IFieldImagesFields>[] | undefined
+  /** description */
+  description: string
+
+  /** thumbnailURL */
+  thumbnailUrl: string
+
+  /** anglingSpot */
+  anglingSpot?: Entry<IFieldImagesFields>[] | undefined
 
   /** parkingAreas */
-  parkingAreas?: Entry<{ [fieldId: string]: unknown }>[] | undefined
+  parkingAreas?: Entry<IFieldImagesFields>[] | undefined
 
   /** stores */
-  stores?: Entry<{ [fieldId: string]: unknown }>[] | undefined
+  stores?: Entry<IFieldImagesFields>[] | undefined
 
   /** restrooms */
-  restrooms?: Entry<{ [fieldId: string]: unknown }>[] | undefined
+  restrooms?: Entry<IFieldImagesFields>[] | undefined
 
   /** notices */
-  notices?: Entry<{ [fieldId: string]: unknown }>[] | undefined
+  notices?: Entry<IFieldImagesFields>[] | undefined
 }
 
 export interface IAnglingFields extends Entry<IAnglingFieldsFields> {
@@ -50,8 +56,8 @@ export interface IFieldImagesFields {
   /** position */
   position: { lat: number; lon: number }
 
-  /** image */
-  image?: Asset | undefined
+  /** imageURL */
+  imageUrl?: string | undefined
 
   /** comment */
   comment?: string | undefined

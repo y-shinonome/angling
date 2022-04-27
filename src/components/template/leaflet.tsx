@@ -47,8 +47,8 @@ const Leaflet: React.FC<Props> = ({
         {anglingFields.map((anglingField, index) => (
           <AnglingField key={index} anglingField={anglingField} />
         ))}
-        {fieldInformation?.fields?.fieldImages &&
-          fieldInformation.fields.fieldImages.map((fieldImage, index) => (
+        {fieldInformation?.fields.anglingSpot &&
+          fieldInformation.fields.anglingSpot.map((fieldImage, index) => (
             <FieldImage
               key={index}
               fieldImage={fieldImage}
