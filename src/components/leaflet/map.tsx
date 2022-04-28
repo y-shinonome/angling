@@ -1,5 +1,11 @@
 import { useEffect, useRef } from 'react'
-import { MapContainer, TileLayer, ScaleControl } from 'react-leaflet'
+import {
+  MapContainer,
+  TileLayer,
+  ScaleControl,
+  ZoomControl,
+  AttributionControl,
+} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import ResizableContainer from './resizable_container'
 
@@ -55,11 +61,19 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
         zoom={zoom}
         style={{ height: '100%', width: '100%' }}
         attributionControl={false}
+        zoomControl={false}
         whenCreated={(mapInstance) => {
           mapRef.current = mapInstance
         }}
       >
-        <TileLayer maxNativeZoom={22} maxZoom={22} url={MAP_TILE_URL} />
+        <TileLayer
+          maxNativeZoom={22}
+          maxZoom={22}
+          url={MAP_TILE_URL}
+          attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> | <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+        />
+        <AttributionControl position="topleft" />
+        <ZoomControl position="bottomright" />
         <ScaleControl />
         {children}
       </MapContainer>
