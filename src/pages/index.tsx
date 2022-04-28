@@ -6,9 +6,7 @@ const Index: NextPage = () => {
   return (
     <>
       <p className="mb-1 mt-14 text-center text-lg">釣り場探索マップ</p>
-      <h1 className="mb-10 text-center font-['Poiret_One'] text-6xl">
-        Langling
-      </h1>
+      <h1 className="mb-10 text-center font-logo text-6xl">Langling</h1>
       <div className="relative mx-auto h-[200px] w-[200px]">
         <Image src="/top.png" alt="top" layout="fill" objectFit="contain" />
       </div>

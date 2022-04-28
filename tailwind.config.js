@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': [
+        sans: [
           'Helvetica Neue',
           'Arial',
           'Hiragino Kaku Gothic ProN',
@@ -14,6 +14,7 @@ module.exports = {
           'sans-serif',
           ...defaultTheme.fontFamily.sans,
         ],
+        logo: ['PoiretOneSubset'],
       },
     },
   },
