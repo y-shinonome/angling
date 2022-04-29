@@ -1,13 +1,14 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import SVG from '../components/atoms/svg'
 
 const Index: NextPage = () => {
   return (
     <>
       <p className="mt-14 text-center text-lg">釣り場探索マップ</p>
-      <h1 className="mb-10 text-center font-logo text-6xl">Langling</h1>
-      <div className="relative mx-auto mb-5 h-[200px] w-[200px]">
+      <h1 className="mb-10 text-center font-logo text-5xl">Langling</h1>
+      <div className="relative mx-auto mb-5 h-[180px] w-[180px]">
         <Image
           src="/top.png"
           alt="top"
@@ -18,22 +19,22 @@ const Index: NextPage = () => {
         />
       </div>
       <Link href={`/angling_map`}>
-        <a className="mx-auto mb-20 block w-[fit-content] rounded-lg bg-[#ADFFEA] px-5 py-2">
+        <a className="mx-auto mb-14 flex w-[fit-content] items-center rounded-lg bg-[#ADFFEA] px-5 py-2 shadow-md shadow-gray-400/50">
+          <SVG src="/icons/map.svg" className="mr-2 h-[25px] w-[25px]" />
           地図を開く
         </a>
       </Link>
-      <h2 className="mb-5 text-center text-2xl">このWebサイトについて</h2>
-      <p className="text-center">
-        サンプルテキストサンプルテキスト
+      <p className="text-center text-sm">
+        釣り場の情報を地図にまとめました
         <br />
-        サンプルテキストサンプルテキスト
+        釣りポイントの情報だけではなく
+        <br />
+        駐車場やトイレ等の場所も探すことができます
         <br />
         <br />
-        サンプルテキストサンプルテキスト
+        まだ行ったことのない釣り場を
         <br />
-        サンプルテキストサンプルテキスト
-        <br />
-        サンプルテキストサンプルテキスト
+        地図から探索してみませんか？
       </p>
     </>
   )
