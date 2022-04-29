@@ -5,7 +5,7 @@ import { PopupContext } from '../../context/popup_context'
 import { icon } from 'leaflet'
 
 const customIcon = icon({
-  iconUrl: '/icon.svg',
+  iconUrl: '/icons/title_popup.svg',
   iconSize: [0, 0],
 })
 

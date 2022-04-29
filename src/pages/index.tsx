@@ -6,6 +6,9 @@ import SVG from '../components/atoms/svg'
 const Index: NextPage = () => {
   return (
     <>
+      <div className="fixed top-5 right-5 rounded-md p-2 shadow">
+        <SVG src="/icons/menu.svg" className="h-7 w-7" />
+      </div>
       <p className="mt-14 text-center text-lg">釣り場探索マップ</p>
       <h1 className="mb-10 text-center font-logo text-5xl">Langling</h1>
       <div className="relative mx-auto mb-5 h-[180px] w-[180px]">
@@ -24,6 +27,7 @@ const Index: NextPage = () => {
           地図を開く
         </a>
       </Link>
+      <h2></h2>
       <p className="text-center text-sm">
         釣り場の情報を地図にまとめました
         <br />
@@ -36,6 +40,45 @@ const Index: NextPage = () => {
         <br />
         地図から探索してみませんか？
       </p>
+      <h2 className="mt-20 mb-2 text-center text-xl">更新情報</h2>
+      <ul className="mx-auto w-[fit-content] p-3 text-sm">
+        <li className="flex">
+          <time dateTime="2022-04-30" className="mr-4 flex-shrink-0">
+            2022年4月30日
+          </time>
+          <p>末広水際線プロムナード（ふれーゆ裏） 釣り場マップ公開</p>
+        </li>
+        <li className="flex">
+          <time
+            dateTime="2022-04-30"
+            className="mr-4 flex-shrink-0 flex-grow-0"
+          >
+            2022年4月30日
+          </time>
+          <p className="flex-grow-0">東扇島西公園 釣り場マップ公開</p>
+        </li>
+        <li className="flex">
+          <time dateTime="2022-04-30" className="mr-4 flex-shrink-0">
+            2022年4月29日
+          </time>
+          <p>Webサイト公開</p>
+        </li>
+      </ul>
+      <footer className="mt-20 flex w-full flex-wrap justify-center border-t-[1px] border-[#2a2a2a]/30">
+        <article className="mr-[10vw] mb-6 mt-3">
+          <h2 className="mb-3 font-medium">Copyright</h2>
+          <p className="text-sm">
+            &copy; 2022 shinonome
+            <br />
+            All Rights Reserved.
+            <br />
+            Released under the{' '}
+            <Link href="https://github.com/y-shinonome/langling/blob/main/LICENSE">
+              MIT license
+            </Link>
+          </p>
+        </article>
+      </footer>
     </>
   )
 }
