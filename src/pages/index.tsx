@@ -6,9 +6,6 @@ import SVG from '../components/atoms/svg'
 const Index: NextPage = () => {
   return (
     <>
-      <div className="fixed top-5 right-5 rounded-md p-2 shadow">
-        <SVG src="/icons/menu.svg" className="h-7 w-7" />
-      </div>
       <p className="mt-14 text-center text-lg">釣り場探索マップ</p>
       <h1 className="mb-10 text-center font-logo text-5xl">Langling</h1>
       <div className="relative mx-auto mb-5 h-[180px] w-[180px]">
@@ -40,7 +37,7 @@ const Index: NextPage = () => {
         <br />
         地図から探索してみませんか？
       </p>
-      <h2 className="mt-20 mb-2 text-center text-xl">更新情報</h2>
+      <h2 className="mt-20 mb-2 text-center text-lg">更新情報</h2>
       <ul className="mx-auto w-[fit-content] p-3 text-sm">
         <li className="flex">
           <time dateTime="2022-04-30" className="mr-4 flex-shrink-0">
