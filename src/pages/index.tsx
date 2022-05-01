@@ -19,7 +19,7 @@ const Index: NextPage = () => {
         />
       </div>
       <Link href={`/angling_map`}>
-        <a className="mx-auto mb-14 flex w-[fit-content] items-center rounded-lg bg-[#ADFFEA] px-5 py-2 shadow-md shadow-gray-400/50">
+        <a className="mx-auto mb-14 flex w-[fit-content] items-center rounded-lg bg-[#ADFFEA] px-5 py-2 shadow-md shadow-gray-400/50 duration-300 hover:bg-black/10">
           <SVG src="/icons/map.svg" className="mr-2 h-[25px] w-[25px]" />
           地図を開く
         </a>

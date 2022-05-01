@@ -12,10 +12,13 @@ const Navigation: React.FC = () => {
     <>
       <button
         aria-label="menu"
-        className="fixed top-2 right-2 z-30 rounded-md bg-[#f9f9f9]/50 p-2 shadow backdrop-blur-[2px]"
+        className="fixed top-2 right-2 z-30 rounded-md bg-[#f9f9f9]/50 p-2 shadow backdrop-blur-[2px] duration-300 hover:bg-black/5"
         onClick={toggleSidebar}
       >
-        <SVG src="/icons/menu.svg" className="h-7 w-7" />
+        <SVG
+          src={`${isOpen ? '/icons/close.svg' : '/icons/menu.svg'}`}
+          className="h-7 w-7"
+        />
       </button>
       <div
         onClick={toggleSidebar}
@@ -29,13 +32,51 @@ const Navigation: React.FC = () => {
         } `}
       >
         <Link href="/">
-          <a className="ml-3 block" onClick={toggleSidebar}>
+          <a
+            className="ml-2 mb-5 block border-b border-black/10 pl-2"
+            onClick={toggleSidebar}
+          >
             トップページ
           </a>
         </Link>
         <Link href="/angling_map">
-          <a className="ml-3 block" onClick={toggleSidebar}>
+          <a
+            className="ml-2 mb-5 block border-b border-black/10 pl-2"
+            onClick={toggleSidebar}
+          >
             釣り場マップ
+          </a>
+        </Link>
+        <Link href="/">
+          <a
+            className="ml-2 mb-5 block border-b border-black/10 pl-2"
+            onClick={toggleSidebar}
+          >
+            ブログ
+          </a>
+        </Link>
+        <Link href="/">
+          <a
+            className="ml-2 mb-5 block border-b border-black/10 pl-2"
+            onClick={toggleSidebar}
+          >
+            このサイトについて
+          </a>
+        </Link>
+        <Link href="/">
+          <a
+            className="ml-2 mb-5 block border-b border-black/10 pl-2"
+            onClick={toggleSidebar}
+          >
+            プライバシーポリシー
+          </a>
+        </Link>
+        <Link href="/">
+          <a
+            className="ml-2 mb-5 block border-b border-black/10 pl-2"
+            onClick={toggleSidebar}
+          >
+            お問い合わせ
           </a>
         </Link>
       </nav>

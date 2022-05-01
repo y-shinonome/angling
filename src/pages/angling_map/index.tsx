@@ -46,9 +46,6 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
           </li>
         ))}
       </ul>
-      <Link href={`/`}>
-        <a>top</a>
-      </Link>
     </>
   )
 }
