@@ -8,6 +8,9 @@ import {
 } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import ResizableContainer from './resizable_container'
+import LocationFound from './location_found'
+import LocationProvider from '../../context/location_context'
+import LocationMarker from './location_marker'
 
 type Props = {
   center?: L.LatLngExpression
@@ -75,6 +78,10 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
         <AttributionControl position="topleft" />
         <ZoomControl position="bottomright" />
         <ScaleControl />
+        <LocationProvider>
+          <LocationFound />
+          <LocationMarker />
+        </LocationProvider>
         {children}
       </MapContainer>
     </ResizableContainer>
