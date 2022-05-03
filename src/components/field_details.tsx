@@ -1,34 +1,24 @@
-import { useContext } from 'react'
 import Image from 'next/image'
 import type { Entry } from 'contentful'
 import type { IFieldImagesFields } from '../../@types/contentful'
 import ReactMarkdown from 'react-markdown'
-import { PopupContext } from '../context/popup_context'
+import PositionPopup from '../components/angling_map/position_popup'
 
 type Props = {
   fieldImage: Entry<IFieldImagesFields>
 }
 
 const FieldDetails: React.FC<Props> = ({ fieldImage }) => {
-  const { setPopup } = useContext(PopupContext)
-
-  const clickHandler = () => {
-    setPopup({
-      title: fieldImage.fields.title,
-      lat: fieldImage.fields.position.lat,
-      lon: fieldImage.fields.position.lon,
-    })
-  }
-
   return (
     <>
-      <h3
-        className="mt-10 text-xl"
-        id={fieldImage.sys.id}
-        onClick={clickHandler}
-      >
+      <h3 className="mt-10 text-xl" id={fieldImage.sys.id}>
         {fieldImage.fields.title}
       </h3>
+      <PositionPopup
+        title={fieldImage.fields.title}
+        lat={fieldImage.fields.position.lat}
+        lon={fieldImage.fields.position.lon}
+      />
       {fieldImage.fields.imageUrl && (
         <div className="relative aspect-[16/9]">
           <Image

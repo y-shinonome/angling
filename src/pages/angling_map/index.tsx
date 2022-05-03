@@ -9,6 +9,7 @@ import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import { getAnglingFields } from '../../utils/contentful'
 import Layout from '../../components/layout'
+import PositionPopup from '../../components/angling_map/position_popup'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -31,6 +32,11 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                 {anglingField.fields.name}
               </a>
             </Link>
+            <PositionPopup
+              title={anglingField.fields.name}
+              lat={anglingField.fields.position.lat}
+              lon={anglingField.fields.position.lon}
+            />
             <div className="relative aspect-[1.91/1]">
               <Image
                 src={anglingField.fields.thumbnailUrl}
