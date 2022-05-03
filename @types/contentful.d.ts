@@ -13,6 +13,20 @@ export interface IAnglingFieldsFields {
   /** description */
   description: string
 
+  /** categories */
+  categories: (
+    | '岸壁'
+    | '地磯'
+    | 'サーフ'
+    | '河口'
+    | '釣り施設'
+    | '駐車場'
+    | 'トイレ'
+    | '売店'
+    | 'ファミリー向き'
+    | 'レンタル釣具'
+  )[]
+
   /** thumbnailURL */
   thumbnailUrl: string
 
