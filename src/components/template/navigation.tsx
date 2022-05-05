@@ -27,8 +27,8 @@ const Navigation: React.FC = () => {
         }`}
       />
       <nav
-        className={`fixed right-0 top-0 z-20 h-[100vh] overflow-hidden whitespace-nowrap bg-[#f9f9f9] pt-20 shadow-[0_0_15px_0_rgba(0,0,0,0.2)] duration-300 ${
-          isOpen ? 'w-[60%]' : 'w-0'
+        className={`fixed right-0 top-0 z-20 h-[100vh] max-w-[400px] overflow-hidden whitespace-nowrap bg-[#f9f9f9] pt-20 shadow-[0_0_15px_0_rgba(0,0,0,0.2)] duration-300 ${
+          isOpen ? 'w-[75%]' : 'w-0'
         } `}
       >
         <Link href="/">
@@ -36,7 +36,13 @@ const Navigation: React.FC = () => {
             className="ml-2 mb-5 block border-b border-black/10 pl-2"
             onClick={toggleSidebar}
           >
-            トップページ
+            <div className="flex items-center">
+              <SVG
+                src="/icons/arrow_right.svg"
+                className="mr-3 h-[12px] w-[7px]"
+              />
+              トップページ
+            </div>
           </a>
         </Link>
         <Link href="/angling_map">
@@ -44,7 +50,13 @@ const Navigation: React.FC = () => {
             className="ml-2 mb-5 block border-b border-black/10 pl-2"
             onClick={toggleSidebar}
           >
-            釣り場マップ
+            <div className="flex items-center">
+              <SVG
+                src="/icons/arrow_right.svg"
+                className="mr-3 h-[12px] w-[7px]"
+              />
+              釣り場マップ
+            </div>
           </a>
         </Link>
         <Link href="/">
@@ -52,7 +64,13 @@ const Navigation: React.FC = () => {
             className="ml-2 mb-5 block border-b border-black/10 pl-2"
             onClick={toggleSidebar}
           >
-            ブログ
+            <div className="flex items-center">
+              <SVG
+                src="/icons/arrow_right.svg"
+                className="mr-3 h-[12px] w-[7px]"
+              />
+              ブログ
+            </div>
           </a>
         </Link>
         <Link href="/">
@@ -60,7 +78,13 @@ const Navigation: React.FC = () => {
             className="ml-2 mb-5 block border-b border-black/10 pl-2"
             onClick={toggleSidebar}
           >
-            運営情報
+            <div className="flex items-center">
+              <SVG
+                src="/icons/arrow_right.svg"
+                className="mr-3 h-[12px] w-[7px]"
+              />
+              運営情報
+            </div>
           </a>
         </Link>
         <Link href="/">
@@ -68,7 +92,13 @@ const Navigation: React.FC = () => {
             className="ml-2 mb-5 block border-b border-black/10 pl-2"
             onClick={toggleSidebar}
           >
-            プライバシーポリシー
+            <div className="flex items-center">
+              <SVG
+                src="/icons/arrow_right.svg"
+                className="mr-3 h-[12px] w-[7px]"
+              />
+              プライバシーポリシー
+            </div>
           </a>
         </Link>
         <Link href="/">
@@ -76,7 +106,13 @@ const Navigation: React.FC = () => {
             className="ml-2 mb-5 block border-b border-black/10 pl-2"
             onClick={toggleSidebar}
           >
-            お問い合わせ
+            <div className="flex items-center">
+              <SVG
+                src="/icons/arrow_right.svg"
+                className="mr-3 h-[12px] w-[7px]"
+              />
+              お問い合わせ
+            </div>
           </a>
         </Link>
       </nav>
