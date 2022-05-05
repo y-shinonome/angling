@@ -14,7 +14,7 @@ module.exports = {
           'sans-serif',
           ...defaultTheme.fontFamily.sans,
         ],
-        logo: ['PoiretOneSubset'],
+        logo: ['QuicksandSubset'],
       },
     },
   },

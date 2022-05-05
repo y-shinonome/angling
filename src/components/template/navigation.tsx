@@ -60,7 +60,7 @@ const Navigation: React.FC = () => {
             className="ml-2 mb-5 block border-b border-black/10 pl-2"
             onClick={toggleSidebar}
           >
-            このサイトについて
+            運営情報
           </a>
         </Link>
         <Link href="/">
