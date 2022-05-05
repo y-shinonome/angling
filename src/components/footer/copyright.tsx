@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import ExternalLink from '../atoms/external_link'
 
 const Copyright = () => {
   return (
@@ -10,9 +10,9 @@ const Copyright = () => {
         All Rights Reserved.
         <br />
         Released under the{' '}
-        <Link href="https://github.com/y-shinonome/langling/blob/main/LICENSE">
+        <ExternalLink href="https://github.com/y-shinonome/langling/blob/main/LICENSE">
           MIT license
-        </Link>
+        </ExternalLink>
       </p>
     </aside>
   )
