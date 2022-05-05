@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import SVG from '../components/atoms/svg'
+import Footer from '../components/template/footer'
 
 const Index: NextPage = () => {
   return (
@@ -78,21 +79,7 @@ const Index: NextPage = () => {
           </li>
         </ul>
       </div>
-      <footer className="mt-20 flex w-full flex-wrap justify-center border-t-[1px] border-[#2a2a2a]/30">
-        <article className="mr-[10vw] mb-6 mt-3">
-          <h2 className="mb-3 font-medium">Copyright</h2>
-          <p className="text-sm">
-            &copy; 2022 shinonome
-            <br />
-            All Rights Reserved.
-            <br />
-            Released under the{' '}
-            <Link href="https://github.com/y-shinonome/langling/blob/main/LICENSE">
-              MIT license
-            </Link>
-          </p>
-        </article>
-      </footer>
+      <Footer />
     </>
   )
 }
