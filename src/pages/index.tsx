@@ -31,13 +31,22 @@ const Index: NextPage = () => {
           このサイトについて
         </h2>
         <p className="text-sm">
-          釣り場の情報を地図にまとめました。
+          釣り場の情報を地図にまとめたWebサイトです。
           <br />
           釣りポイントの情報だけではなく
           <br />
           駐車場やトイレ等の場所も探すことができます。
           <br />
           <br />
+          地図上のピンアイコンを押すと
+          <br />
+          その場所の情報を確認することができます。
+        </p>
+        <SVG
+          src="/icons/pins.svg"
+          className="my-5 h-[120px] w-[110px] opacity-75"
+        />
+        <p className="text-sm">
           まだ行ったことのない釣り場を
           <br />
           地図から探索してみませんか？
