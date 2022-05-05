@@ -19,7 +19,7 @@ const scrollOffset = () => {
 const FieldImage: React.FC<Props> = ({ fieldImage, iconUrl }) => {
   const customIcon = icon({
     iconUrl: iconUrl,
-    iconSize: [32, 45],
+    iconSize: [30, 42],
   })
 
   return (
