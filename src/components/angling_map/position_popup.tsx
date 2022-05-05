@@ -20,7 +20,7 @@ const PositionPopup: React.FC<Props> = ({ title, lat, lon, className }) => {
           lon: lon,
         })
       }}
-      className={`flex items-center rounded-md bg-[#ADFFEA] shadow shadow-gray-400/50 hover:bg-black/10 ${className}`}
+      className={`flex items-center justify-center bg-[#c5fff0] shadow shadow-gray-400/50 hover:bg-black/10 ${className}`}
     >
       <SVG src="/icons/pin.svg" className="mr-2 h-[14px] w-[11px]" />
       位置表示

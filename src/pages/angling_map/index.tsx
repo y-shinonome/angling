@@ -26,14 +26,14 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
     <>
       <ul>
         {anglingFields.map((anglingField, index) => (
-          <li key={index} className="mb-12 text-lg">
-            <Link href={`/angling_map/${anglingField.sys.id}`}>
-              <a className="text-lg font-semibold text-[#363636]">
-                <h2 className="mb-1 inline-block">
+          <li key={index} className="mb-12 mt-8 text-lg">
+            <h2 className="mb-1 border-b-4 border-[#c5fff0]">
+              <Link href={`/angling_map/${anglingField.sys.id}`}>
+                <a className="text-lg font-semibold text-[#363636]">
                   {anglingField.fields.name}
-                </h2>
-              </a>
-            </Link>
+                </a>
+              </Link>
+            </h2>
             <div className="mb-2 flex items-start">
               <div className="relative aspect-[1.91/1] w-[50%] flex-shrink-0">
                 <Image
@@ -43,18 +43,18 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                   objectFit="contain"
                 />
               </div>
-              <div className="ml-3">
+              <div className="ml-2">
                 <PositionPopup
                   title={anglingField.fields.name}
                   lat={anglingField.fields.position.lat}
                   lon={anglingField.fields.position.lon}
-                  className="mb-3 py-[2px] px-2 text-sm"
+                  className="mb-3 w-full text-sm"
                 />
-                <ul className="flex flex-wrap text-xs">
+                <ul className="flex flex-wrap gap-1 text-xs">
                   {anglingField.fields.categories.map((category, index) => (
                     <li
                       key={index}
-                      className="mr-2 mb-1 rounded border border-[#9cc0b7] py-[2px] px-1"
+                      className="rounded border border-[#9cc0b7] py-[2px] px-1"
                     >
                       {category}
                     </li>
@@ -64,17 +64,17 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
             </div>
             <ReactMarkdown // eslint-disable-next-line react/no-children-prop
               children={anglingField.fields.description}
-              className="mb-3 text-sm"
+              className="mb-5 text-sm"
             />
             <div className="flex justify-end">
               <Link href={`/angling_map/${anglingField.sys.id}`}>
                 <a>
-                  <div className="flex w-[fit-content] items-center rounded-md bg-[#ADFFEA] py-[2px] px-2 text-sm shadow shadow-gray-400/50 hover:bg-black/10">
+                  <div className="flex w-[fit-content] items-center bg-[#c5fff0] py-[2px] px-3 text-sm shadow shadow-gray-400/50 hover:bg-black/10">
                     <SVG
                       src="/icons/arrow_right.svg"
-                      className="mr-2 h-[12px] w-[16px]"
+                      className="mr-2 h-[12px] w-[7px]"
                     />
-                    続きを読む
+                    釣り場の詳細を見る
                   </div>
                 </a>
               </Link>
