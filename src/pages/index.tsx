@@ -45,7 +45,7 @@ const Index: NextPage = () => {
         </p>
         <SVG
           src="/icons/pins.svg"
-          className="my-5 h-[120px] w-[110px] opacity-75"
+          className="my-5 h-[160px] w-[182px] opacity-80"
         />
         <p className="text-sm">
           まだ行ったことのない釣り場を
