@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useMap } from 'react-leaflet'
 import { LocationContext } from '../../context/location_context'
-import SVG from '../atoms/svg'
+import { BiCurrentLocation } from 'react-icons/bi'
 
 const LocationFound: React.FC = () => {
   const { setLocation } = useContext(LocationContext)
@@ -20,8 +20,8 @@ const LocationFound: React.FC = () => {
         onClick={handleClick}
         className="leaflet-bar leaflet-control !cursor-pointer"
       >
-        <div className="h-[30px] w-[30px] rounded-sm bg-white p-[2px] hover:bg-[#f7f7f7]">
-          <SVG src="/icons/location.svg" className="h-full w-full" />
+        <div className="flex h-[30px] w-[30px] items-center justify-center rounded-sm bg-white p-[2px] hover:bg-[#f7f7f7]">
+          <BiCurrentLocation className="text-3xl" />
         </div>
       </div>
     </div>
