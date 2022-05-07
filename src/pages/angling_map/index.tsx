@@ -9,7 +9,7 @@ import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import { getAnglingFields } from '../../utils/contentful'
 import Layout from '../../components/layout'
 import PositionPopup from '../../components/angling_map/position_popup'
-import SVG from '../../components/atoms/svg'
+
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
 }
@@ -25,29 +25,31 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
     <>
       <ul>
         {anglingFields.map((anglingField, index) => (
-          <li key={index} className="mb-12 mt-8">
-            <h2 className="mb-1 border-b-2 border-[#b0e2d5]">
-              <Link href={`/angling_map/${anglingField.sys.id}`}>
-                <a className="text-lg">{anglingField.fields.name}</a>
-              </Link>
-            </h2>
-            <div className="mb-2 flex items-start">
-              <div className="relative aspect-[1.91/1] w-[50%] flex-shrink-0">
-                <Image
-                  src={anglingField.fields.thumbnailUrl}
-                  alt={anglingField.fields.name}
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </div>
-              <div className="ml-2">
+          <li key={index} className="mt-8">
+            <div className="flex items-start border">
+              <div className="flex flex-shrink-0 flex-col">
+                <div className="relative aspect-[1.91/1] w-[45vw]">
+                  <Image
+                    src={anglingField.fields.thumbnailUrl}
+                    alt={anglingField.fields.name}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </div>
                 <PositionPopup
                   title={anglingField.fields.name}
                   lat={anglingField.fields.position.lat}
                   lon={anglingField.fields.position.lon}
-                  className="mb-3 w-full text-sm"
+                  className="mt-2 w-full py-1 px-2 text-sm"
                 />
-                <ul className="flex flex-wrap gap-1 text-xs">
+              </div>
+              <div className="flex flex-col pr-1">
+                <h2 className="my-3 ml-2 text-sm">
+                  <Link href={`/angling_map/${anglingField.sys.id}`}>
+                    <a>{anglingField.fields.name}</a>
+                  </Link>
+                </h2>
+                <ul className="ml-2 flex flex-wrap gap-1 text-xs">
                   {anglingField.fields.categories.map((category, index) => (
                     <li
                       key={index}
@@ -57,19 +59,6 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 flex justify-end">
-                  <Link href={`/angling_map/${anglingField.sys.id}`}>
-                    <a>
-                      <div className="flex w-[fit-content] items-center border-b border-[#b0e2d5] text-sm">
-                        <SVG
-                          src="/icons/arrow_right.svg"
-                          className="mr-2 h-[12px] w-[7px]"
-                        />
-                        釣り場の詳細を見る
-                      </div>
-                    </a>
-                  </Link>
-                </div>
               </div>
             </div>
           </li>
