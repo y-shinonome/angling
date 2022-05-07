@@ -31,14 +31,18 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
           <li key={index} className="mt-8">
             <div className="flex items-start border">
               <div className="flex flex-shrink-0 flex-col">
-                <div className="relative aspect-[1.91/1] w-[45vw] max-w-[300px]">
-                  <Image
-                    src={anglingField.fields.thumbnailUrl}
-                    alt={anglingField.fields.name}
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                </div>
+                <Link href={`/angling_map/${anglingField.sys.id}`}>
+                  <a>
+                    <div className="relative aspect-[1.91/1] w-[45vw] max-w-[300px]">
+                      <Image
+                        src={anglingField.fields.thumbnailUrl}
+                        alt={anglingField.fields.name}
+                        layout="fill"
+                        objectFit="contain"
+                      />
+                    </div>
+                  </a>
+                </Link>
                 <PositionPopup
                   title={anglingField.fields.name}
                   lat={anglingField.fields.position.lat}
@@ -46,13 +50,15 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                   className="mt-2 w-full py-1 px-2 text-sm"
                 />
               </div>
-              <div className="flex flex-col pr-1">
-                <h3 className="my-3 ml-2 text-sm">
+              <div className="flex flex-col">
+                <h3>
                   <Link href={`/angling_map/${anglingField.sys.id}`}>
-                    <a>{anglingField.fields.name}</a>
+                    <a className="my-1 block p-2 text-sm">
+                      {anglingField.fields.name}
+                    </a>
                   </Link>
                 </h3>
-                <ul className="ml-2 flex flex-wrap gap-1 text-xs">
+                <ul className="ml-2 flex flex-wrap gap-1 pr-2 text-xs">
                   {anglingField.fields.categories.map((category, index) => (
                     <li
                       key={index}
