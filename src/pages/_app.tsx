@@ -5,6 +5,7 @@ import '../styles/tailwind.css'
 import '../styles/fonts.css'
 import MarkerProvider from '../context/popup_context'
 import Navigation from '../components/template/navigation'
+import Footer from '../components/template/footer'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (pageProps: AppProps, page: ReactElement) => ReactNode
@@ -22,6 +23,7 @@ function MyApp({ pageProps, Component }: AppPropsWithLayout) {
         <MarkerProvider>
           {Component.getLayout(pageProps, <Component {...pageProps} />)}
         </MarkerProvider>
+        <Footer />
       </>
     )
   } else {
@@ -29,6 +31,7 @@ function MyApp({ pageProps, Component }: AppPropsWithLayout) {
       <>
         <Navigation />
         <Component {...pageProps} />
+        <Footer />
       </>
     )
   }

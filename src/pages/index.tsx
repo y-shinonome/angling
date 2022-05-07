@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import SVG from '../components/atoms/svg'
-import Footer from '../components/template/footer'
 
 const Index: NextPage = () => {
   return (
@@ -79,7 +78,6 @@ const Index: NextPage = () => {
           </li>
         </ul>
       </div>
-      <Footer />
     </>
   )
 }
