@@ -4,7 +4,6 @@ import type { NextPage } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Leaflet from '../../components/template/leaflet'
-import ReactMarkdown from 'react-markdown'
 import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import { getAnglingFields } from '../../utils/contentful'
@@ -26,12 +25,10 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
     <>
       <ul>
         {anglingFields.map((anglingField, index) => (
-          <li key={index} className="mb-12 mt-8 text-lg">
-            <h2 className="mb-1 border-b-4 border-[#c5fff0]">
+          <li key={index} className="mb-12 mt-8">
+            <h2 className="mb-1 border-b-2 border-[#b0e2d5]">
               <Link href={`/angling_map/${anglingField.sys.id}`}>
-                <a className="text-lg font-semibold text-[#363636]">
-                  {anglingField.fields.name}
-                </a>
+                <a className="text-lg">{anglingField.fields.name}</a>
               </Link>
             </h2>
             <div className="mb-2 flex items-start">
@@ -54,30 +51,26 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                   {anglingField.fields.categories.map((category, index) => (
                     <li
                       key={index}
-                      className="rounded border border-[#9cc0b7] py-[2px] px-1"
+                      className="border border-[#9cc0b7] py-[2px] px-1"
                     >
                       {category}
                     </li>
                   ))}
                 </ul>
+                <div className="mt-6 flex justify-end">
+                  <Link href={`/angling_map/${anglingField.sys.id}`}>
+                    <a>
+                      <div className="flex w-[fit-content] items-center border-b border-[#b0e2d5] text-sm">
+                        <SVG
+                          src="/icons/arrow_right.svg"
+                          className="mr-2 h-[12px] w-[7px]"
+                        />
+                        釣り場の詳細を見る
+                      </div>
+                    </a>
+                  </Link>
+                </div>
               </div>
-            </div>
-            <ReactMarkdown // eslint-disable-next-line react/no-children-prop
-              children={anglingField.fields.description}
-              className="mb-5 text-sm"
-            />
-            <div className="flex justify-end">
-              <Link href={`/angling_map/${anglingField.sys.id}`}>
-                <a>
-                  <div className="flex w-[fit-content] items-center bg-[#c5fff0] py-[2px] px-3 text-sm shadow shadow-gray-400/50 hover:bg-black/10">
-                    <SVG
-                      src="/icons/arrow_right.svg"
-                      className="mr-2 h-[12px] w-[7px]"
-                    />
-                    釣り場の詳細を見る
-                  </div>
-                </a>
-              </Link>
             </div>
           </li>
         ))}
