@@ -23,12 +23,15 @@ const zoom: number = 10
 const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
   return (
     <>
+      <h2 className="mt-8 border-b-2 text-lg font-semibold text-[#505050]">
+        釣り場一覧
+      </h2>
       <ul>
         {anglingFields.map((anglingField, index) => (
           <li key={index} className="mt-8">
             <div className="flex items-start border">
               <div className="flex flex-shrink-0 flex-col">
-                <div className="relative aspect-[1.91/1] w-[45vw]">
+                <div className="relative aspect-[1.91/1] w-[45vw] max-w-[300px]">
                   <Image
                     src={anglingField.fields.thumbnailUrl}
                     alt={anglingField.fields.name}
@@ -44,11 +47,11 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                 />
               </div>
               <div className="flex flex-col pr-1">
-                <h2 className="my-3 ml-2 text-sm">
+                <h3 className="my-3 ml-2 text-sm">
                   <Link href={`/angling_map/${anglingField.sys.id}`}>
                     <a>{anglingField.fields.name}</a>
                   </Link>
-                </h2>
+                </h3>
                 <ul className="ml-2 flex flex-wrap gap-1 text-xs">
                   {anglingField.fields.categories.map((category, index) => (
                     <li
