@@ -3,7 +3,7 @@ const Links: React.FC = () => {
   return (
     <aside className="flex-1">
       <h2 className="mb-3 text-lg font-medium">Links</h2>
-      <ul className="text-sm underline">
+      <ul className="whitespace-nowrap text-sm underline">
         <li className="mb-2">
           <Link href="/">
             <a>トップページ</a>
