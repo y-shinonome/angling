@@ -11,6 +11,8 @@ const client = createClient(config)
 export const getAnglingFields = async () => {
   const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
+    select:
+      'sys.id,fields.name,fields.thumbnailUrl,fields.position,fields.categories',
   })
   return response.items
 }
@@ -18,6 +20,7 @@ export const getAnglingFields = async () => {
 export const getOtherAnglingFields = async (except: string | undefined) => {
   const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
+    select: 'sys.id,fields.name,fields.position',
     'sys.id[ne]': except,
   })
   return response.items
