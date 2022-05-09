@@ -12,6 +12,7 @@ import LocationFound from './location_found'
 import LocationProvider from '../../context/location_context'
 import LocationMarker from './location_marker'
 import Usage from '../leaflet/usage'
+import UsageProvider from '../../context/usage_context'
 
 type Props = {
   center?: L.LatLngExpression
@@ -83,7 +84,9 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
           <LocationFound />
           <LocationMarker />
         </LocationProvider>
-        <Usage />
+        <UsageProvider>
+          <Usage />
+        </UsageProvider>
         {children}
       </MapContainer>
     </ResizableContainer>
