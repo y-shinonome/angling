@@ -1,9 +1,23 @@
+import type { ReactElement } from 'react'
 import type { NextPage } from 'next'
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import type { Entry } from 'contentful'
+import type { IAnglingFieldsFields } from '../../@types/contentful'
+import { getAnglingFields } from '../utils/contentful'
 import SVG from '../components/atoms/svg'
+import Leaflet from '../components/template/leaflet'
 
-const Index: NextPage = () => {
+type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
+}
+
+type Props = {
+  anglingFields: Entry<IAnglingFieldsFields>[]
+}
+
+const TopPage: NextPageWithLayout = () => {
   return (
     <>
       <div className="mx-auto max-w-[600px] px-3">
@@ -82,4 +96,23 @@ const Index: NextPage = () => {
   )
 }
 
-export default Index
+TopPage.getLayout = (props, page) => {
+  return (
+    <>
+      <Leaflet anglingFields={props.anglingFields} />
+      <TopPage>{page}</TopPage>
+    </>
+  )
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const anglingFields = await getAnglingFields()
+
+  return {
+    props: {
+      anglingFields: anglingFields,
+    },
+  }
+}
+
+export default TopPage

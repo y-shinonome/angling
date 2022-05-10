@@ -16,7 +16,7 @@ import UsageProvider from '../../context/usage_context'
 
 type Props = {
   center?: L.LatLngExpression
-  zoom: number
+  zoom?: number
 }
 
 const MAP_TILE_URL = `https://api.maptiler.com/maps/outdoor/256/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_MAP_TILER_API_KEY}`
@@ -33,6 +33,18 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
       }
     } else {
       return center
+    }
+  }
+
+  const loadZoom = () => {
+    if (typeof zoom === 'undefined') {
+      if (typeof mapRef.current !== 'undefined') {
+        return mapRef.current.getZoom()
+      } else {
+        return 10
+      }
+    } else {
+      return zoom
     }
   }
 
@@ -63,7 +75,7 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
       <MapContainer
         id="map-container"
         center={loadCenter()}
-        zoom={zoom}
+        zoom={loadZoom()}
         style={{ height: '100%', width: '100%' }}
         attributionControl={false}
         zoomControl={false}

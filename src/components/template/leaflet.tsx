@@ -7,7 +7,7 @@ import Markers from '../leaflet/markers'
 
 type Props = {
   center?: L.LatLngExpression
-  zoom: number
+  zoom?: number
   anglingFields: Entry<IAnglingFieldsFields>[]
   fieldInformation?: Entry<IAnglingFieldsFields>
 }
@@ -21,7 +21,11 @@ const Leaflet: React.FC<Props> = ({
   const Map = useMemo(
     () =>
       dynamic(() => import('../leaflet/map'), {
-        loading: () => <p>A map is loading</p>,
+        loading: () => (
+          <div className="flex h-[calc(100vh/2.4)] items-center justify-center bg-teal-100">
+            <p>地図の読み込み中</p>
+          </div>
+        ),
         ssr: false,
       }),
     []
