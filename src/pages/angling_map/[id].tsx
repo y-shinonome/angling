@@ -12,8 +12,8 @@ import {
   getAnglingFieldIds,
   getAnglingField,
 } from '../../utils/contentful'
-import FieldDetails from '../../components/field_details'
-import Layout from '../../components/layout'
+import FieldDetails from '../../components/angling_map/field_details'
+import Layout from '../../components/template/layout'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement

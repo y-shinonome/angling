@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import type { Entry } from 'contentful'
-import type { IFieldImagesFields } from '../../@types/contentful'
+import type { IFieldImagesFields } from '../../../@types/contentful'
 import ReactMarkdown from 'react-markdown'
-import PositionPopup from '../components/angling_map/position_popup'
+import PositionPopup from './position_popup'
 
 type Props = {
   fieldImage: Entry<IFieldImagesFields>

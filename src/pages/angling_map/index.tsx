@@ -7,7 +7,7 @@ import Leaflet from '../../components/template/leaflet'
 import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import { getAnglingFields } from '../../utils/contentful'
-import Layout from '../../components/layout'
+import Layout from '../../components/template/layout'
 import PositionPopup from '../../components/angling_map/position_popup'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
