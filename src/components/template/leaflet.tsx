@@ -4,6 +4,7 @@ import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import 'leaflet/dist/leaflet.css'
 import Markers from '../leaflet/markers'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 type Props = {
   center?: L.LatLngExpression
@@ -23,7 +24,7 @@ const Leaflet: React.FC<Props> = ({
       dynamic(() => import('../leaflet/map'), {
         loading: () => (
           <div className="flex h-[calc(100vh/2.4)] items-center justify-center bg-teal-100">
-            <p>地図の読み込み中</p>
+            <AiOutlineLoading3Quarters className="animate-spin text-6xl text-gray-500" />
           </div>
         ),
         ssr: false,
