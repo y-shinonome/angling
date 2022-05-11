@@ -8,12 +8,7 @@ type Props = {
 }
 
 const Markers: React.FC<Props> = ({ anglingFields, fieldInformation }) => {
-  const AnglingField = dynamic(() => import('../leaflet/angling_field'), {
-    loading: () => null,
-    ssr: false,
-  })
-
-  const FieldImage = dynamic(() => import('../leaflet/field_image'), {
+  const CustomMarker = dynamic(() => import('../leaflet/custom_marker'), {
     loading: () => null,
     ssr: false,
   })
@@ -21,37 +16,67 @@ const Markers: React.FC<Props> = ({ anglingFields, fieldInformation }) => {
   return (
     <>
       {anglingFields.map((anglingField, index) => (
-        <AnglingField key={index} anglingField={anglingField} />
+        <CustomMarker
+          key={index}
+          id={anglingField.sys.id}
+          title={anglingField.fields.name}
+          position={[
+            anglingField.fields.position.lat,
+            anglingField.fields.position.lon,
+          ]}
+          iconUrl="/icons/angling_field.svg"
+          link={true}
+        />
       ))}
       {fieldInformation?.fields.anglingSpot &&
         fieldInformation.fields.anglingSpot.map((fieldImage, index) => (
-          <FieldImage
+          <CustomMarker
             key={index}
-            fieldImage={fieldImage}
+            id={fieldImage.sys.id}
+            title={fieldImage.fields.title}
+            position={[
+              fieldImage.fields.position.lat,
+              fieldImage.fields.position.lon,
+            ]}
             iconUrl="/icons/angling_spot.svg"
           />
         ))}
       {fieldInformation?.fields.parkingAreas &&
         fieldInformation.fields.parkingAreas.map((fieldImage, index) => (
-          <FieldImage
+          <CustomMarker
             key={index}
-            fieldImage={fieldImage}
+            id={fieldImage.sys.id}
+            title={fieldImage.fields.title}
+            position={[
+              fieldImage.fields.position.lat,
+              fieldImage.fields.position.lon,
+            ]}
             iconUrl="/icons/parking_area.svg"
           />
         ))}
       {fieldInformation?.fields.restrooms &&
         fieldInformation.fields.restrooms.map((fieldImage, index) => (
-          <FieldImage
+          <CustomMarker
             key={index}
-            fieldImage={fieldImage}
+            id={fieldImage.sys.id}
+            title={fieldImage.fields.title}
+            position={[
+              fieldImage.fields.position.lat,
+              fieldImage.fields.position.lon,
+            ]}
             iconUrl="/icons/restroom.svg"
           />
         ))}
       {fieldInformation?.fields.stores &&
         fieldInformation.fields.stores.map((fieldImage, index) => (
-          <FieldImage
+          <CustomMarker
             key={index}
-            fieldImage={fieldImage}
+            id={fieldImage.sys.id}
+            title={fieldImage.fields.title}
+            position={[
+              fieldImage.fields.position.lat,
+              fieldImage.fields.position.lon,
+            ]}
             iconUrl="/icons/store.svg"
           />
         ))}

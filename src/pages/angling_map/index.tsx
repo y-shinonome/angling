@@ -28,7 +28,7 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
       </h2>
       <ul>
         {anglingFields.map((anglingField, index) => (
-          <li key={index} className="mt-8">
+          <li key={index} className="mt-8" id={anglingField.sys.id}>
             <div className="flex items-start border">
               <div className="flex flex-shrink-0 flex-col">
                 <Link href={`/angling_map/${anglingField.sys.id}`}>

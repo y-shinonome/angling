@@ -1,13 +1,15 @@
+import Link from 'next/link'
 import { icon } from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
-import type { Entry } from 'contentful'
-import type { IFieldImagesFields } from '../../../@types/contentful'
 import 'leaflet/dist/leaflet.css'
 import { scroller } from 'react-scroll'
 
 type Props = {
-  fieldImage: Entry<IFieldImagesFields>
+  id: string
+  title: string
+  position: L.LatLngExpression
   iconUrl: string
+  link?: boolean
 }
 
 const scrollOffset = () => {
@@ -16,7 +18,13 @@ const scrollOffset = () => {
   return containerHeight * -1 - 10
 }
 
-const FieldImage: React.FC<Props> = ({ fieldImage, iconUrl }) => {
+const CustomMarker: React.FC<Props> = ({
+  id,
+  title,
+  position,
+  iconUrl,
+  link = false,
+}) => {
   const customIcon = icon({
     iconUrl: iconUrl,
     iconSize: [30, 42],
@@ -25,22 +33,29 @@ const FieldImage: React.FC<Props> = ({ fieldImage, iconUrl }) => {
   return (
     <Marker
       icon={customIcon}
-      position={[
-        fieldImage.fields.position.lat,
-        fieldImage.fields.position.lon,
-      ]}
+      position={position}
       eventHandlers={{
         click: () => {
-          scroller.scrollTo(fieldImage.sys.id, {
+          scroller.scrollTo(id, {
             smooth: true,
             offset: scrollOffset(),
           })
         },
       }}
     >
-      <Popup>{fieldImage.fields.title}</Popup>
+      {link ? (
+        <Popup>
+          <Link href={`/angling_map/${id}`}>
+            <a className=" !text-[#1A0DAB] underline underline-offset-1">
+              {title}
+            </a>
+          </Link>
+        </Popup>
+      ) : (
+        <Popup>{title}</Popup>
+      )}
     </Marker>
   )
 }
 
-export default FieldImage
+export default CustomMarker
