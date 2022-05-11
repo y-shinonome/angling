@@ -7,7 +7,7 @@ import Markers from '../leaflet/markers'
 
 type Props = {
   center?: L.LatLngExpression
-  zoom?: number
+  zoom: number
   anglingFields: Entry<IAnglingFieldsFields>[]
   fieldInformation?: Entry<IAnglingFieldsFields>
 }

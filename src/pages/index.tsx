@@ -22,7 +22,7 @@ const TopPage: NextPageWithLayout = () => {
     <>
       <div className="mx-auto max-w-[600px] px-3">
         <p className="mt-10">釣り場探索マップ</p>
-        <h1 className="relative right-[3px] mb-10 font-logo text-5xl font-light text-[#83beaf]">
+        <h1 className="font-logo relative right-[3px] mb-10 text-5xl font-light text-[#83beaf]">
           Langling
         </h1>
         <div className="relative mb-5 aspect-[1.919/1] w-full opacity-70">
@@ -32,7 +32,7 @@ const TopPage: NextPageWithLayout = () => {
             layout="fill"
             objectFit="cover"
             placeholder="blur"
-            blurDataURL="/top.png"
+            blurDataURL="/images/top.png"
           />
         </div>
         <Link href={`/angling_map`}>
@@ -99,7 +99,7 @@ const TopPage: NextPageWithLayout = () => {
 TopPage.getLayout = (props, page) => {
   return (
     <>
-      <Leaflet anglingFields={props.anglingFields} />
+      <Leaflet anglingFields={props.anglingFields} zoom={10} />
       <TopPage>{page}</TopPage>
     </>
   )

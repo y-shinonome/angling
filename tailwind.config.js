@@ -17,6 +17,26 @@ module.exports = {
         logo: ['QuicksandSubset'],
       },
     },
+    extend: {
+      keyframes: {
+        show: {
+          '0%': { height: '0%' },
+          '1%': { height: '100%' },
+          '99%': { height: '100%' },
+          '100%': { height: '100%' },
+        },
+        hide: {
+          '0%': { height: '100%' },
+          '1%': { height: '100%' },
+          '99%': { height: '100%' },
+          '100%': { height: '0%' },
+        },
+      },
+      animation: {
+        show: 'show 0.5s linear forwards',
+        hide: 'hide 0.5s linear forwards',
+      },
+    },
   },
   plugins: [],
 }
