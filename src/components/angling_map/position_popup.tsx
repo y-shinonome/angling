@@ -6,10 +6,11 @@ type Props = {
   title: string
   lat: number
   lon: number
+  id?: string
   className?: string
 }
 
-const PositionPopup: React.FC<Props> = ({ title, lat, lon, className }) => {
+const PositionPopup: React.FC<Props> = ({ title, lat, lon, id, className }) => {
   const { setPopup } = useContext(PopupContext)
   return (
     <button
@@ -18,6 +19,7 @@ const PositionPopup: React.FC<Props> = ({ title, lat, lon, className }) => {
           title: title,
           lat: lat,
           lon: lon,
+          id: id,
         })
       }}
       className={`flex items-center justify-center bg-[#c5fff0] shadow shadow-gray-400/50 hover:bg-black/10 ${className}`}

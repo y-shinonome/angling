@@ -5,6 +5,7 @@ type Popup =
       title: string
       lat: number
       lon: number
+      id?: string
     }
   | undefined
 

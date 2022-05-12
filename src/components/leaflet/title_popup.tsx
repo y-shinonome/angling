@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { Marker, Popup } from 'react-leaflet'
 import { PopupContext } from '../../context/popup_context'
 
@@ -29,13 +30,31 @@ const TitlePopup: React.FC = () => {
 
   if (typeof popup !== 'undefined') {
     return (
-      <Marker
-        icon={customIcon}
-        position={[popup.lat, popup.lon]}
-        ref={markerRef}
-      >
-        <Popup onClose={handlePopupClose}>{popup.title}</Popup>
-      </Marker>
+      <>
+        {popup.id ? (
+          <Marker
+            icon={customIcon}
+            position={[popup.lat, popup.lon]}
+            ref={markerRef}
+          >
+            <Popup onClose={handlePopupClose}>
+              <Link href={`/angling_map/${popup.id}`}>
+                <a className=" !text-[#1A0DAB] underline underline-offset-1">
+                  {popup.title}
+                </a>
+              </Link>
+            </Popup>
+          </Marker>
+        ) : (
+          <Marker
+            icon={customIcon}
+            position={[popup.lat, popup.lon]}
+            ref={markerRef}
+          >
+            <Popup onClose={handlePopupClose}>{popup.title}</Popup>
+          </Marker>
+        )}
+      </>
     )
   } else {
     return null

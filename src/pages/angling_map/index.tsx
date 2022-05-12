@@ -47,6 +47,7 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                   title={anglingField.fields.name}
                   lat={anglingField.fields.position.lat}
                   lon={anglingField.fields.position.lon}
+                  id={anglingField.sys.id}
                   className="mt-2 w-full py-1 px-2 text-sm"
                 />
               </div>
