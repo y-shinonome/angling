@@ -3,8 +3,12 @@ import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import type { Entry } from 'contentful'
-import type { IAnglingFieldsFields } from '../../@types/contentful'
-import { getAnglingFields } from '../utils/contentful'
+import type {
+  IAnglingFieldsFields,
+  ITopPageFields,
+} from '../../@types/contentful'
+import ReactMarkdown from 'react-markdown'
+import { getAnglingFields, getTopPageContent } from '../utils/contentful'
 import Layout from '../components/template/layout'
 import SVG from '../components/atoms/svg'
 import Leaflet from '../components/template/leaflet'
@@ -15,9 +19,10 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
+  topPageContent: Entry<ITopPageFields>[]
 }
 
-const TopPage: NextPageWithLayout = () => {
+const TopPage: NextPageWithLayout<Props> = ({ topPageContent }) => {
   return (
     <>
       <div className="mb-10 flex flex-col items-center py-20">
@@ -36,7 +41,7 @@ const TopPage: NextPageWithLayout = () => {
       <h2 className="mb-2 border-b-[4px] border-[#c5fff0] text-xl text-[#333333]">
         このサイトについて
       </h2>
-      <p className="text-sm">
+      <p className="mb-10 text-sm">
         釣り場の情報を地図にまとめたWebサイトです。
         <br />
         釣りポイントの情報だけではなく
@@ -48,6 +53,11 @@ const TopPage: NextPageWithLayout = () => {
         <br />
         地図から探索してみませんか？
       </p>
+
+      <div className="prose prose-sm">
+        <ReactMarkdown>{topPageContent[0].fields.content}</ReactMarkdown>
+      </div>
+
       <h2 className="mt-16 mb-2 border-b-4 border-[#c5fff0] text-xl text-[#333333]">
         更新情報
       </h2>
@@ -82,19 +92,19 @@ TopPage.getLayout = (props, page) => {
   return (
     <>
       <Leaflet anglingFields={props.anglingFields} zoom={10} />
-      <Layout>
-        <TopPage>{page}</TopPage>
-      </Layout>
+      <Layout>{page}</Layout>
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const anglingFields = await getAnglingFields()
+  const topPageContent = await getTopPageContent()
 
   return {
     props: {
       anglingFields: anglingFields,
+      topPageContent: topPageContent,
     },
   }
 }

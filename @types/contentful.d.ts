@@ -33,14 +33,14 @@ export interface IAnglingFieldsFields {
   /** anglingSpot */
   anglingSpot?: Entry<IFieldImagesFields>[] | undefined
 
+  /** restrooms */
+  restrooms?: Entry<IFieldImagesFields>[] | undefined
+
   /** parkingAreas */
   parkingAreas?: Entry<IFieldImagesFields>[] | undefined
 
   /** stores */
   stores?: Entry<IFieldImagesFields>[] | undefined
-
-  /** restrooms */
-  restrooms?: Entry<IFieldImagesFields>[] | undefined
 
   /** notices */
   notices?: Entry<IFieldImagesFields>[] | undefined
@@ -94,7 +94,29 @@ export interface IFieldImages extends Entry<IFieldImagesFields> {
   }
 }
 
-export type CONTENT_TYPE = 'anglingFields' | 'fieldImages'
+export interface ITopPageFields {
+  /** content */
+  content: string
+}
+
+export interface ITopPage extends Entry<ITopPageFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'topPage'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
+export type CONTENT_TYPE = 'anglingFields' | 'fieldImages' | 'topPage'
 
 export type LOCALE_CODE = 'en-US'
 
