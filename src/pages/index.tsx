@@ -6,9 +6,15 @@ import type { Entry } from 'contentful'
 import type {
   IAnglingFieldsFields,
   ITopPageFields,
+  IUpdatedFields,
 } from '../../@types/contentful'
 import ReactMarkdown from 'react-markdown'
-import { getAnglingFields, getTopPageContent } from '../utils/contentful'
+import dayjs from 'dayjs'
+import {
+  getAnglingFields,
+  getTopPageContent,
+  getUpdated,
+} from '../utils/contentful'
 import Layout from '../components/template/layout'
 import SVG from '../components/atoms/svg'
 import Leaflet from '../components/template/leaflet'
@@ -20,9 +26,10 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
   topPageContent: Entry<ITopPageFields>[]
+  updated: Entry<IUpdatedFields>[]
 }
 
-const TopPage: NextPageWithLayout<Props> = ({ topPageContent }) => {
+const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
   return (
     <>
       <div className="mb-10 flex flex-col items-center py-20">
@@ -38,51 +45,20 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent }) => {
         </Link>
       </div>
 
-      <h2 className="mb-2 border-b-[4px] border-[#c5fff0] text-xl text-[#333333]">
-        このサイトについて
-      </h2>
-      <p className="mb-10 text-sm">
-        釣り場の情報を地図にまとめたWebサイトです。
-        <br />
-        釣りポイントの情報だけではなく
-        <br />
-        駐車場やトイレ等の場所も探すことができます。
-        <br />
-        <br />
-        まだ行ったことのない釣り場を
-        <br />
-        地図から探索してみませんか？
-      </p>
-
-      <div className="prose prose-sm">
+      <div className="prose prose-sm prose-custom max-w-none prose-h2:border-b-4">
         <ReactMarkdown>{topPageContent[0].fields.content}</ReactMarkdown>
-      </div>
 
-      <h2 className="mt-16 mb-2 border-b-4 border-[#c5fff0] text-xl text-[#333333]">
-        更新情報
-      </h2>
-      <ul className="text-sm">
-        <li className="mb-2 flex">
-          <time dateTime="2022-04-30" className="mr-4 flex-shrink-0">
-            2022年4月30日
-          </time>
-          <p>末広水際線プロムナード（ふれーゆ裏） 釣り場マップ公開</p>
-        </li>
-        <li className="mb-2 flex">
-          <time
-            dateTime="2022-04-30"
-            className="mr-4 flex-shrink-0 flex-grow-0"
-          >
-            2022年4月30日
-          </time>
-          <p className="flex-grow-0">東扇島西公園 釣り場マップ公開</p>
-        </li>
-        <li className="mb-2 flex">
-          <time dateTime="2022-04-30" className="mr-4 flex-shrink-0">
-            2022年4月29日
-          </time>
-          <p>Webサイト公開</p>
-        </li>
+        <h2>更新情報</h2>
+      </div>
+      <ul className="mt-4 text-sm">
+        {updated.map((item, index) => (
+          <li className="mb-2 flex" key={index}>
+            <time dateTime="2022-04-30" className="mr-4 flex-shrink-0">
+              {dayjs(item.fields.updatedDate).format('YYYY年MM月DD日')}
+            </time>
+            <p>{item.fields.text}</p>
+          </li>
+        ))}
       </ul>
     </>
   )
@@ -100,11 +76,13 @@ TopPage.getLayout = (props, page) => {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const anglingFields = await getAnglingFields()
   const topPageContent = await getTopPageContent()
+  const updated = await getUpdated()
 
   return {
     props: {
       anglingFields: anglingFields,
       topPageContent: topPageContent,
+      updated: updated,
     },
   }
 }

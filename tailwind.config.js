@@ -37,6 +37,15 @@ module.exports = {
         hide: 'hide 0.5s linear forwards',
       },
     },
+    extend: {
+      typography: ({ theme }) => ({
+        custom: {
+          css: {
+            '--tw-prose-headings': '#2A2A2A',
+          },
+        },
+      }),
+    },
   },
   plugins: [require('@tailwindcss/typography')],
 }

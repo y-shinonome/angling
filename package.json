@@ -18,6 +18,7 @@
     "contentful": "^9.1.22",
     "contentful-management": "^9.3.0",
     "contentful-typescript-codegen": "^3.2.3",
+    "dayjs": "^1.11.2",
     "leaflet": "^1.7.1",
     "next": "12.1.4",
     "postcss": "^8.4.12",

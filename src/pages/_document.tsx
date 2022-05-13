@@ -4,7 +4,7 @@ function Document() {
   return (
     <Html>
       <Head lang="ja-JP" />
-      <body className="bg-[#f9f9f9] text-[#2a2a2a]">
+      <body className="bg-[#f9f9f9] text-[#374151]">
         <Main />
         <NextScript />
       </body>

@@ -116,7 +116,36 @@ export interface ITopPage extends Entry<ITopPageFields> {
   }
 }
 
-export type CONTENT_TYPE = 'anglingFields' | 'fieldImages' | 'topPage'
+export interface IUpdatedFields {
+  /** updatedDate */
+  updatedDate: string
+
+  /** text */
+  text: string
+}
+
+export interface IUpdated extends Entry<IUpdatedFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'updated'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
+export type CONTENT_TYPE =
+  | 'anglingFields'
+  | 'fieldImages'
+  | 'topPage'
+  | 'updated'
 
 export type LOCALE_CODE = 'en-US'
 

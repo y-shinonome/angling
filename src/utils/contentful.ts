@@ -1,5 +1,9 @@
 import { createClient } from 'contentful'
-import { IAnglingFieldsFields, ITopPageFields } from '../../@types/contentful'
+import {
+  IAnglingFieldsFields,
+  ITopPageFields,
+  IUpdatedFields,
+} from '../../@types/contentful'
 
 const config = {
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -45,6 +49,13 @@ export const getAnglingField = async (id: string | undefined) => {
 export const getTopPageContent = async () => {
   const response = await client.getEntries<ITopPageFields>({
     content_type: 'topPage',
+  })
+  return response.items
+}
+
+export const getUpdated = async () => {
+  const response = await client.getEntries<IUpdatedFields>({
+    content_type: 'updated',
   })
   return response.items
 }
