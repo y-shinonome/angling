@@ -49,6 +49,7 @@ export const getAnglingField = async (id: string | undefined) => {
 export const getTopPageContent = async () => {
   const response = await client.getEntries<ITopPageFields>({
     content_type: 'topPage',
+    select: 'fields.content',
   })
   return response.items
 }
@@ -56,6 +57,7 @@ export const getTopPageContent = async () => {
 export const getUpdated = async () => {
   const response = await client.getEntries<IUpdatedFields>({
     content_type: 'updated',
+    select: 'fields.updatedDate,fields.text',
   })
   return response.items
 }
