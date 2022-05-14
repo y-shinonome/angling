@@ -16,8 +16,6 @@ module.exports = {
         ],
         logo: ['QuicksandSubset'],
       },
-    },
-    extend: {
       keyframes: {
         show: {
           '0%': { height: '0%' },
@@ -36,8 +34,6 @@ module.exports = {
         show: 'show 0.5s linear forwards',
         hide: 'hide 0.5s linear forwards',
       },
-    },
-    extend: {
       typography: ({ theme }) => ({
         common: {
           css: {

@@ -34,7 +34,7 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
     <>
       <div className="mb-10 flex flex-col items-center py-20">
         <p className="text-sm">釣り場探索マップ</p>
-        <h1 className="font-logo mb-10 text-4xl font-light text-[#83beaf]">
+        <h1 className="mb-10 font-logo text-4xl font-light text-[#83beaf]">
           Langling
         </h1>
         <Link href={`/angling_map`}>
