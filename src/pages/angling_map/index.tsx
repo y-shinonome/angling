@@ -74,6 +74,50 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
           </li>
         ))}
       </ul>
+      <h2 className="my-8 border-b-4 text-lg font-semibold text-[#505050]">
+        釣り場一覧
+      </h2>
+      <ul className="grid grid-cols-2 gap-x-3 ">
+        {anglingFields.map((anglingField, index) => (
+          <li
+            key={index}
+            className="flex flex-col justify-between border shadow-md"
+          >
+            <Link href={`/angling_map/${anglingField.sys.id}`}>
+              <a>
+                <div className="relative aspect-[1.91/1] w-full">
+                  <Image
+                    src={anglingField.fields.thumbnailUrl}
+                    alt={anglingField.fields.name}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </div>
+                <h3 className="mt-1 ml-1 block text-sm">
+                  {anglingField.fields.name}
+                </h3>
+                <ul className="mx-1 mt-3 flex flex-wrap gap-1 text-xs">
+                  {anglingField.fields.categories.map((category, index) => (
+                    <li
+                      key={index}
+                      className="border border-teal-500 p-[2px] px-1 text-teal-600"
+                    >
+                      {category}
+                    </li>
+                  ))}
+                </ul>
+              </a>
+            </Link>
+            <PositionPopup
+              title={anglingField.fields.name}
+              lat={anglingField.fields.position.lat}
+              lon={anglingField.fields.position.lon}
+              id={anglingField.sys.id}
+              className="mt-3 w-full py-1 px-2 text-sm"
+            />
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
