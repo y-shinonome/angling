@@ -10,14 +10,14 @@ type Props = {
   center?: L.LatLngExpression
   zoom: number
   anglingFields: Entry<IAnglingFieldsFields>[]
-  fieldInformation?: Entry<IAnglingFieldsFields>
+  fieldImages?: Entry<IAnglingFieldsFields>
 }
 
 const Leaflet: React.FC<Props> = ({
   center,
   zoom,
   anglingFields,
-  fieldInformation,
+  fieldImages,
 }) => {
   const Map = useMemo(
     () =>
@@ -40,10 +40,7 @@ const Leaflet: React.FC<Props> = ({
   return (
     <div className="sticky top-0 z-10 mb-3 shadow-[0_4px_4px_0_rgba(0,0,0,0.2)]">
       <Map center={center} zoom={zoom}>
-        <Markers
-          anglingFields={anglingFields}
-          fieldInformation={fieldInformation}
-        />
+        <Markers anglingFields={anglingFields} fieldImages={fieldImages} />
         <TitlePopup />
       </Map>
     </div>

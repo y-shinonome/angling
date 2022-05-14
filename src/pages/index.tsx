@@ -45,7 +45,7 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
         </Link>
       </div>
 
-      <div className="prose prose-sm prose-custom max-w-none prose-h2:border-b-4">
+      <div className="prose-custom">
         <ReactMarkdown>{topPageContent[0].fields.content}</ReactMarkdown>
 
         <h2>更新情報</h2>

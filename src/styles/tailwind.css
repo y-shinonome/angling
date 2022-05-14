@@ -7,3 +7,7 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
+
+.prose-custom {
+  @apply prose-common prose prose-sm max-w-none prose-h2:border-b-4;
+}

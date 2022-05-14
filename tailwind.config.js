@@ -39,7 +39,7 @@ module.exports = {
     },
     extend: {
       typography: ({ theme }) => ({
-        custom: {
+        common: {
           css: {
             '--tw-prose-headings': '#2A2A2A',
           },

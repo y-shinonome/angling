@@ -38,7 +38,7 @@ export const getAnglingFieldIds = async () => {
   return response.items
 }
 
-export const getAnglingField = async (id: string | undefined) => {
+export const getAnglingFieldImages = async (id: string | undefined) => {
   const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
     'sys.id': id,

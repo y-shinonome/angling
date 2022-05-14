@@ -2,7 +2,6 @@ import { ReactElement } from 'react'
 import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import Leaflet from '../../components/template/leaflet'
 import ReactMarkdown from 'react-markdown'
 import type { Entry } from 'contentful'
@@ -10,7 +9,7 @@ import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import {
   getOtherAnglingFields,
   getAnglingFieldIds,
-  getAnglingField,
+  getAnglingFieldImages,
 } from '../../utils/contentful'
 import FieldDetails from '../../components/angling_map/field_details'
 import Layout from '../../components/template/layout'
@@ -21,61 +20,52 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
-  fieldInformation: Entry<IAnglingFieldsFields>
+  fieldImages: Entry<IAnglingFieldsFields>
 }
 
 type Params = {
   id: string
 }
 
-const AnglingField: NextPageWithLayout<Props> = ({ fieldInformation }) => {
+const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
   return (
     <>
-      <h1 className="text-3xl font-semibold">{fieldInformation.fields.name}</h1>
-      <div className="relative aspect-[16/9]">
-        <Image
-          src={fieldInformation.fields.thumbnailUrl}
-          alt={fieldInformation.fields.name}
-          layout="fill"
-          objectFit="contain"
-        />
+      <div className="prose-custom pt-5">
+        <h1>{fieldImages.fields.name}</h1>
+        <div className="relative aspect-[16/9]">
+          <Image
+            src={fieldImages.fields.thumbnailUrl}
+            alt={fieldImages.fields.name}
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
+        <ReactMarkdown>{fieldImages.fields.description}</ReactMarkdown>
+        {fieldImages.fields.anglingSpot && (
+          <FieldDetails
+            fieldImages={fieldImages.fields.anglingSpot}
+            heading="釣りポイント情報"
+          />
+        )}
+        {fieldImages.fields.parkingAreas && (
+          <FieldDetails
+            fieldImages={fieldImages.fields.parkingAreas}
+            heading="周辺の駐車場情報"
+          />
+        )}
+        {fieldImages.fields.restrooms && (
+          <FieldDetails
+            fieldImages={fieldImages.fields.restrooms}
+            heading="周辺のトイレ情報"
+          />
+        )}
+        {fieldImages.fields.stores && (
+          <FieldDetails
+            fieldImages={fieldImages.fields.stores}
+            heading="周辺の売店・コンビニ情報"
+          />
+        )}
       </div>
-      {/* eslint-disable-next-line react/no-children-prop */}
-      <ReactMarkdown children={fieldInformation.fields.description} />
-      <h2 className="mt-20 text-xl">釣り場情報</h2>
-      {fieldInformation.fields.anglingSpot?.map((fieldImage, index) => (
-        <div key={index}>
-          <FieldDetails fieldImage={fieldImage} />
-        </div>
-      ))}
-      <h2 className="mt-20 text-xl">トイレ情報</h2>
-      {fieldInformation.fields.restrooms?.map((fieldImage, index) => (
-        <div key={index}>
-          <FieldDetails fieldImage={fieldImage} />
-        </div>
-      ))}
-      <h2 className="mt-20 text-xl">駐車場情報</h2>
-      {fieldInformation.fields.parkingAreas?.map((fieldImage, index) => (
-        <div key={index}>
-          <FieldDetails fieldImage={fieldImage} />
-        </div>
-      ))}
-      <h2 className="mt-20 text-xl">売店・コンビニ情報</h2>
-      {fieldInformation.fields.stores?.map((fieldImage, index) => (
-        <div key={index}>
-          <FieldDetails fieldImage={fieldImage} />
-        </div>
-      ))}
-      <p className="mt-10">
-        <Link href={`/angling_map`}>
-          <a>釣り場を探す</a>
-        </Link>
-      </p>
-      <p>
-        <Link href="/">
-          <a>TOP</a>
-        </Link>
-      </p>
     </>
   )
 }
@@ -85,12 +75,12 @@ AnglingField.getLayout = (props, page) => {
     <>
       <Leaflet
         center={[
-          props.fieldInformation.fields.position.lat,
-          props.fieldInformation.fields.position.lon,
+          props.fieldImages.fields.position.lat,
+          props.fieldImages.fields.position.lon,
         ]}
         zoom={16}
         anglingFields={props.anglingFields}
-        fieldInformation={props.fieldInformation}
+        fieldImages={props.fieldImages}
       />
       <Layout>{page}</Layout>
     </>
@@ -113,11 +103,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const anglingFields = await getOtherAnglingFields(params?.id)
-  const fieldInformation = await getAnglingField(params?.id)
+  const fieldImages = await getAnglingFieldImages(params?.id)
   return {
     props: {
       anglingFields: anglingFields,
-      fieldInformation: fieldInformation[0],
+      fieldImages: fieldImages[0],
     },
   }
 }

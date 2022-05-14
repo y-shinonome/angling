@@ -4,10 +4,10 @@ import type { IAnglingFieldsFields } from '../../../@types/contentful'
 
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
-  fieldInformation?: Entry<IAnglingFieldsFields>
+  fieldImages?: Entry<IAnglingFieldsFields>
 }
 
-const Markers: React.FC<Props> = ({ anglingFields, fieldInformation }) => {
+const Markers: React.FC<Props> = ({ anglingFields, fieldImages }) => {
   const CustomMarker = dynamic(() => import('../leaflet/custom_marker'), {
     loading: () => null,
     ssr: false,
@@ -28,8 +28,8 @@ const Markers: React.FC<Props> = ({ anglingFields, fieldInformation }) => {
           link={true}
         />
       ))}
-      {fieldInformation?.fields.anglingSpot &&
-        fieldInformation.fields.anglingSpot.map((fieldImage, index) => (
+      {fieldImages?.fields.anglingSpot &&
+        fieldImages.fields.anglingSpot.map((fieldImage, index) => (
           <CustomMarker
             key={index}
             id={fieldImage.sys.id}
@@ -41,8 +41,8 @@ const Markers: React.FC<Props> = ({ anglingFields, fieldInformation }) => {
             iconUrl="/icons/angling_spot.svg"
           />
         ))}
-      {fieldInformation?.fields.parkingAreas &&
-        fieldInformation.fields.parkingAreas.map((fieldImage, index) => (
+      {fieldImages?.fields.parkingAreas &&
+        fieldImages.fields.parkingAreas.map((fieldImage, index) => (
           <CustomMarker
             key={index}
             id={fieldImage.sys.id}
@@ -54,8 +54,8 @@ const Markers: React.FC<Props> = ({ anglingFields, fieldInformation }) => {
             iconUrl="/icons/parking_area.svg"
           />
         ))}
-      {fieldInformation?.fields.restrooms &&
-        fieldInformation.fields.restrooms.map((fieldImage, index) => (
+      {fieldImages?.fields.restrooms &&
+        fieldImages.fields.restrooms.map((fieldImage, index) => (
           <CustomMarker
             key={index}
             id={fieldImage.sys.id}
@@ -67,8 +67,8 @@ const Markers: React.FC<Props> = ({ anglingFields, fieldInformation }) => {
             iconUrl="/icons/restroom.svg"
           />
         ))}
-      {fieldInformation?.fields.stores &&
-        fieldInformation.fields.stores.map((fieldImage, index) => (
+      {fieldImages?.fields.stores &&
+        fieldImages.fields.stores.map((fieldImage, index) => (
           <CustomMarker
             key={index}
             id={fieldImage.sys.id}
