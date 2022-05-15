@@ -28,6 +28,9 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
                 alt={fieldImage.fields.title}
                 layout="fill"
                 objectFit="contain"
+                placeholder="blur"
+                blurDataURL={fieldImage.fields.blurImage}
+                className="duration-500"
               />
             </div>
           )}
