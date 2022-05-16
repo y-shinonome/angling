@@ -13,7 +13,7 @@ import {
 } from '../../utils/contentful'
 import FieldDetails from '../../components/angling_map/field_details'
 import Layout from '../../components/template/layout'
-import { generatePlaceHolder } from '../../utils/plaiceholder'
+import { generateFieldImagesPlaceHolder } from '../../utils/plaiceholder'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -106,7 +106,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   const anglingFields = await getOtherAnglingFields(params?.id)
 
   const fieldImagesSrc = await getAnglingFieldImages(params?.id)
-  const fieldImages = await generatePlaceHolder(fieldImagesSrc[0])
+  const fieldImages = await generateFieldImagesPlaceHolder(fieldImagesSrc[0])
 
   return {
     props: {

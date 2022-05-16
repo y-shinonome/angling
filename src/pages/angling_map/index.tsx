@@ -9,6 +9,7 @@ import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import { getAnglingFields } from '../../utils/contentful'
 import Layout from '../../components/template/layout'
 import PositionPopup from '../../components/angling_map/position_popup'
+import { generateAnglingFieldsPlaceHolder } from '../../utils/plaiceholder'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -39,6 +40,9 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                         alt={anglingField.fields.name}
                         layout="fill"
                         objectFit="contain"
+                        placeholder="blur"
+                        blurDataURL={anglingField.fields.blurImage}
+                        className="duration-500"
                       />
                     </div>
                   </a>
@@ -91,6 +95,9 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
                     alt={anglingField.fields.name}
                     layout="fill"
                     objectFit="contain"
+                    placeholder="blur"
+                    blurDataURL={anglingField.fields.blurImage}
+                    className="duration-500"
                   />
                 </div>
                 <h3 className="mt-1 ml-1 block text-sm">
@@ -132,7 +139,8 @@ AnglingMap.getLayout = (props, page) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const anglingFields = await getAnglingFields()
+  const anglingFieldsSrc = await getAnglingFields()
+  const anglingFields = await generateAnglingFieldsPlaceHolder(anglingFieldsSrc)
 
   return {
     props: {
