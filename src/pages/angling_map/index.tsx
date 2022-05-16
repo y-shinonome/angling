@@ -24,7 +24,7 @@ const zoom: number = 10
 const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
   return (
     <>
-      <h2 className="mt-8 border-b-2 text-lg font-semibold text-[#505050]">
+      <h2 className="mt-8 border-b-4 border-teal-300 text-lg font-semibold text-[#505050]">
         釣り場一覧
       </h2>
       <ul>
