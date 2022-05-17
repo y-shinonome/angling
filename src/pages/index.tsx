@@ -15,7 +15,7 @@ import {
   getTopPageContent,
   getUpdated,
 } from '../utils/contentful'
-import Meta from '../components/atoms/meta'
+import Meta from '../components/molecules/meta'
 import Layout from '../components/template/layout'
 import SVG from '../components/atoms/svg'
 import Leaflet from '../components/template/leaflet'
