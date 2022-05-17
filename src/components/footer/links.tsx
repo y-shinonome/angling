@@ -2,8 +2,8 @@ import Link from 'next/link'
 const Links: React.FC = () => {
   return (
     <aside className="flex-1">
-      <h2 className="mb-3 text-lg font-medium">Links</h2>
-      <ul className="whitespace-nowrap text-sm underline">
+      <h2 className="mb-3">Links</h2>
+      <ul className="whitespace-nowrap text-xs underline">
         <li className="mb-2">
           <Link href="/">
             <a>トップページ</a>

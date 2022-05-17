@@ -3,8 +3,8 @@ import ExternalLink from '../atoms/external_link'
 const Copyright = () => {
   return (
     <aside className="flex-1 whitespace-nowrap">
-      <h2 className="mb-3 text-lg font-medium">Copyright</h2>
-      <p className="text-sm">
+      <h2 className="mb-3">Copyright</h2>
+      <p className="text-xs">
         &copy; 2022 shinonome
         <br />
         All Rights Reserved.
