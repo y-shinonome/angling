@@ -53,6 +53,9 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
             alt={fieldImages.fields.name}
             layout="fill"
             objectFit="contain"
+            placeholder="blur"
+            blurDataURL={fieldImages.fields.blurImage}
+            className="duration-500"
           />
         </div>
         <ReactMarkdown>{fieldImages.fields.description}</ReactMarkdown>
