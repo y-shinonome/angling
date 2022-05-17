@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import Meta from '../../components/atoms/meta'
 import Leaflet from '../../components/template/leaflet'
 import ReactMarkdown from 'react-markdown'
 import type { Entry } from 'contentful'
@@ -32,6 +33,12 @@ type Params = {
 const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
   return (
     <>
+      <Meta
+        subTitle={fieldImages.fields.name}
+        description={fieldImages.fields.description}
+        imageUrl={fieldImages.fields.thumbnailUrl}
+        type="article"
+      />
       <p className="mt-6 text-xs text-[#666666]">
         <Link href="/angling_map">
           <a className="underline">釣り場一覧ページ</a>

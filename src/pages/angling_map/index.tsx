@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Leaflet from '../../components/template/leaflet'
 import type { Entry } from 'contentful'
+import Meta from '../../components/atoms/meta'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import { getAnglingFields } from '../../utils/contentful'
 import Layout from '../../components/template/layout'
@@ -24,6 +25,7 @@ const zoom: number = 10
 const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
   return (
     <>
+      <Meta subTitle="釣り場一覧" />
       <h2 className="mt-8 border-b-4 border-teal-300 text-lg font-semibold text-[#505050]">
         釣り場一覧
       </h2>

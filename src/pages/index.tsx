@@ -15,6 +15,7 @@ import {
   getTopPageContent,
   getUpdated,
 } from '../utils/contentful'
+import Meta from '../components/atoms/meta'
 import Layout from '../components/template/layout'
 import SVG from '../components/atoms/svg'
 import Leaflet from '../components/template/leaflet'
@@ -32,9 +33,10 @@ type Props = {
 const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
   return (
     <>
+      <Meta subTitle="釣り場探索マップ" />
       <div className="mb-10 flex flex-col items-center py-20">
         <p className="text-sm">釣り場探索マップ</p>
-        <h1 className="mb-10 font-logo text-4xl font-light text-[#83beaf]">
+        <h1 className="mb-10 font-logo text-4xl font-light text-teal-500">
           Langling
         </h1>
         <Link href={`/angling_map`}>
