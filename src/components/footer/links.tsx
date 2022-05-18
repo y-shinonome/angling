@@ -15,18 +15,18 @@ const Links: React.FC = () => {
           </Link>
         </li>
         <li className="mb-2">
-          <Link href="/">
+          <Link href="/blog">
             <a>ブログ</a>
           </Link>
         </li>
         <li className="mb-2">
-          <Link href="/">
-            <a>運営情報</a>
+          <Link href="/about">
+            <a>このサイトについて</a>
           </Link>
         </li>
         <li className="mb-2">
           <Link href="/">
-            <a>プライバシーポリシー</a>
+            <a>利用規約</a>
           </Link>
         </li>
         <li className="mb-2">
