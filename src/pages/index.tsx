@@ -2,6 +2,7 @@ import type { ReactElement } from 'react'
 import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
+import { BsQuestionCircle } from 'react-icons/bs'
 import type { Entry } from 'contentful'
 import type {
   IAnglingFieldsFields,
@@ -46,10 +47,17 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
           </a>
         </Link>
       </div>
-
       <div className="prose-custom">
-        <ReactMarkdown>{topPageContent[0].fields.content}</ReactMarkdown>
-
+        {/* //文字列内にアイコンを表示するために、em要素を代替として使用した */}
+        <ReactMarkdown
+          components={{
+            em: () => (
+              <BsQuestionCircle className="mx-[2px] mb-[3px] inline-block" />
+            ),
+          }}
+        >
+          {topPageContent[0].fields.content}
+        </ReactMarkdown>
         <h2>更新情報</h2>
       </div>
       <ul className="mt-4 text-sm">
