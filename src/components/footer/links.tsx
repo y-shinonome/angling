@@ -25,7 +25,7 @@ const Links: React.FC = () => {
           </Link>
         </li>
         <li className="mb-2">
-          <Link href="/">
+          <Link href="/terms">
             <a>利用規約</a>
           </Link>
         </li>
