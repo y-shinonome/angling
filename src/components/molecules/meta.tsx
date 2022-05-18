@@ -10,7 +10,7 @@ type props = {
 
 const Meta: React.FC<props> = ({
   subTitle,
-  description = '釣り場の情報を地図にまとめたWebサイトです。釣りポイントの情報だけではなく、駐車場等の周辺施設の情報も探すことができます。まだ行ったことのない釣り場を地図から探索してみませんか？',
+  description = '釣り場の情報を地図にまとめたWebサイトです。釣りポイントの情報だけではなく、駐車場等の周辺施設の情報も細かく掲載しています。まだ行ったことのない釣り場を地図から探索してみませんか？',
   imageUrl = 'https://dl.dropboxusercontent.com/s/o2ukugqq4jr9id8/ogp_common.png',
   type = 'website',
 }) => {

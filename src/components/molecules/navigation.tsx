@@ -9,7 +9,7 @@ const list = [
   { caption: 'ブログ', href: '/blog' },
   { caption: 'このサイトについて', href: '/about' },
   { caption: '利用規約', href: '/terms' },
-  { caption: 'お問い合わせ', href: '/' },
+  { caption: 'お問い合わせ', href: '/contact' },
 ]
 
 const Navigation: React.FC = () => {

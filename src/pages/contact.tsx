@@ -3,14 +3,14 @@ import Meta from '../components/molecules/meta'
 import Layout from '../components/template/layout'
 import TitleLogo from '../components/atoms/title_logo'
 
-const Terms: NextPage = () => {
+const Cotact: NextPage = () => {
   return (
     <>
-      <Meta subTitle="利用規約" />
+      <Meta subTitle="お問い合わせ" />
       <TitleLogo />
       <Layout>
         <section className="prose-custom mt-16">
-          <h1>利用規約</h1>
+          <h1>お問い合わせ</h1>
           <p>準備中！</p>
         </section>
       </Layout>
@@ -18,4 +18,4 @@ const Terms: NextPage = () => {
   )
 }
 
-export default Terms
+export default Cotact

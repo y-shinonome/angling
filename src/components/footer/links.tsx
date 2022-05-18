@@ -30,7 +30,7 @@ const Links: React.FC = () => {
           </Link>
         </li>
         <li className="mb-2">
-          <Link href="/">
+          <Link href="/contact">
             <a>お問い合わせ</a>
           </Link>
         </li>
