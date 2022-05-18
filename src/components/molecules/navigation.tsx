@@ -6,7 +6,7 @@ import Share from './share'
 const list = [
   { caption: 'トップページ', href: '/' },
   { caption: '釣り場マップ', href: '/angling_map' },
-  { caption: 'ブログ', href: '/' },
+  { caption: 'ブログ', href: '/blog' },
   { caption: '運営情報', href: '/' },
   { caption: 'プライバシーポリシー', href: '/' },
   { caption: 'お問い合わせ', href: '/' },
