@@ -37,7 +37,6 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
         subTitle={fieldImages.fields.name}
         description={fieldImages.fields.description}
         imageUrl={fieldImages.fields.thumbnailUrl}
-        type="article"
       />
       <p className="mt-6 text-xs text-[#666666]">
         <Link href="/angling_map">

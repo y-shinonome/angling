@@ -34,7 +34,7 @@ type Props = {
 const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
   return (
     <>
-      <Meta subTitle="釣り場探索マップ" />
+      <Meta subTitle="釣り場探索マップ" type="website" />
       <div className="mb-10 flex flex-col items-center py-20">
         <p className="text-sm">釣り場探索マップ</p>
         <h1 className="mb-10 font-logo text-4xl font-light text-teal-500">
