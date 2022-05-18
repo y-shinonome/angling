@@ -1,7 +1,7 @@
 import { useToggle } from 'react-use'
 import Link from 'next/link'
-import SVG from '../../components/atoms/svg'
-import Share from '../molecules/share'
+import SVG from '../atoms/svg'
+import Share from './share'
 
 const list = [
   { caption: 'トップページ', href: '/' },
@@ -41,7 +41,7 @@ const Navigation: React.FC = () => {
         {list.map((item, index) => (
           <Link href={item.href} key={index}>
             <a
-              className="ml-2 mb-5 block border-b border-teal-200 pl-2"
+              className="ml-2 mb-3 block border-b border-teal-100 pt-2 pb-1 pl-2 hover:bg-black/5"
               onClick={() => toggle(false)}
             >
               <div className="flex items-center">
@@ -54,14 +54,12 @@ const Navigation: React.FC = () => {
             </a>
           </Link>
         ))}
-        <div className="mt-10">
-          <p className="border-b border-teal-200 pl-9">SNSシェア</p>
-          <Share
-            className="mt-3 flex min-w-[238px] flex-wrap gap-2 pl-9"
-            size={40}
-            borderRadius={8}
-          />
-        </div>
+        <p className="border-b border-teal-100 pt-2 pb-1 pl-9">SNSシェア</p>
+        <Share
+          className="mt-3 flex min-w-[238px] flex-wrap gap-2 pl-9"
+          size={40}
+          borderRadius={8}
+        />
       </nav>
     </>
   )

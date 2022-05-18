@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import '../styles/tailwind.css'
 import '../styles/fonts.css'
 import PopupProvider from '../context/popup_context'
-import Navigation from '../components/template/navigation'
+import Navigation from '../components/molecules/navigation'
 import Footer from '../components/template/footer'
 import UsageProvider from '../context/usage_context'
 
