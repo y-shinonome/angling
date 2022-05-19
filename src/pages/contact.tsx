@@ -35,7 +35,7 @@ const Cotact: NextPage = () => {
               ></textarea>
             </label>
           </form>
-          <button className="ml-3 mt-3 rounded border border-teal-200 bg-teal-100 py-1 px-10 duration-300 hover:bg-black/10">
+          <button className="ml-3 mt-3 rounded bg-teal-100 py-1 px-10 shadow shadow-gray-400/40 duration-300 hover:bg-black/10">
             送信
           </button>
         </section>
