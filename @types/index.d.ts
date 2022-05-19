@@ -6,5 +6,8 @@ namespace NodeJS {
     readonly NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: string
     readonly CONTENTFUL_SPACE_ID: string
     readonly CONTENTFUL_CDA_ACCESS_TOKEN: string
+    readonly SENDGRID_API_KEY: string
+    readonly SENDGRID_EMAIL: string
+    readonly SENDGRID_TEMPLATE_ID: string
   }
 }
