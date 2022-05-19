@@ -11,7 +11,33 @@ const Cotact: NextPage = () => {
       <Layout>
         <section className="prose-custom mt-16">
           <h1>お問い合わせ</h1>
-          <p>準備中！</p>
+          <form className="ml-3 mt-10 grid grid-cols-1 gap-6">
+            <label className="block">
+              <span>お名前</span>
+              <input
+                type="text"
+                className="mt-1 w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
+                placeholder=""
+              />
+            </label>
+            <label className="block">
+              <span>メールアドレス</span>
+              <input
+                type="email"
+                className="mt-1 w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
+              />
+            </label>
+            <label className="block">
+              <span>お問い合わせ内容</span>
+              <textarea
+                className="mt-1 w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
+                rows={4}
+              ></textarea>
+            </label>
+          </form>
+          <button className="ml-3 mt-3 rounded border border-teal-200 bg-teal-100 py-1 px-10 duration-300 hover:bg-black/10">
+            送信
+          </button>
         </section>
       </Layout>
     </>
