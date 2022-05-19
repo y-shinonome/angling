@@ -17,7 +17,7 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
         <div key={index}>
           <h3
             id={fieldImage.sys.id}
-            className="mr-2 border-l-8 border-b-2 border-teal-200 pl-1"
+            className="!mb-0 border-b-2 border-teal-100 pl-3"
           >
             {fieldImage.fields.title}
           </h3>

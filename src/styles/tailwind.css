@@ -9,5 +9,5 @@
 }
 
 .prose-custom {
-  @apply prose prose-sm prose-common max-w-none prose-h1:text-2xl prose-h2:border-b-4 prose-h2:border-teal-300;
+  @apply prose prose-sm prose-common max-w-none prose-h1:text-2xl prose-h2:border-b-4 prose-h2:border-teal-200;
 }
