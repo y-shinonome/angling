@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react'
 import {
   MapContainer,
-  TileLayer,
   ScaleControl,
   ZoomControl,
   AttributionControl,
 } from 'react-leaflet'
+import CustomTileLayer from './custom_tile_layer'
 import 'leaflet/dist/leaflet.css'
 import ResizableContainer from './resizable_container'
 import LocationFound from './location_found'
@@ -17,8 +17,6 @@ type Props = {
   center?: L.LatLngExpression
   zoom: number
 }
-
-const MAP_TILE_URL = `https://api.maptiler.com/maps/outdoor/256/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_MAP_TILER_API_KEY}`
 
 const Map: React.FC<Props> = ({ center, zoom, children }) => {
   const mapRef = useRef<L.Map>()
@@ -70,15 +68,10 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
           mapRef.current = mapInstance
         }}
       >
-        <TileLayer
-          maxNativeZoom={22}
-          maxZoom={22}
-          url={MAP_TILE_URL}
-          attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> | <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-        />
+        <CustomTileLayer />
         <AttributionControl position="topleft" />
-        <ZoomControl position="bottomright" />
         <ScaleControl />
+        <ZoomControl position="bottomright" />
         <LocationProvider>
           <LocationFound />
           <LocationMarker />
