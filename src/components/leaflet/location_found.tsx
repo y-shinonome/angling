@@ -20,7 +20,7 @@ const LocationFound: React.FC = () => {
         onClick={handleClick}
         className="leaflet-bar leaflet-control !cursor-pointer"
       >
-        <div className="flex h-[30px] w-[30px] items-center justify-center rounded-sm bg-white p-[2px] hover:bg-[#f7f7f7]">
+        <div className="flex h-[30px] w-[30px] items-center justify-center rounded-sm bg-white p-[2px] hover:bg-[#f4f4f4]">
           <BiCurrentLocation className="text-3xl" />
         </div>
       </div>

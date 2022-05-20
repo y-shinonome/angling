@@ -27,12 +27,12 @@ const Usage: React.FC = () => {
           表示範囲を変更できます
         </div>
       </div>
-      <div className="leaflet-bottom leaflet-right mb-[110px]">
+      <div className="leaflet-bottom leaflet-right mb-[150px]">
         <div
           onClick={toggle}
           className="leaflet-bar leaflet-control !cursor-pointer"
         >
-          <div className="flex h-[30px] w-[30px] items-center justify-center rounded-sm bg-white p-[2px] hover:bg-[#f7f7f7]">
+          <div className="flex h-[30px] w-[30px] items-center justify-center rounded-sm bg-white p-[2px] hover:bg-[#f4f4f4]">
             <BsQuestionCircle className=" text-xl" />
           </div>
         </div>

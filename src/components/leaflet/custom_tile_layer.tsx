@@ -27,9 +27,9 @@ const CustomTileLayer: React.FC = () => {
         attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> | <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         ref={tileRef}
       />
-      <div className="leaflet-bottom leaflet-right mb-[149px]" onClick={toggle}>
+      <div className="leaflet-bottom leaflet-right mb-[110px]" onClick={toggle}>
         <div className="leaflet-bar leaflet-control !cursor-pointer">
-          <div className="flex h-[30px] w-[30px] items-center justify-center rounded-sm bg-white p-[2px] hover:bg-[#f7f7f7]">
+          <div className="flex h-[30px] w-[30px] items-center justify-center rounded-sm bg-white p-[2px] hover:bg-[#f4f4f4]">
             <BsLayersHalf className=" text-xl" />
           </div>
         </div>
