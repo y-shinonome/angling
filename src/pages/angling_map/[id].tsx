@@ -39,8 +39,12 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
         imageUrl={fieldImages.fields.thumbnailUrl}
       />
       <p className="mt-6 text-xs text-[#666666]">
+        <Link href="/">
+          <a className="underline">トップページ</a>
+        </Link>{' '}
+        &gt;{' '}
         <Link href="/angling_map">
-          <a className="underline">釣り場一覧ページ</a>
+          <a className="underline">釣り場一覧</a>
         </Link>{' '}
         &gt; <span>{fieldImages.fields.name}</span>
       </p>
