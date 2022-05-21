@@ -88,10 +88,36 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
           />
         )}
       </div>
-      <div className="prose-custom mt-20">
-        <h2>SNSで釣り場情報を共有</h2>
-      </div>
-      <Share className="mt-5 flex flex-wrap gap-3" size={48} borderRadius={6} />
+      <h2 className="mt-20 mb-2 font-bold">SNSで釣り場情報を共有</h2>
+      <Share className="flex flex-wrap gap-3" size={48} borderRadius={6} />
+      <h2 className="mt-20 mb-2 font-bold">
+        {fieldImages.fields.name}についてのコメント
+      </h2>
+      <hr />
+      <p className="my-3 text-sm">まだ投稿されたコメントがありません</p>
+      <hr />
+      <form className="mt-6 grid grid-cols-1 text-xs" onSubmit={() => {}}>
+        <label className="block">
+          <span>名前</span>
+          <input
+            type="text"
+            className="mt-1 w-full rounded border-teal-200 text-sm focus:border-indigo-300 focus:ring-indigo-200"
+            placeholder=""
+            onChange={() => {}}
+          />
+        </label>
+        <label className="mt-3 block">
+          <span>コメント</span>
+          <textarea
+            className="mt-1 w-full rounded border-teal-200 text-sm focus:border-indigo-300 focus:ring-indigo-200"
+            rows={4}
+            onChange={() => {}}
+          ></textarea>
+        </label>
+        <button className="mt-2 rounded bg-teal-100 px-10 py-1 text-sm shadow shadow-gray-400/40 duration-300 hover:bg-black/10">
+          コメントを残す
+        </button>
+      </form>
     </>
   )
 }
