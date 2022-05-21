@@ -71,7 +71,7 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
 TopPage.getLayout = (props, page) => {
   return (
     <>
-      <Leaflet anglingFields={props.anglingFields} zoom={10} />
+      <Leaflet anglingFields={props.anglingFields} zoom={9} />
       <Layout>{page}</Layout>
     </>
   )

@@ -20,8 +20,6 @@ type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
 }
 
-const zoom: number = 10
-
 const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
   return (
     <>
@@ -134,7 +132,7 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
 AnglingMap.getLayout = (props, page) => {
   return (
     <>
-      <Leaflet zoom={zoom} anglingFields={props.anglingFields} />
+      <Leaflet zoom={9} anglingFields={props.anglingFields} />
       <Layout>{page}</Layout>
     </>
   )

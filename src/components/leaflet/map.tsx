@@ -63,6 +63,10 @@ const Map: React.FC<Props> = ({ center, zoom, children }) => {
         style={{ height: '100%', width: '100%' }}
         attributionControl={false}
         zoomControl={false}
+        maxBounds={[
+          [46.5229, 122.9343],
+          [24.0479, 153.9848],
+        ]}
         whenCreated={(mapInstance) => {
           mapRef.current = mapInstance
         }}

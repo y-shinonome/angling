@@ -23,6 +23,7 @@ const CustomTileLayer: React.FC = () => {
       <TileLayer
         maxNativeZoom={22}
         maxZoom={22}
+        minZoom={5}
         url={showsSatelliteMap ? satelliteMapTileURL : outdoorMapTileURL}
         attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> | <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         ref={tileRef}
