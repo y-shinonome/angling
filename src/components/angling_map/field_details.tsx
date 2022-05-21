@@ -17,7 +17,7 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
         <div key={index}>
           <h3
             id={fieldImage.sys.id}
-            className="!mb-0 pl-3 underline decoration-teal-500 decoration-dotted underline-offset-2"
+            className="!mb-0 underline decoration-teal-500 decoration-dotted underline-offset-2"
           >
             {fieldImage.fields.title}
           </h3>
