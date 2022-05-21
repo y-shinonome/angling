@@ -42,6 +42,7 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
           {fieldImage.fields.comment && (
             <ReactMarkdown>{fieldImage.fields.comment}</ReactMarkdown>
           )}
+          {fieldImages.length !== index + 1 ? <hr /> : <br />}
         </div>
       ))}
     </>
