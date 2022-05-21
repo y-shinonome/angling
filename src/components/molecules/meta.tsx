@@ -23,6 +23,7 @@ const Meta: React.FC<props> = ({
     <Head>
       <meta content={description} name="description" />
       <title>{title}</title>
+      <meta name="theme-color" content="#99f6e4" />
       <meta property="og:title" content={title} />
       <meta property="og:type" content={type} />
       <meta property="og:image" content={imageUrl} />
