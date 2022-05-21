@@ -6,7 +6,6 @@ import '../styles/fonts.css'
 import PopupProvider from '../context/popup_context'
 import Navigation from '../components/molecules/navigation'
 import Footer from '../components/template/footer'
-import UsageProvider from '../context/usage_context'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (pageProps: AppProps, page: ReactElement) => ReactNode
@@ -22,9 +21,7 @@ function MyApp({ pageProps, Component }: AppPropsWithLayout) {
       <>
         <Navigation />
         <PopupProvider>
-          <UsageProvider>
-            {Component.getLayout(pageProps, <Component {...pageProps} />)}
-          </UsageProvider>
+          {Component.getLayout(pageProps, <Component {...pageProps} />)}
         </PopupProvider>
         <Footer />
       </>

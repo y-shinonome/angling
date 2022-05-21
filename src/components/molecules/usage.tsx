@@ -3,7 +3,7 @@ import { BiCurrentLocation } from 'react-icons/bi'
 import SVG from '../../components/atoms/svg'
 
 type Props = {
-  className: string
+  className?: string
 }
 
 const Usage: React.FC<Props> = ({ className }) => {
