@@ -16,8 +16,8 @@ const Cotact: NextPage = () => {
   const [status, setStatus] = useState<number>(0)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setStatus(1)
     e.preventDefault()
+    setStatus(1)
 
     const res = await fetch('/api/sendMail', {
       body: JSON.stringify({
@@ -43,10 +43,12 @@ const Cotact: NextPage = () => {
           <form className="ml-3 mt-10 grid grid-cols-1" onSubmit={handleSubmit}>
             <label className="block">
               <span>お名前</span>
+              <span className="ml-1 text-slate-400">(必須)</span>
               <input
                 type="text"
                 className="w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
-                placeholder=""
+                required={true}
+                maxLength={256}
                 onChange={(e) => {
                   setName(e.target.value)
                 }}
@@ -54,9 +56,12 @@ const Cotact: NextPage = () => {
             </label>
             <label className="mt-5 block">
               <span>メールアドレス</span>
+              <span className="ml-1 text-slate-400">(必須)</span>
               <input
                 type="email"
                 className="w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
+                required={true}
+                maxLength={256}
                 onChange={(e) => {
                   setEmail(e.target.value)
                 }}
@@ -64,8 +69,12 @@ const Cotact: NextPage = () => {
             </label>
             <label className="mt-5 block">
               <span>お問い合わせ内容</span>
+              <span className="ml-1 text-slate-400">(必須)</span>
               <textarea
-                className="mt-1 w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
+                className="mt-1 w-full rounded border-teal-200 placeholder:text-slate-400 focus:border-indigo-300 focus:ring-indigo-200"
+                placeholder="5000文字以内"
+                required={true}
+                maxLength={5000}
                 rows={4}
                 onChange={(e) => {
                   setMessage(e.target.value)
