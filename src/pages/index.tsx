@@ -5,16 +5,12 @@ import Link from 'next/link'
 import type { Entry } from 'contentful'
 import type {
   IAnglingFieldsFields,
-  ITopPageFields,
+  IDocumentsFields,
   IUpdatedFields,
 } from '../../@types/contentful'
 import ReactMarkdown from 'react-markdown'
 import dayjs from 'dayjs'
-import {
-  getAnglingFields,
-  getTopPageContent,
-  getUpdated,
-} from '../utils/contentful'
+import { getAnglingFields, getDocments, getUpdated } from '../utils/contentful'
 import Meta from '../components/molecules/meta'
 import Usage from '../components/molecules/usage'
 import Layout from '../components/template/layout'
@@ -27,7 +23,7 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
-  topPageContent: Entry<ITopPageFields>[]
+  topPageContent: Entry<IDocumentsFields>
   updated: Entry<IUpdatedFields>[]
 }
 
@@ -48,7 +44,7 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
         </Link>
       </div>
       <div className="prose-custom">
-        <ReactMarkdown>{topPageContent[0].fields.content}</ReactMarkdown>
+        <ReactMarkdown>{topPageContent.fields.content}</ReactMarkdown>
       </div>
       <Usage className="mt-10 mb-16" />
       <div className="prose-custom">
@@ -79,13 +75,13 @@ TopPage.getLayout = (props, page) => {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const anglingFields = await getAnglingFields()
-  const topPageContent = await getTopPageContent()
+  const topPageContent = await getDocments('topPage')
   const updated = await getUpdated()
 
   return {
     props: {
       anglingFields: anglingFields,
-      topPageContent: topPageContent,
+      topPageContent: topPageContent[0],
       updated: updated,
     },
   }

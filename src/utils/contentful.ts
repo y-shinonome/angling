@@ -1,7 +1,7 @@
 import { createClient } from 'contentful'
 import {
   IAnglingFieldsFields,
-  ITopPageFields,
+  IDocumentsFields,
   IUpdatedFields,
 } from '../../@types/contentful'
 
@@ -47,11 +47,11 @@ export const getAnglingFieldImages = async (id: string | undefined) => {
   })
   return response.items
 }
-
-export const getTopPageContent = async () => {
-  const response = await client.getEntries<ITopPageFields>({
-    content_type: 'topPage',
+export const getDocments = async (name: string) => {
+  const response = await client.getEntries<IDocumentsFields>({
+    content_type: 'documents',
     select: 'fields.content',
+    'fields.name': name,
   })
   return response.items
 }
