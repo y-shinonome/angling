@@ -14,6 +14,7 @@ import {
   getAnglingFieldImages,
 } from '../../utils/contentful'
 import FieldDetails from '../../components/angling_map/field_details'
+import Share from '../../components/molecules/share'
 import Layout from '../../components/template/layout'
 import { generateFieldImagesPlaceHolder } from '../../utils/plaiceholder'
 
@@ -87,6 +88,10 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
           />
         )}
       </div>
+      <div className="prose-custom mt-20">
+        <h2>SNSで釣り場情報を共有</h2>
+      </div>
+      <Share className="mt-5 flex flex-wrap gap-3" size={48} borderRadius={6} />
     </>
   )
 }

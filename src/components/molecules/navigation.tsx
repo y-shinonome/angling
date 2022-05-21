@@ -54,7 +54,7 @@ const Navigation: React.FC = () => {
             </a>
           </Link>
         ))}
-        <p className="border-b border-teal-100 pt-2 pb-1 pl-9">SNSシェア</p>
+        <p className="border-b border-teal-100 pt-2 pb-1 pl-9">SNSで共有</p>
         <Share
           className="mt-3 flex min-w-[238px] flex-wrap gap-2 pl-9"
           size={40}
