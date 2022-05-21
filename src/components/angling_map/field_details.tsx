@@ -15,10 +15,7 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
       <h2>{heading}</h2>
       {fieldImages.map((fieldImage, index) => (
         <div key={index}>
-          <h3
-            id={fieldImage.sys.id}
-            className="!mb-0 underline decoration-teal-500 decoration-dotted underline-offset-2"
-          >
+          <h3 id={fieldImage.sys.id} className="!mb-0 font-bold">
             {fieldImage.fields.title}
           </h3>
           {fieldImage.fields.imageUrl && (

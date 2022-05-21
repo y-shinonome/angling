@@ -40,32 +40,29 @@ const Cotact: NextPage = () => {
       <Layout>
         <section className="prose-custom mt-16">
           <h1>お問い合わせ</h1>
-          <form
-            className="ml-3 mt-10 grid grid-cols-1 gap-6"
-            onSubmit={handleSubmit}
-          >
+          <form className="ml-3 mt-10 grid grid-cols-1" onSubmit={handleSubmit}>
             <label className="block">
               <span>お名前</span>
               <input
                 type="text"
-                className="mt-1 w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
+                className="w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
                 placeholder=""
                 onChange={(e) => {
                   setName(e.target.value)
                 }}
               />
             </label>
-            <label className="block">
+            <label className="mt-5 block">
               <span>メールアドレス</span>
               <input
                 type="email"
-                className="mt-1 w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
+                className="w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
                 onChange={(e) => {
                   setEmail(e.target.value)
                 }}
               />
             </label>
-            <label className="block">
+            <label className="mt-5 block">
               <span>お問い合わせ内容</span>
               <textarea
                 className="mt-1 w-full rounded border-teal-200 focus:border-indigo-300 focus:ring-indigo-200"
@@ -76,7 +73,7 @@ const Cotact: NextPage = () => {
               ></textarea>
             </label>
             <button
-              className={`w-[fit-content] rounded bg-teal-100 px-10 py-1 shadow shadow-gray-400/40 duration-300 hover:bg-black/10 ${
+              className={`mt-2 rounded bg-teal-100 px-10 py-1 shadow shadow-gray-400/40 duration-300 hover:bg-black/10 ${
                 status && 'pointer-events-none'
               }`}
             >
