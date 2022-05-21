@@ -17,7 +17,7 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
         <div key={index}>
           <h3
             id={fieldImage.sys.id}
-            className="!mb-0 border-b-2 border-teal-100 pl-3"
+            className="!mb-0 pl-3 underline decoration-teal-500 decoration-dotted underline-offset-2"
           >
             {fieldImage.fields.title}
           </h3>
@@ -43,9 +43,7 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
             </>
           )}
           {fieldImage.fields.comment && (
-            <ReactMarkdown className="ml-3">
-              {fieldImage.fields.comment}
-            </ReactMarkdown>
+            <ReactMarkdown>{fieldImage.fields.comment}</ReactMarkdown>
           )}
         </div>
       ))}
