@@ -101,15 +101,20 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
           <span>名前</span>
           <input
             type="text"
-            className="mt-1 w-full rounded border-teal-200 text-sm focus:border-indigo-300 focus:ring-indigo-200"
-            placeholder=""
+            className="mt-1 w-full rounded border-teal-200 text-sm placeholder:text-slate-400 focus:border-indigo-300 focus:ring-indigo-200"
+            maxLength={32}
+            placeholder="何も入力しなければ「匿名」表示になります"
             onChange={() => {}}
           />
         </label>
         <label className="mt-3 block">
           <span>コメント</span>
+          <span className="ml-1 text-slate-400">(必須)</span>
           <textarea
-            className="mt-1 w-full rounded border-teal-200 text-sm focus:border-indigo-300 focus:ring-indigo-200"
+            className="mt-1 w-full rounded border-teal-200 text-sm placeholder:text-slate-400 focus:border-indigo-300 focus:ring-indigo-200"
+            required={true}
+            maxLength={500}
+            placeholder="500文字以内"
             rows={4}
             onChange={() => {}}
           ></textarea>
