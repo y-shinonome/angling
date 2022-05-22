@@ -21,6 +21,8 @@
     "contentful-management": "^9.3.0",
     "contentful-typescript-codegen": "^3.2.3",
     "dayjs": "^1.11.2",
+    "firebase": "^9.8.1",
+    "firebase-admin": "^10.2.0",
     "leaflet": "^1.7.1",
     "next": "12.1.4",
     "plaiceholder": "^2.3.0",
