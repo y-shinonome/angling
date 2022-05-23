@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { addDoc } from '../../utils/firestore'
+import { setComment } from '../../utils/firestore'
 
-const addComment = async (req: NextApiRequest, res: NextApiResponse) => {
+const addComent = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    await addDoc(req.body.pageId, req.body.name, req.body.comment)
+    await setComment(req.body)
     res.status(200).json({})
   } catch (error: any) {
     res.status(500).json({})
   }
 }
 
-export default addComment
+export default addComent

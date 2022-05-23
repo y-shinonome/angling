@@ -1,6 +1,18 @@
 import { firestore } from './firebase'
 
-export const addDoc = async (pageId: string, name: string, comment: string) => {
+type Comment = {
+  pageId: string
+  name: string
+  comment: string
+}
+
+export const setComment = async (comment: Comment) => {
   const docRef = firestore.collection('comments').doc()
-  await docRef.set({ pageId: pageId, name: name, comment: comment })
+  await docRef.set({ comment })
+}
+
+export const getDoc = async () => {
+  const docRef = firestore.collection('angling_spot').doc('fure-yu_ura')
+  const docSnap = await docRef.get()
+  console.log(docSnap.data())
 }

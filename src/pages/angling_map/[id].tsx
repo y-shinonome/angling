@@ -37,7 +37,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const res = await fetch('/api/addComment', {
+    await fetch('/api/addComment', {
       body: JSON.stringify({
         pageId: fieldImages.sys.id,
         name: name,
@@ -48,7 +48,6 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
       },
       method: 'POST',
     })
-    console.log(res)
   }
 
   return (
