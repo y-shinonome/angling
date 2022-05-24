@@ -152,6 +152,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
       fieldImages: fieldImages,
       comments: comments,
     },
+    revalidate: false,
   }
 }
 
