@@ -19,19 +19,19 @@ const Comments: React.FC<Props> = ({ comments }) => {
         <>
           {comments.map((comment, index) => (
             <div key={index} className="whitespace-pre-wrap text-sm">
-              <div className="mt-2 flex flex-wrap">
+              <div className="mt-3 flex flex-wrap">
                 <p className="font-bold">
-                  {comment.name === '' ? '名前無し' : comment.name}
+                  {comment.name === '' ? '匿名' : comment.name}
                 </p>
                 <time
-                  className="ml-2 text-gray-400"
+                  className="ml-3 text-gray-400"
                   dateTime={comment.timestamp}
                 >
                   {dayjs(comment.timestamp).format('YYYY年MM月DD日')}
                 </time>
               </div>
               <p className="mt-3">{comment.text}</p>
-              <hr className="my-2" />
+              <hr className="my-3" />
             </div>
           ))}
         </>

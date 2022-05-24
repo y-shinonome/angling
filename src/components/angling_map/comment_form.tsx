@@ -10,6 +10,10 @@ const CommentForm: React.FC<Props> = ({ pageId }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    setName('')
+    setText('')
+
     await fetch('/api/addComment', {
       body: JSON.stringify({
         pageId: pageId,
@@ -32,7 +36,8 @@ const CommentForm: React.FC<Props> = ({ pageId }) => {
             type="text"
             className="mt-1 w-full rounded border-teal-200 text-sm placeholder:text-slate-400 focus:border-indigo-300 focus:ring-indigo-200"
             maxLength={32}
-            placeholder="何も入力しなければ「名前無し」表示になります"
+            placeholder="何も入力しなければ「匿名」表示になります"
+            value={name}
             onChange={(e) => {
               setName(e.target.value)
             }}
@@ -47,6 +52,7 @@ const CommentForm: React.FC<Props> = ({ pageId }) => {
             maxLength={500}
             placeholder="500文字以内"
             rows={4}
+            value={text}
             onChange={(e) => {
               setText(e.target.value)
             }}
