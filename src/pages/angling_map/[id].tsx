@@ -133,7 +133,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
@@ -152,7 +152,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
       fieldImages: fieldImages,
       comments: comments,
     },
-    revalidate: false,
   }
 }
 

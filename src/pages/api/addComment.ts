@@ -4,10 +4,9 @@ import { setComment } from '../../utils/firestore'
 const addComent = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await setComment(req.body)
-    await res.unstable_revalidate(`/angling_map/${req.body.pageId}`)
-    return res.json({ revalidated: true })
+    return res.status(200)
   } catch (error: any) {
-    return res.status(500).send('Error revalidating')
+    return res.status(500)
   }
 }
 
