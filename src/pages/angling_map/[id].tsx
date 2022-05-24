@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
@@ -13,12 +13,13 @@ import {
   getAnglingFieldIds,
   getAnglingFieldImages,
 } from '../../utils/contentful'
+import { getComments } from '../../utils/firestore'
 import FieldDetails from '../../components/angling_map/field_details'
 import Share from '../../components/molecules/share'
 import Layout from '../../components/template/layout'
+import Comments from '../../components/angling_map/comments'
+import CommentForm from '../../components/angling_map/comment_form'
 import { generateFieldImagesPlaceHolder } from '../../utils/plaiceholder'
-import { getComments } from '../../utils/firestore'
-import dayjs from 'dayjs'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -39,24 +40,6 @@ type Params = {
 }
 
 const AnglingField: NextPageWithLayout<Props> = ({ fieldImages, comments }) => {
-  const [name, setName] = useState('')
-  const [text, setText] = useState('')
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    await fetch('/api/addComment', {
-      body: JSON.stringify({
-        pageId: fieldImages.sys.id,
-        name: name,
-        text: text,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
-  }
-
   return (
     <>
       <Meta
@@ -119,49 +102,8 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages, comments }) => {
         {fieldImages.fields.name}についてのコメント
       </h2>
       <hr />
-      {comments.map((comment, index) => (
-        <div key={index} className="whitespace-pre-wrap text-sm">
-          <div className="mt-2 flex flex-wrap">
-            <p className="font-bold">{comment.name}</p>
-            <time className="ml-2 text-gray-400" dateTime={comment.timestamp}>
-              {dayjs(comment.timestamp).format('YYYY年MM月DD日')}
-            </time>
-          </div>
-          <p className="mt-3">{comment.text}</p>
-          <hr className="my-2" />
-        </div>
-      ))}
-      <form className="mt-6 grid grid-cols-1 text-xs" onSubmit={handleSubmit}>
-        <label className="block">
-          <span>名前</span>
-          <input
-            type="text"
-            className="mt-1 w-full rounded border-teal-200 text-sm placeholder:text-slate-400 focus:border-indigo-300 focus:ring-indigo-200"
-            maxLength={32}
-            placeholder="何も入力しなければ「匿名」表示になります"
-            onChange={(e) => {
-              setName(e.target.value)
-            }}
-          />
-        </label>
-        <label className="mt-3 block">
-          <span>コメント</span>
-          <span className="ml-1 text-slate-400">(必須)</span>
-          <textarea
-            className="mt-1 w-full rounded border-teal-200 text-sm placeholder:text-slate-400 focus:border-indigo-300 focus:ring-indigo-200"
-            required={true}
-            maxLength={500}
-            placeholder="500文字以内"
-            rows={4}
-            onChange={(e) => {
-              setText(e.target.value)
-            }}
-          ></textarea>
-        </label>
-        <button className="mt-2 rounded bg-teal-100 px-10 py-1 text-sm shadow shadow-gray-400/40 duration-300 hover:bg-black/10">
-          コメントを残す
-        </button>
-      </form>
+      <Comments comments={comments} />
+      <CommentForm pageId={fieldImages.sys.id} />
     </>
   )
 }
