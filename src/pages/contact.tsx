@@ -19,7 +19,7 @@ const Cotact: NextPage = () => {
     e.preventDefault()
     setStatus(1)
 
-    const res = await fetch('/api/sendMail', {
+    const res = await fetch('/api/send_mail', {
       body: JSON.stringify({
         name: name,
         email: email,

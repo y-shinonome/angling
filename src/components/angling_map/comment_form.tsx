@@ -16,7 +16,7 @@ const CommentForm: React.FC<Props> = ({ pageId }) => {
     setName('')
     setText('')
 
-    await fetch('/api/addComment', {
+    await fetch('/api/add_comment', {
       body: JSON.stringify({
         pageId: pageId,
         name: name,
