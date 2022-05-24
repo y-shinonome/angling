@@ -13,7 +13,6 @@ import {
   getAnglingFieldIds,
   getAnglingFieldImages,
 } from '../../utils/contentful'
-import { getComments } from '../../utils/firestore'
 import FieldDetails from '../../components/angling_map/field_details'
 import Share from '../../components/molecules/share'
 import Layout from '../../components/template/layout'
@@ -28,18 +27,13 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
   fieldImages: Entry<IAnglingFieldsFields>
-  comments: {
-    name: string
-    text: string
-    timestamp: string
-  }[]
 }
 
 type Params = {
   id: string
 }
 
-const AnglingField: NextPageWithLayout<Props> = ({ fieldImages, comments }) => {
+const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
   return (
     <>
       <Meta
@@ -102,7 +96,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages, comments }) => {
         {fieldImages.fields.name}についてのコメント
       </h2>
       <hr />
-      <Comments comments={comments} />
+      <Comments pageId={fieldImages.sys.id} />
       <CommentForm pageId={fieldImages.sys.id} />
     </>
   )
@@ -144,13 +138,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   const anglingFields = await getOtherAnglingFields(pageId)
   const fieldImagesSrc = await getAnglingFieldImages(pageId)
   const fieldImages = await generateFieldImagesPlaceHolder(fieldImagesSrc[0])
-  const comments = await getComments(pageId)
 
   return {
     props: {
       anglingFields: anglingFields,
       fieldImages: fieldImages,
-      comments: comments,
     },
   }
 }

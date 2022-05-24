@@ -1,23 +1,34 @@
 import dayjs from 'dayjs'
+import useSWR from 'swr'
+
+type Comments = {
+  name: string
+  text: string
+  timestamp: string
+}[]
 
 type Props = {
-  comments: {
-    name: string
-    text: string
-    timestamp: string
-  }[]
+  pageId: string
 }
 
-const Comments: React.FC<Props> = ({ comments }) => {
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
+const Comments: React.FC<Props> = ({ pageId }) => {
+  const { data } = useSWR<Comments>(
+    `/api/fetch_comments?pageId=${pageId}`,
+    fetcher,
+    { revalidateOnFocus: false }
+  )
+
   return (
     <>
-      {comments.length === 0 ? (
+      {data?.length === 0 ? (
         <p className="mt-3 text-sm text-gray-500">
           まだ投稿されたコメントがありません
         </p>
       ) : (
         <>
-          {comments.map((comment, index) => (
+          {data?.map((comment, index) => (
             <div key={index} className="whitespace-pre-wrap text-sm">
               <div className="mt-3 flex flex-wrap">
                 <p className="font-bold">
