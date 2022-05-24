@@ -5,9 +5,9 @@ const addComent = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await setComment(req.body)
     await res.unstable_revalidate(`/angling_map/${req.body.pageId}`)
-    res.status(200).json({})
+    return res.json({ revalidated: true })
   } catch (error: any) {
-    res.status(500).json({})
+    return res.status(500).send('Error revalidating')
   }
 }
 
