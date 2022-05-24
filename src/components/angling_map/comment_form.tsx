@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSWRConfig } from 'swr'
 
 type Props = {
   pageId: string
@@ -7,6 +8,7 @@ type Props = {
 const CommentForm: React.FC<Props> = ({ pageId }) => {
   const [name, setName] = useState('')
   const [text, setText] = useState('')
+  const { mutate } = useSWRConfig()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -25,6 +27,8 @@ const CommentForm: React.FC<Props> = ({ pageId }) => {
       },
       method: 'POST',
     })
+
+    mutate(`/api/fetch_comments?pageId=${pageId}`)
   }
 
   return (

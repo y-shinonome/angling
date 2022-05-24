@@ -4,9 +4,9 @@ import { setComment } from '../../utils/firestore'
 const addComent = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await setComment(req.body)
-    return res.status(200)
+    return res.status(200).end()
   } catch (error: any) {
-    return res.status(500)
+    return res.status(500).end()
   }
 }
 

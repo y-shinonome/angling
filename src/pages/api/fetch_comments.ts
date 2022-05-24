@@ -6,7 +6,7 @@ const fetchComments = async (req: NextApiRequest, res: NextApiResponse) => {
     const comments = await getComments(req.query.pageId.toString())
     res.json(comments)
   } catch (error: any) {
-    return res.status(500)
+    return res.status(500).end()
   }
 }
 
