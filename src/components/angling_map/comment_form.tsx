@@ -32,7 +32,7 @@ const CommentForm: React.FC<Props> = ({ pageId }) => {
             type="text"
             className="mt-1 w-full rounded border-teal-200 text-sm placeholder:text-slate-400 focus:border-indigo-300 focus:ring-indigo-200"
             maxLength={32}
-            placeholder="何も入力しなければ「匿名」表示になります"
+            placeholder="何も入力しなければ「名前無し」表示になります"
             onChange={(e) => {
               setName(e.target.value)
             }}
