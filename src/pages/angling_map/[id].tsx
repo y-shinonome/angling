@@ -17,6 +17,8 @@ import FieldDetails from '../../components/angling_map/field_details'
 import Share from '../../components/molecules/share'
 import Layout from '../../components/template/layout'
 import { generateFieldImagesPlaceHolder } from '../../utils/plaiceholder'
+import { getComments } from '../../utils/firestore'
+import dayjs from 'dayjs'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -25,15 +27,20 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type Props = {
   anglingFields: Entry<IAnglingFieldsFields>[]
   fieldImages: Entry<IAnglingFieldsFields>
+  comments: {
+    name: string
+    text: string
+    timestamp: string
+  }[]
 }
 
 type Params = {
   id: string
 }
 
-const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
+const AnglingField: NextPageWithLayout<Props> = ({ fieldImages, comments }) => {
   const [name, setName] = useState('')
-  const [comment, setComment] = useState('')
+  const [text, setText] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -41,7 +48,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
       body: JSON.stringify({
         pageId: fieldImages.sys.id,
         name: name,
-        comment: comment,
+        text: text,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -112,8 +119,18 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
         {fieldImages.fields.name}についてのコメント
       </h2>
       <hr />
-      <p className="my-3 text-sm">まだ投稿されたコメントがありません</p>
-      <hr />
+      {comments.map((comment, index) => (
+        <div key={index} className="whitespace-pre-wrap text-sm">
+          <div className="mt-2 flex flex-wrap">
+            <p className="font-bold">{comment.name}</p>
+            <time className="ml-2 text-gray-400" dateTime={comment.timestamp}>
+              {dayjs(comment.timestamp).format('YYYY年MM月DD日')}
+            </time>
+          </div>
+          <p className="mt-3">{comment.text}</p>
+          <hr className="my-2" />
+        </div>
+      ))}
       <form className="mt-6 grid grid-cols-1 text-xs" onSubmit={handleSubmit}>
         <label className="block">
           <span>名前</span>
@@ -137,7 +154,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
             placeholder="500文字以内"
             rows={4}
             onChange={(e) => {
-              setComment(e.target.value)
+              setText(e.target.value)
             }}
           ></textarea>
         </label>
@@ -181,15 +198,17 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
-  const anglingFields = await getOtherAnglingFields(params?.id)
-
-  const fieldImagesSrc = await getAnglingFieldImages(params?.id)
+  const pageId = params?.id ?? ''
+  const anglingFields = await getOtherAnglingFields(pageId)
+  const fieldImagesSrc = await getAnglingFieldImages(pageId)
   const fieldImages = await generateFieldImagesPlaceHolder(fieldImagesSrc[0])
+  const comments = await getComments(pageId)
 
   return {
     props: {
       anglingFields: anglingFields,
       fieldImages: fieldImages,
+      comments: comments,
     },
   }
 }

@@ -1,18 +1,33 @@
 import { firestore } from './firebase'
+import dayjs from 'dayjs'
 
 type Comment = {
   pageId: string
   name: string
-  comment: string
+  text: string
+  timestamp: Date
 }
 
 export const setComment = async (comment: Comment) => {
+  const timestamp = dayjs().toDate()
+  comment.timestamp = timestamp
+
   const docRef = firestore.collection('comments').doc()
-  await docRef.set({ comment })
+  await docRef.set(comment)
 }
 
-export const getDoc = async () => {
-  const docRef = firestore.collection('angling_spot').doc('fure-yu_ura')
-  const docSnap = await docRef.get()
-  console.log(docSnap.data())
+export const getComments = async (pageId: string) => {
+  const commentsRef = firestore.collection('comments')
+  const snapshot = await commentsRef
+    .where('pageId', '==', pageId)
+    .orderBy('timestamp', 'desc')
+    .get()
+  const comments = snapshot.docs.map((doc) => {
+    return {
+      name: doc.data().name,
+      text: doc.data().text,
+      timestamp: dayjs(doc.data().timestamp.toDate()).format('YYYY-MM-DD'),
+    }
+  })
+  return comments
 }
