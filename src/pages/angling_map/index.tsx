@@ -24,60 +24,6 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
   return (
     <>
       <Meta subTitle="釣り場一覧" />
-      <h2 className="mt-8 border-b-4 border-teal-200 text-lg font-semibold text-[#505050]">
-        釣り場一覧
-      </h2>
-      <ul>
-        {anglingFields.map((anglingField, index) => (
-          <li key={index} className="mt-8" id={anglingField.sys.id}>
-            <div className="flex items-start border">
-              <div className="flex flex-shrink-0 flex-col">
-                <Link href={`/angling_map/${anglingField.sys.id}`}>
-                  <a>
-                    <div className="relative aspect-[1.91/1] w-[45vw] max-w-[300px]">
-                      <Image
-                        src={anglingField.fields.thumbnailUrl}
-                        alt={anglingField.fields.name}
-                        layout="fill"
-                        objectFit="contain"
-                        placeholder="blur"
-                        blurDataURL={anglingField.fields.blurImage}
-                        className="duration-500"
-                      />
-                    </div>
-                  </a>
-                </Link>
-                <PositionPopup
-                  title={anglingField.fields.name}
-                  lat={anglingField.fields.position.lat}
-                  lon={anglingField.fields.position.lon}
-                  id={anglingField.sys.id}
-                  className="mt-2 w-full py-1 px-2 text-sm"
-                />
-              </div>
-              <div className="flex flex-col">
-                <h3>
-                  <Link href={`/angling_map/${anglingField.sys.id}`}>
-                    <a className="my-1 block p-2 text-sm">
-                      {anglingField.fields.name}
-                    </a>
-                  </Link>
-                </h3>
-                <ul className="ml-2 flex flex-wrap gap-1 pr-2 text-xs ">
-                  {anglingField.fields.categories.map((category, index) => (
-                    <li
-                      key={index}
-                      className="border border-teal-500 py-[2px] px-1 text-teal-600"
-                    >
-                      {category}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
       <h2 className="my-8 border-b-4 border-teal-300 text-lg font-semibold text-[#505050]">
         釣り場一覧
       </h2>
