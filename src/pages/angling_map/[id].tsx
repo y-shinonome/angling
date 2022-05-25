@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import dayjs from 'dayjs'
 import Meta from '../../components/molecules/meta'
 import Leaflet from '../../components/template/leaflet'
 import ReactMarkdown from 'react-markdown'
@@ -52,7 +53,14 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
         &gt; <span>{fieldImages.fields.name}</span>
       </p>
       <div className="prose-custom pt-8">
-        <h1>{fieldImages.fields.name}</h1>
+        <h1 className="!mb-1">{fieldImages.fields.name}</h1>
+        <p className="!mt-1 text-xs text-gray-500">
+          この釣り場の情報は
+          <time dateTime={fieldImages.fields.updatedTime}>
+            {dayjs(fieldImages.fields.updatedTime).format('YYYY年MM月DD日')}
+          </time>
+          に更新されました
+        </p>
         <div className="relative aspect-[16/9]">
           <Image
             src={fieldImages.fields.thumbnailUrl}
