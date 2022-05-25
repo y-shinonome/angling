@@ -28,6 +28,7 @@ const CustomMarker: React.FC<Props> = ({
   const customIcon = icon({
     iconUrl: iconUrl,
     iconSize: [30, 42],
+    iconAnchor: [15, 42],
   })
 
   return (
