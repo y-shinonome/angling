@@ -9,9 +9,6 @@ type Comment = {
 }
 
 export const setComment = async (comment: Comment) => {
-  const timestamp = dayjs().toDate()
-  comment.timestamp = timestamp
-
   const docRef = firestore.collection('comments').doc()
   await docRef.set(comment)
 }
