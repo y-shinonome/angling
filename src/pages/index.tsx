@@ -43,14 +43,14 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
           </a>
         </Link>
       </div>
-      <div className="prose-custom">
+      <div className="prose-custom mx-3">
         <ReactMarkdown>{topPageContent.fields.content}</ReactMarkdown>
       </div>
-      <Usage className="mt-10 mb-16" />
-      <div className="prose-custom">
+      <Usage className="mx-3 mt-10 mb-16" />
+      <div className="prose-custom mx-3">
         <h2>更新情報</h2>
       </div>
-      <ul className="mt-4 text-sm">
+      <ul className="mx-3 mt-4 text-sm">
         {updated.map((item, index) => (
           <li className="mb-2 flex" key={index}>
             <time dateTime="2022-04-30" className="mr-4 flex-shrink-0">

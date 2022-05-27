@@ -38,9 +38,9 @@ const Cotact: NextPage = () => {
       <Meta subTitle="お問い合わせ" />
       <TitleLogo />
       <Layout>
-        <section className="prose-custom mt-16">
+        <section className="prose-custom mx-3 mt-16">
           <h1>お問い合わせ</h1>
-          <form className="ml-3 mt-10 grid grid-cols-1" onSubmit={handleSubmit}>
+          <form className="mt-10 grid grid-cols-1" onSubmit={handleSubmit}>
             <label className="block">
               <span>お名前</span>
               <span className="ml-1 text-slate-400">(必須)</span>

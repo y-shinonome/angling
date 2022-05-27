@@ -18,7 +18,7 @@ const Terms: NextPage<Props> = ({ termsContent }) => {
       <Meta subTitle="利用規約" />
       <TitleLogo />
       <Layout>
-        <section className="prose-custom mt-16">
+        <section className="prose-custom mx-3 mt-16">
           <ReactMarkdown>{termsContent.fields.content}</ReactMarkdown>
         </section>
       </Layout>

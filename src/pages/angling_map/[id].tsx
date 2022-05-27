@@ -42,7 +42,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
         description={fieldImages.fields.description}
         imageUrl={fieldImages.fields.thumbnailUrl}
       />
-      <p className="mt-6 text-xs text-[#666666]">
+      <p className="mx-3 mt-6 mb-3 text-xs text-[#666666]">
         <Link href="/">
           <a className="underline">トップページ</a>
         </Link>{' '}
@@ -52,27 +52,30 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
         </Link>{' '}
         &gt; <span>{fieldImages.fields.name}</span>
       </p>
+      <div className="relative aspect-[16/9]">
+        <Image
+          src={fieldImages.fields.thumbnailUrl}
+          alt={fieldImages.fields.name}
+          layout="fill"
+          objectFit="contain"
+          placeholder="blur"
+          blurDataURL={fieldImages.fields.blurImage}
+          className="duration-500"
+        />
+      </div>
       <div className="prose-custom pt-8">
-        <h1 className="!mb-1">{fieldImages.fields.name}</h1>
-        <p className="!mt-1 text-xs text-gray-500">
+        <h1 className="mx-3 !mb-1">{fieldImages.fields.name}</h1>
+        <p className="mx-3 !mt-1 text-xs text-gray-500">
           この釣り場の情報は
           <time dateTime={fieldImages.fields.updatedTime}>
             {dayjs(fieldImages.fields.updatedTime).format('YYYY年MM月DD日')}
           </time>
           に更新されました
         </p>
-        <div className="relative aspect-[16/9]">
-          <Image
-            src={fieldImages.fields.thumbnailUrl}
-            alt={fieldImages.fields.name}
-            layout="fill"
-            objectFit="contain"
-            placeholder="blur"
-            blurDataURL={fieldImages.fields.blurImage}
-            className="duration-500"
-          />
-        </div>
-        <ReactMarkdown>{fieldImages.fields.description}</ReactMarkdown>
+
+        <ReactMarkdown className="mx-3">
+          {fieldImages.fields.description}
+        </ReactMarkdown>
         {fieldImages.fields.anglingSpot && (
           <FieldDetails
             fieldImages={fieldImages.fields.anglingSpot}
@@ -98,9 +101,9 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
           />
         )}
       </div>
-      <h2 className="mt-20 mb-2 font-bold">SNSで釣り場情報を共有</h2>
-      <Share className="flex flex-wrap gap-3" size={48} borderRadius={6} />
-      <h2 className="mt-20 mb-2 font-bold">
+      <h2 className="mx-3 mt-20 mb-2 font-bold">SNSで釣り場情報を共有</h2>
+      <Share className="mx-3 flex flex-wrap gap-3" size={48} borderRadius={6} />
+      <h2 className="mx-3 mt-20 mb-2 font-bold">
         {fieldImages.fields.name}についてのコメント
       </h2>
       <hr />

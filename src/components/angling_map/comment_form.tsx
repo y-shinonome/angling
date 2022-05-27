@@ -33,7 +33,10 @@ const CommentForm: React.FC<Props> = ({ pageId }) => {
 
   return (
     <>
-      <form className="mt-6 grid grid-cols-1 text-xs" onSubmit={handleSubmit}>
+      <form
+        className="mx-3 mt-6 grid grid-cols-1 text-xs"
+        onSubmit={handleSubmit}
+      >
         <label className="block">
           <span>名前</span>
           <input

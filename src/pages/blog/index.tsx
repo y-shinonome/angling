@@ -9,7 +9,7 @@ const Page404: NextPage = () => {
       <Meta subTitle="ブログ一覧" />
       <TitleLogo />
       <Layout>
-        <section className="prose-custom mt-16">
+        <section className="prose-custom mx-3 mt-16">
           <h1>ブログ一覧</h1>
           <h2>このサイトの開発記録や釣行記など</h2>
           <p>準備中！</p>

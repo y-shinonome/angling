@@ -18,7 +18,7 @@ const About: NextPage<Props> = ({ aboutContent }) => {
       <Meta subTitle="このサイトについて" />
       <TitleLogo />
       <Layout>
-        <section className="prose-custom mt-16">
+        <section className="prose-custom mx-3 mt-16">
           <ReactMarkdown>{aboutContent.fields.content}</ReactMarkdown>
         </section>
       </Layout>
