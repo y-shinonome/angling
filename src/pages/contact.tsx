@@ -82,7 +82,7 @@ const Cotact: NextPage = () => {
               ></textarea>
             </label>
             <button
-              className={`mt-2 rounded bg-teal-100 px-10 py-1 shadow shadow-gray-400/40 duration-300 hover:bg-black/10 ${
+              className={`mt-2 rounded bg-teal-100 px-10 py-1 shadow shadow-gray-400/40 duration-300 hover:bg-teal-400/30 ${
                 status && 'pointer-events-none'
               }`}
             >

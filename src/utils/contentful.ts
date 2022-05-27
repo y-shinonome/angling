@@ -16,7 +16,7 @@ export const getAnglingFields = async () => {
   const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
     select:
-      'sys.id,fields.name,fields.thumbnailUrl,fields.position,fields.categories,fields.description',
+      'sys.id,fields.name,fields.thumbnailUrl,fields.position,fields.description',
     order: '-fields.position',
   })
   return response.items

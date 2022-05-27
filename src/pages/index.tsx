@@ -37,7 +37,7 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
           Langling
         </h1>
         <Link href={`/angling_map`}>
-          <a className="flex w-[fit-content] items-center justify-center rounded bg-teal-100 px-8 py-2 text-lg shadow-md shadow-gray-400/40 duration-300 hover:bg-black/10">
+          <a className="flex w-[fit-content] items-center justify-center rounded bg-teal-100 px-8 py-2 text-lg shadow-md shadow-gray-400/40 duration-300 hover:bg-teal-400/30">
             <SVG src="/icons/map.svg" className="mr-2 h-[22px] w-[22px]" />
             釣り場を探す
           </a>

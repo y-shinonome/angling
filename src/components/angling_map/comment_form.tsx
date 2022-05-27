@@ -65,7 +65,7 @@ const CommentForm: React.FC<Props> = ({ pageId }) => {
             }}
           ></textarea>
         </label>
-        <button className="mt-2 rounded bg-teal-100 px-10 py-1 text-sm shadow shadow-gray-400/40 duration-300 hover:bg-black/10">
+        <button className="mt-2 rounded bg-teal-100 px-10 py-1 text-sm shadow shadow-gray-400/40 duration-300 hover:bg-teal-400/30">
           コメントを残す
         </button>
       </form>

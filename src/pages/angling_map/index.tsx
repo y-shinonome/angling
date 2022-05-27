@@ -29,8 +29,8 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
       </h2>
       <ul>
         {anglingFields.map((anglingField, index) => (
-          <>
-            <li id={anglingField.sys.id} key={index}>
+          <div key={index}>
+            <li id={anglingField.sys.id}>
               <div className="flex items-stretch justify-between px-3 duration-300 hover:bg-teal-200/30">
                 <Link href={`/angling_map/${anglingField.sys.id}`}>
                   <a className="block flex-grow py-2">
@@ -69,7 +69,7 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
               </div>
             </li>
             <hr className="my-5" />
-          </>
+          </div>
         ))}
       </ul>
     </>
