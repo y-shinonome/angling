@@ -24,51 +24,52 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
   return (
     <>
       <Meta subTitle="釣り場一覧" />
-      <h2 className="my-8 border-b-4 border-teal-300 text-lg font-semibold text-[#505050]">
+      <h2 className="my-8 mx-3 border-b-2 border-teal-400 text-lg font-bold text-[#2a2a2a]">
         釣り場一覧
       </h2>
-      <ul className="grid grid-cols-2 gap-x-3">
+      <ul>
         {anglingFields.map((anglingField, index) => (
-          <li
-            key={index}
-            className="flex flex-col justify-between border shadow-md"
-          >
-            <Link href={`/angling_map/${anglingField.sys.id}`}>
-              <a>
-                <div className="relative aspect-[1.91/1] w-full">
-                  <Image
-                    src={anglingField.fields.thumbnailUrl}
-                    alt={anglingField.fields.name}
-                    layout="fill"
-                    objectFit="contain"
-                    placeholder="blur"
-                    blurDataURL={anglingField.fields.blurImage}
-                    className="duration-500"
+          <>
+            <li id={anglingField.sys.id} key={index}>
+              <div className="flex items-stretch justify-between px-3 duration-300 hover:bg-teal-200/30">
+                <Link href={`/angling_map/${anglingField.sys.id}`}>
+                  <a className="block flex-grow py-2">
+                    <h3 className="block text-sm font-bold">
+                      {anglingField.fields.name}
+                    </h3>
+                    <p className="mr-5 mt-3 text-xs text-gray-500 line-clamp-3">
+                      {anglingField.fields.description}
+                    </p>
+                  </a>
+                </Link>
+                <div className="flex flex-col py-2">
+                  <Link href={`/angling_map/${anglingField.sys.id}`}>
+                    <a className="block flex-grow">
+                      <div className="relative aspect-[1.91/1] w-[33vw] max-w-[200px] ">
+                        <Image
+                          src={anglingField.fields.thumbnailUrl}
+                          alt={anglingField.fields.name}
+                          layout="fill"
+                          objectFit="contain"
+                          placeholder="blur"
+                          blurDataURL={anglingField.fields.blurImage}
+                          className="duration-500"
+                        />
+                      </div>
+                    </a>
+                  </Link>
+                  <PositionPopup
+                    title={anglingField.fields.name}
+                    lat={anglingField.fields.position.lat}
+                    lon={anglingField.fields.position.lon}
+                    id={anglingField.sys.id}
+                    className="mt-2 w-full py-1 text-xs"
                   />
                 </div>
-                <h3 className="mt-1 ml-1 block text-sm">
-                  {anglingField.fields.name}
-                </h3>
-                <ul className="mx-1 mt-3 flex flex-wrap gap-1 text-xs">
-                  {anglingField.fields.categories.map((category, index) => (
-                    <li
-                      key={index}
-                      className="border border-teal-500 p-[2px] px-1 text-teal-600"
-                    >
-                      {category}
-                    </li>
-                  ))}
-                </ul>
-              </a>
-            </Link>
-            <PositionPopup
-              title={anglingField.fields.name}
-              lat={anglingField.fields.position.lat}
-              lon={anglingField.fields.position.lon}
-              id={anglingField.sys.id}
-              className="mt-3 w-full py-1 px-2 text-sm"
-            />
-          </li>
+              </div>
+            </li>
+            <hr className="my-5" />
+          </>
         ))}
       </ul>
     </>
