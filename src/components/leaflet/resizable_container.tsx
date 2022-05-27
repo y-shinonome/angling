@@ -8,6 +8,7 @@ const ResizableContainer: React.FC = ({ children }) => {
         width: '100%',
         height: document.documentElement.clientHeight / 2.4,
       }}
+      maxHeight={document.documentElement.clientHeight * 0.9}
       enable={{
         top: false,
         right: false,
