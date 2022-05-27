@@ -22,7 +22,9 @@ export const getAnglingFields = async () => {
   return response.items
 }
 
-export const getOtherAnglingFields = async (except: string | undefined) => {
+export const getAnglingFieldMarkers = async (
+  except: string | undefined = ' '
+) => {
   const response = await client.getEntries<IAnglingFieldsFields>({
     content_type: 'anglingFields',
     select: 'sys.id,fields.name,fields.position',

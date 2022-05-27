@@ -10,7 +10,11 @@ import type {
 } from '../../@types/contentful'
 import ReactMarkdown from 'react-markdown'
 import dayjs from 'dayjs'
-import { getAnglingFields, getDocments, getUpdated } from '../utils/contentful'
+import {
+  getAnglingFieldMarkers,
+  getDocments,
+  getUpdated,
+} from '../utils/contentful'
 import Meta from '../components/molecules/meta'
 import Usage from '../components/molecules/usage'
 import Layout from '../components/template/layout'
@@ -22,7 +26,7 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 }
 
 type Props = {
-  anglingFields: Entry<IAnglingFieldsFields>[]
+  anglingFieldMarkers: Entry<IAnglingFieldsFields>[]
   topPageContent: Entry<IDocumentsFields>
   updated: Entry<IUpdatedFields>[]
 }
@@ -67,20 +71,20 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
 TopPage.getLayout = (props, page) => {
   return (
     <>
-      <Leaflet anglingFields={props.anglingFields} zoom={9} />
+      <Leaflet anglingFields={props.anglingFieldMarkers} zoom={9} />
       <Layout>{page}</Layout>
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const anglingFields = await getAnglingFields()
+  const anglingFieldMarkers = await getAnglingFieldMarkers()
   const topPageContent = await getDocments('topPage')
   const updated = await getUpdated()
 
   return {
     props: {
-      anglingFields: anglingFields,
+      anglingFieldMarkers: anglingFieldMarkers,
       topPageContent: topPageContent[0],
       updated: updated,
     },

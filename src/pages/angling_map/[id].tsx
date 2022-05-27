@@ -10,7 +10,7 @@ import ReactMarkdown from 'react-markdown'
 import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import {
-  getOtherAnglingFields,
+  getAnglingFieldMarkers,
   getAnglingFieldIds,
   getAnglingFieldImages,
 } from '../../utils/contentful'
@@ -26,7 +26,7 @@ type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 }
 
 type Props = {
-  anglingFields: Entry<IAnglingFieldsFields>[]
+  anglingFieldMarkers: Entry<IAnglingFieldsFields>[]
   fieldImages: Entry<IAnglingFieldsFields>
 }
 
@@ -122,7 +122,7 @@ AnglingField.getLayout = (props, page) => {
           props.fieldImages.fields.position.lon,
         ]}
         zoom={16}
-        anglingFields={props.anglingFields}
+        anglingFields={props.anglingFieldMarkers}
         fieldImages={props.fieldImages}
       />
       <Layout>{page}</Layout>
@@ -146,13 +146,13 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
   const pageId = params?.id ?? ''
-  const anglingFields = await getOtherAnglingFields(pageId)
+  const anglingFieldMarkers = await getAnglingFieldMarkers(pageId)
   const fieldImagesSrc = await getAnglingFieldImages(pageId)
   const fieldImages = await generateFieldImagesPlaceHolder(fieldImagesSrc[0])
 
   return {
     props: {
-      anglingFields: anglingFields,
+      anglingFieldMarkers: anglingFieldMarkers,
       fieldImages: fieldImages,
     },
   }
