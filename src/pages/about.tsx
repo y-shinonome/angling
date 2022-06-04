@@ -7,6 +7,7 @@ import type { IDocumentsFields } from '../../@types/contentful'
 import Meta from '../components/molecules/meta'
 import Layout from '../components/template/layout'
 import TitleLogo from '../components/atoms/title_logo'
+import CustomAnchor from '../components/react_markdown/custom_anchor'
 
 type Props = {
   aboutContent: Entry<IDocumentsFields>
@@ -19,7 +20,15 @@ const About: NextPage<Props> = ({ aboutContent }) => {
       <TitleLogo />
       <Layout>
         <section className="prose-custom mx-3 mt-16">
-          <ReactMarkdown>{aboutContent.fields.content}</ReactMarkdown>
+          <ReactMarkdown
+            components={{
+              a: ({ children, ...props }) => {
+                return <CustomAnchor href={props.href}>{children}</CustomAnchor>
+              },
+            }}
+          >
+            {aboutContent.fields.content}
+          </ReactMarkdown>
         </section>
       </Layout>
     </>
