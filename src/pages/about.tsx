@@ -8,6 +8,7 @@ import Meta from '../components/molecules/meta'
 import Layout from '../components/template/layout'
 import TitleLogo from '../components/atoms/title_logo'
 import CustomAnchor from '../components/react_markdown/custom_anchor'
+import CustomImage from '../components/react_markdown/custom_image'
 
 type Props = {
   aboutContent: Entry<IDocumentsFields>
@@ -24,6 +25,9 @@ const About: NextPage<Props> = ({ aboutContent }) => {
             components={{
               a: ({ children, ...props }) => {
                 return <CustomAnchor href={props.href}>{children}</CustomAnchor>
+              },
+              img: ({ ...props }) => {
+                return <CustomImage src={props.src} alt={props.alt} />
               },
             }}
           >
