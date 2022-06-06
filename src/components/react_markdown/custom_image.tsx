@@ -13,7 +13,7 @@ export const CustomImage: React.FC<Props> = ({ src, alt }) => {
         layout="fill"
         objectFit="contain"
         placeholder="blur"
-        blurDataURL={`${src}?w=16&h=16&fm=webp`}
+        blurDataURL={`${src}?w=20&h=10&fm=webp`}
         className="duration-500"
       />
     </span>

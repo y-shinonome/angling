@@ -19,7 +19,6 @@ import Share from '../../components/molecules/share'
 import Layout from '../../components/template/layout'
 import Comments from '../../components/angling_map/comments'
 import CommentForm from '../../components/angling_map/comment_form'
-import { generateFieldImagesPlaceHolder } from '../../utils/plaiceholder'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -59,7 +58,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
           layout="fill"
           objectFit="contain"
           placeholder="blur"
-          blurDataURL={fieldImages.fields.blurImage}
+          blurDataURL={`${fieldImages.fields.thumbnailUrl}?w=20&h=10&fm=webp`}
           className="duration-500"
         />
       </div>
@@ -147,13 +146,12 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 }) => {
   const pageId = params?.id ?? ''
   const anglingFieldMarkers = await getAnglingFieldMarkers(pageId)
-  const fieldImagesSrc = await getAnglingFieldImages(pageId)
-  const fieldImages = await generateFieldImagesPlaceHolder(fieldImagesSrc[0])
+  const fieldImages = await getAnglingFieldImages(pageId)
 
   return {
     props: {
       anglingFieldMarkers: anglingFieldMarkers,
-      fieldImages: fieldImages,
+      fieldImages: fieldImages[0],
     },
   }
 }

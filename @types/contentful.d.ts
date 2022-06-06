@@ -32,7 +32,6 @@ export interface IAnglingFieldsFields {
 
   /** thumbnailURL */
   thumbnailUrl: string
-  blurImage: string
 
   /** anglingSpot */
   anglingSpot?: Entry<IFieldImagesFields>[] | undefined
@@ -101,7 +100,6 @@ export interface IFieldImagesFields {
 
   /** imageURL */
   imageUrl?: string | undefined
-  blurImage?: string | undefined
 
   /** comment */
   comment?: string | undefined
