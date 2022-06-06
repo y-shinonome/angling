@@ -57,7 +57,10 @@ const TopPage: NextPageWithLayout<Props> = ({ topPageContent, updated }) => {
       <ul className="mx-3 mt-4 text-sm">
         {updated.map((item, index) => (
           <li className="mb-2 flex" key={index}>
-            <time dateTime="2022-04-30" className="mr-4 flex-shrink-0">
+            <time
+              dateTime={item.fields.updatedDate}
+              className="mr-4 flex-shrink-0"
+            >
               {dayjs(item.fields.updatedDate).format('YYYY年MM月DD日')}
             </time>
             <p>{item.fields.text}</p>

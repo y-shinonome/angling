@@ -1,15 +1,13 @@
 import type { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import type { NextPage } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
 import Leaflet from '../../components/template/leaflet'
 import type { Entry } from 'contentful'
-import Meta from '../../components/molecules/meta'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
+import Meta from '../../components/molecules/meta'
 import { getAnglingFields } from '../../utils/contentful'
 import Layout from '../../components/template/layout'
-import PositionPopup from '../../components/angling_map/position_popup'
+import AnglingField from '../../components/angling_map/angling_field'
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (pageProps: Props, page: ReactElement) => ReactElement
@@ -29,45 +27,7 @@ const AnglingMap: NextPageWithLayout<Props> = ({ anglingFields }) => {
       <ul>
         {anglingFields.map((anglingField, index) => (
           <div key={index}>
-            <li id={anglingField.sys.id}>
-              <div className="flex items-stretch justify-between px-3 duration-300 hover:bg-teal-200/30">
-                <Link href={`/angling_map/${anglingField.sys.id}`}>
-                  <a className="block flex-grow py-2">
-                    <h3 className="block text-sm font-bold">
-                      {anglingField.fields.name}
-                    </h3>
-                    <p className="mr-5 mt-3 text-xs text-gray-500 line-clamp-3">
-                      {anglingField.fields.description}
-                    </p>
-                  </a>
-                </Link>
-                <div className="flex flex-col py-2">
-                  <Link href={`/angling_map/${anglingField.sys.id}`}>
-                    <a className="block flex-grow">
-                      <div className="relative aspect-[1.91/1] w-[33vw] max-w-[200px] ">
-                        <Image
-                          src={anglingField.fields.thumbnailUrl}
-                          alt={anglingField.fields.name}
-                          layout="fill"
-                          objectFit="contain"
-                          placeholder="blur"
-                          blurDataURL={`${anglingField.fields.thumbnailUrl}?w=20&h=10&fm=webp`}
-                          className="duration-500"
-                        />
-                      </div>
-                    </a>
-                  </Link>
-                  <PositionPopup
-                    title={anglingField.fields.name}
-                    lat={anglingField.fields.position.lat}
-                    lon={anglingField.fields.position.lon}
-                    id={anglingField.sys.id}
-                    className="mt-2 w-full py-1 text-xs"
-                  />
-                </div>
-              </div>
-            </li>
-            <hr className="my-5" />
+            <AnglingField anglingField={anglingField} />
           </div>
         ))}
       </ul>
