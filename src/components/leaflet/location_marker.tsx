@@ -5,7 +5,7 @@ import { LocationContext } from '../../context/location_context'
 
 const customIcon = icon({
   iconUrl: '/icons/location.svg',
-  iconSize: [32, 32],
+  iconSize: [36, 36],
 })
 
 const LocationMarker: React.FC = () => {
