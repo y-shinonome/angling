@@ -99,6 +99,12 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
             heading="周辺の売店・コンビニ情報"
           />
         )}
+        {fieldImages.fields.others && (
+          <FieldDetails
+            fieldImages={fieldImages.fields.others}
+            heading="その他の釣り場情報"
+          />
+        )}
       </div>
       <h2 className="mx-3 mt-20 mb-2 font-bold">SNSで釣り場情報を共有</h2>
       <Share className="mx-3 flex flex-wrap gap-3" size={48} borderRadius={6} />

@@ -80,6 +80,32 @@ const Markers: React.FC<Props> = ({ anglingFields, fieldImages }) => {
             iconUrl="/icons/store.svg"
           />
         ))}
+      {fieldImages?.fields.vendingMachines &&
+        fieldImages.fields.vendingMachines.map((fieldImage, index) => (
+          <CustomMarker
+            key={index}
+            id={fieldImage.sys.id}
+            title={fieldImage.fields.title}
+            position={[
+              fieldImage.fields.position.lat,
+              fieldImage.fields.position.lon,
+            ]}
+            iconUrl="/icons/vending-machine.svg"
+          />
+        ))}
+      {fieldImages?.fields.others &&
+        fieldImages.fields.others.map((fieldImage, index) => (
+          <CustomMarker
+            key={index}
+            id={fieldImage.sys.id}
+            title={fieldImage.fields.title}
+            position={[
+              fieldImage.fields.position.lat,
+              fieldImage.fields.position.lon,
+            ]}
+            iconUrl="/icons/information.svg"
+          />
+        ))}
     </>
   )
 }

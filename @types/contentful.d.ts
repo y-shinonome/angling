@@ -45,8 +45,11 @@ export interface IAnglingFieldsFields {
   /** stores */
   stores?: Entry<IFieldImagesFields>[] | undefined
 
-  /** notices */
-  notices?: Entry<IFieldImagesFields>[] | undefined
+  /** vendingMachines */
+  vendingMachines?: Entry<IFieldImagesFields>[] | undefined
+
+  /** others */
+  others?: Entry<IFieldImagesFields>[] | undefined
 }
 
 export interface IAnglingFields extends Entry<IAnglingFieldsFields> {
