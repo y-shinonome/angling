@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import useSWR from 'swr'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import Meta from '../components/molecules/meta'
 import Layout from '../components/template/layout'
 import TitleLogo from '../components/atoms/title_logo'
@@ -12,6 +13,14 @@ type SocialMedia = {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
+const Placeholder = () => {
+  return (
+    <div className="flex h-80 w-full items-center justify-center bg-teal-100">
+      <AiOutlineLoading3Quarters className="animate-spin text-6xl text-gray-500" />
+    </div>
+  )
+}
+
 const ReactSocialMediaEmbed: NextPage = () => {
   const { data } = useSWR<SocialMedia>(`/api/fetch_social_media`, fetcher, {
     revalidateOnFocus: false,
@@ -20,7 +29,7 @@ const ReactSocialMediaEmbed: NextPage = () => {
   const FacebookEmbedCSR = dynamic(
     () => import('../components/react_social_media_embed/facebook_embed_csr'),
     {
-      loading: () => null,
+      loading: () => <Placeholder />,
       ssr: false,
     }
   )
@@ -28,7 +37,7 @@ const ReactSocialMediaEmbed: NextPage = () => {
   const TwitterEmbedCSR = dynamic(
     () => import('../components/react_social_media_embed/twitter_embed_csr'),
     {
-      loading: () => null,
+      loading: () => <Placeholder />,
       ssr: false,
     }
   )
@@ -36,7 +45,7 @@ const ReactSocialMediaEmbed: NextPage = () => {
   const InstagramEmbedCSR = dynamic(
     () => import('../components/react_social_media_embed/instagram_embed_csr'),
     {
-      loading: () => null,
+      loading: () => <Placeholder />,
       ssr: false,
     }
   )
