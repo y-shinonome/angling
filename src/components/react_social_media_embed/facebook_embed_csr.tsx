@@ -7,7 +7,7 @@ type Props = {
 export const FacebookEmbedCSR: React.FC<Props> = ({ url }) => {
   return (
     <>
-      <FacebookEmbed url={url} />
+      <FacebookEmbed url={url} width="100%" />
     </>
   )
 }

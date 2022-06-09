@@ -7,7 +7,7 @@ type Props = {
 export const InstagramEmbedCSR: React.FC<Props> = ({ url }) => {
   return (
     <>
-      <InstagramEmbed url={url} />
+      <InstagramEmbed url={url} width="100%" />
     </>
   )
 }

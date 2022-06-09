@@ -7,7 +7,7 @@ type Props = {
 export const TwitterEmbedCSR: React.FC<Props> = ({ url }) => {
   return (
     <>
-      <TwitterEmbed url={url} />
+      <TwitterEmbed url={url} width="100%" />
     </>
   )
 }

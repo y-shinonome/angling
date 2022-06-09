@@ -47,21 +47,22 @@ const ReactSocialMediaEmbed: NextPage = () => {
       <TitleLogo />
       <Layout>
         <SocialMediaPostForm />
-        {data?.map((item, index) =>
-          item.url.includes('twitter') ? (
-            <div className="my-5 flex justify-center" key={index}>
-              <TwitterEmbedCSR url={item.url} />
+        <div className="mx-3">
+          {data?.map((item, index) => (
+            <div
+              className="my-6 mx-auto flex w-full max-w-[548px] justify-center"
+              key={index}
+            >
+              {item.url.includes('twitter') ? (
+                <TwitterEmbedCSR url={item.url} />
+              ) : item.url.includes('facebook') ? (
+                <FacebookEmbedCSR url={item.url} />
+              ) : item.url.includes('instagram') ? (
+                <InstagramEmbedCSR url={item.url} />
+              ) : null}
             </div>
-          ) : item.url.includes('facebook') ? (
-            <div className="my-5 flex justify-center" key={index}>
-              <FacebookEmbedCSR url={item.url} />
-            </div>
-          ) : item.url.includes('instagram') ? (
-            <div className="my-5 flex justify-center" key={index}>
-              <InstagramEmbedCSR url={item.url} />
-            </div>
-          ) : null
-        )}
+          ))}
+        </div>
       </Layout>
     </>
   )
