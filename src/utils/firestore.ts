@@ -8,6 +8,10 @@ type Comment = {
   timestamp: Date
 }
 
+type socialMedia = {
+  url: string
+}
+
 export const setComment = async (comment: Comment) => {
   const docRef = firestore.collection('comments').doc()
   await docRef.set(comment)
@@ -27,4 +31,21 @@ export const getComments = async (pageId: string) => {
     }
   })
   return comments
+}
+
+export const setSocialMedia = async (socialMedia: socialMedia) => {
+  const docRef = firestore.collection('socialMedia').doc()
+  await docRef.set(socialMedia)
+}
+
+export const getSocialMedia = async () => {
+  const socialMediaRef = firestore.collection('socialMedia')
+  const snapshot = await socialMediaRef.orderBy('timestamp', 'desc').get()
+
+  const socialMedia = snapshot.docs.map((doc) => {
+    return {
+      url: doc.data().url,
+    }
+  })
+  return socialMedia
 }

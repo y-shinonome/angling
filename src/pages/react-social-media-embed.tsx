@@ -1,14 +1,40 @@
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
+import useSWR from 'swr'
 import Meta from '../components/molecules/meta'
 import Layout from '../components/template/layout'
 import TitleLogo from '../components/atoms/title_logo'
-import { TwitterEmbed, InstagramEmbed } from 'react-social-media-embed'
+import SocialMediaPostForm from '../components/react_social_media_embed/social_media_post_form'
+
+type SocialMedia = {
+  url: string
+}[]
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const ReactSocialMediaEmbed: NextPage = () => {
-  const CustomFacebookEmbed = dynamic(
-    () =>
-      import('../components/react_social_media_embed/custom_facebook_embed'),
+  const { data } = useSWR<SocialMedia>(`/api/fetch_social_media`, fetcher, {
+    revalidateOnFocus: false,
+  })
+
+  const FacebookEmbedCSR = dynamic(
+    () => import('../components/react_social_media_embed/facebook_embed_csr'),
+    {
+      loading: () => null,
+      ssr: false,
+    }
+  )
+
+  const TwitterEmbedCSR = dynamic(
+    () => import('../components/react_social_media_embed/twitter_embed_csr'),
+    {
+      loading: () => null,
+      ssr: false,
+    }
+  )
+
+  const InstagramEmbedCSR = dynamic(
+    () => import('../components/react_social_media_embed/instagram_embed_csr'),
     {
       loading: () => null,
       ssr: false,
@@ -20,13 +46,22 @@ const ReactSocialMediaEmbed: NextPage = () => {
       <Meta subTitle="SNS埋め込みテスト" />
       <TitleLogo />
       <Layout>
-        <CustomFacebookEmbed url="https://www.facebook.com/fishingvision/photos/a.192837284176016/4939460569513640" />
-        <div className="flex justify-center">
-          <TwitterEmbed url="https://twitter.com/irohass_Fishing/status/1534266060592910336" />
-        </div>
-        <div className="flex justify-center">
-          <InstagramEmbed url="https://www.instagram.com/p/CegV2v0PpV4/" />
-        </div>
+        <SocialMediaPostForm />
+        {data?.map((item, index) =>
+          item.url.includes('twitter') ? (
+            <div className="my-5 flex justify-center" key={index}>
+              <TwitterEmbedCSR url={item.url} />
+            </div>
+          ) : item.url.includes('facebook') ? (
+            <div className="my-5 flex justify-center" key={index}>
+              <FacebookEmbedCSR url={item.url} />
+            </div>
+          ) : item.url.includes('instagram') ? (
+            <div className="my-5 flex justify-center" key={index}>
+              <InstagramEmbedCSR url={item.url} />
+            </div>
+          ) : null
+        )}
       </Layout>
     </>
   )
