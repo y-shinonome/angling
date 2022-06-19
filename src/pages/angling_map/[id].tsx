@@ -4,9 +4,6 @@ import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import dayjs from 'dayjs'
-import Meta from '../../components/molecules/meta'
-import Leaflet from '../../components/template/leaflet'
-import ReactMarkdown from 'react-markdown'
 import type { Entry } from 'contentful'
 import type { IAnglingFieldsFields } from '../../../@types/contentful'
 import {
@@ -14,6 +11,9 @@ import {
   getAnglingFieldIds,
   getAnglingFieldImages,
 } from '../../utils/contentful'
+import Meta from '../../components/molecules/meta'
+import Leaflet from '../../components/template/leaflet'
+import CustomReactMarkdown from '../../components/react_markdown/custom_react_markdown'
 import FieldDetails from '../../components/angling_map/field_details'
 import Share from '../../components/molecules/share'
 import Layout from '../../components/template/layout'
@@ -38,7 +38,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
     <>
       <Meta
         subTitle={fieldImages.fields.name}
-        description={fieldImages.fields.description}
+        description={fieldImages.fields.description.replace(/\s+/g, '')}
         imageUrl={fieldImages.fields.thumbnailUrl}
       />
       <p className="mx-3 mt-6 mb-3 text-xs text-[#666666]">
@@ -62,19 +62,19 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
           className="duration-500"
         />
       </div>
-      <div className="prose-custom pt-8">
+      <section className="prose-custom pt-8">
         <h1 className="mx-3 !mb-1">{fieldImages.fields.name}</h1>
         <p className="mx-3 !mt-1 text-xs text-gray-500">
           この釣り場の情報は
           <time dateTime={fieldImages.fields.updatedTime}>
             {dayjs(fieldImages.fields.updatedTime).format('YYYY年MM月DD日')}
           </time>
-          に更新されました
+          に更新されています
         </p>
-
-        <ReactMarkdown className="mx-3">
-          {fieldImages.fields.description}
-        </ReactMarkdown>
+        <div className="mx-3 mb-14">
+          <CustomReactMarkdown article={fieldImages.fields.description} />
+          <CustomReactMarkdown article={fieldImages.fields.article} />
+        </div>
         {fieldImages.fields.anglingSpot && (
           <FieldDetails
             fieldImages={fieldImages.fields.anglingSpot}
@@ -105,7 +105,7 @@ const AnglingField: NextPageWithLayout<Props> = ({ fieldImages }) => {
             heading="その他の釣り場情報"
           />
         )}
-      </div>
+      </section>
       <h2 className="mx-3 mt-20 mb-2 font-bold">SNSで釣り場情報を共有</h2>
       <Share className="mx-3 flex flex-wrap gap-3" size={48} borderRadius={6} />
       <h2 className="mx-3 mt-20 mb-2 font-bold">

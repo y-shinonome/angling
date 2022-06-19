@@ -1,10 +1,8 @@
 import Image from 'next/image'
 import type { Entry } from 'contentful'
 import type { IFieldImagesFields } from '../../../@types/contentful'
-import ReactMarkdown from 'react-markdown'
+import CustomReactMarkdown from '../react_markdown/custom_react_markdown'
 import PositionPopup from './position_popup'
-import CustomAnchor from '../react_markdown/custom_anchor'
-import CustomImage from '../react_markdown/custom_image'
 
 type Props = {
   fieldImages: Entry<IFieldImagesFields>[]
@@ -43,20 +41,7 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
               </>
             )}
             {fieldImage.fields.comment && (
-              <ReactMarkdown
-                components={{
-                  a: ({ children, ...props }) => {
-                    return (
-                      <CustomAnchor href={props.href}>{children}</CustomAnchor>
-                    )
-                  },
-                  img: ({ ...props }) => {
-                    return <CustomImage src={props.src} alt={props.alt} />
-                  },
-                }}
-              >
-                {fieldImage.fields.comment}
-              </ReactMarkdown>
+              <CustomReactMarkdown article={fieldImage.fields.comment} />
             )}
           </div>
           {fieldImages.length !== index + 1 ? <hr /> : <br />}

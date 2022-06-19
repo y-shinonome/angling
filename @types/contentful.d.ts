@@ -16,6 +16,9 @@ export interface IAnglingFieldsFields {
   /** description */
   description: string
 
+  /** article */
+  article: string
+
   /** categories */
   categories: (
     | '岸壁'
