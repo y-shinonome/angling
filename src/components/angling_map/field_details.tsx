@@ -32,14 +32,14 @@ const FieldDetails: React.FC<Props> = ({ fieldImages, heading }) => {
                     className="duration-500"
                   />
                 </div>
-                <PositionPopup
-                  title={fieldImage.fields.title}
-                  lat={fieldImage.fields.position.lat}
-                  lon={fieldImage.fields.position.lon}
-                  className="w-full py-1 px-2 text-sm"
-                />
               </>
             )}
+            <PositionPopup
+              title={fieldImage.fields.title}
+              lat={fieldImage.fields.position.lat}
+              lon={fieldImage.fields.position.lon}
+              className="w-full py-1 px-2 text-sm"
+            />
             {fieldImage.fields.comment && (
               <CustomReactMarkdown article={fieldImage.fields.comment} />
             )}
