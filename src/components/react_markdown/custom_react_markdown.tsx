@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import CustomAnchor from './custom_anchor'
 import CustomImage from './custom_image'
 
@@ -9,6 +10,7 @@ type Props = {
 export const CustomReactMarkdown: React.FC<Props> = ({ article }) => {
   return (
     <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
       components={{
         a: ({ children, ...props }) => {
           return <CustomAnchor href={props.href}>{children}</CustomAnchor>
